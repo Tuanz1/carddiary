@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
-
-import { Platform } from '@ionic/angular';
-import { SplashScreen } from '@ionic-native/splash-screen/ngx';
-import { StatusBar } from '@ionic-native/status-bar/ngx';
+import {Component} from '@angular/core';
+import {Router} from '@angular/router';
+import {SplashScreen} from '@ionic-native/splash-screen/ngx';
+import {StatusBar} from '@ionic-native/status-bar/ngx';
+import {Platform} from '@ionic/angular';
 
 @Component({
   selector: 'app-root',
@@ -11,11 +11,17 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 })
 export class AppComponent {
   constructor(
-    private platform: Platform,
-    private splashScreen: SplashScreen,
-    private statusBar: StatusBar
+      private platform: Platform,
+      private splashScreen: SplashScreen,
+      private statusBar: StatusBar,
+      private router: Router,
   ) {
     this.initializeApp();
+    this.initialzeParse();
+    // Parse.User.logOut();
+    // if (Parse.User.current()) {
+    // this.router.navigate(['/user'], {skipLocationChange: true});
+    // }
   }
 
   initializeApp() {
@@ -23,5 +29,12 @@ export class AppComponent {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
+  }
+  initialzeParse() {
+    Parse.initialize(
+        'GGmbVq9sjSw9uODaf1fHsqMn2AL8tooE0OkLJGRz',
+        'GGmbVq9sjSw9uODaf1fHsqMn2AL8tooE0OkLJGRz',
+        'DCKKrJR2Uc0dkLKWuWSXigmDaLXS9BvLH8qntN86');
+    Parse.serverURL = 'https://shellcode.vip:1337/parse';
   }
 }

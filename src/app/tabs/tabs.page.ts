@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-tabs',
@@ -6,7 +7,8 @@ import { Component } from '@angular/core';
   styleUrls: ['tabs.page.scss']
 })
 export class TabsPage {
-
-  constructor() {}
-
+  constructor(private routes: Router) {}
+  navToDiary() {
+    this.routes.navigate(['./diary']);
+  }
 }

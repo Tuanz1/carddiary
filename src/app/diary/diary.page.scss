@@ -1,0 +1,113 @@
+.btn-datetime {
+    width: 100%;
+    border: solid 1px grey;
+    border-radius: 50px;
+}
+
+ion-datetime {
+    width: 100%;
+}
+
+.btn-heart {
+    --ripple-color: transparent;
+}
+
+ion-slides {
+    // margin-top: 4px;
+    height: 20em;
+    background-color: grey;
+
+    ion-slide {
+        height: 20em;
+        background-color: grey;
+    }
+}
+
+ion-grid {
+    padding: 0 0.7em;
+    margin: 0;
+
+    ion-row {
+        ion-note {
+            font-size: 12px;
+        }
+
+        .note-auto {
+            font-weight: 150;
+        }
+
+        .note-save {
+            font-weight: 400;
+        }
+
+        padding: 0;
+        margin: 0;
+    }
+}
+
+.preview {
+    position: absolute;
+    z-index: 2;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 25%;
+
+    .icon-add {
+        font-size: 4em;
+    }
+
+    .btn-add {
+        position: relative;
+        width: 6em;
+
+        .file-input {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            font-size: 4em;
+            z-index: 2;
+            opacity: 0;
+        }
+    }
+
+    ion-button {
+        width: 6em;
+        height: 6em;
+    }
+}
+
+.icon-imges {
+    font-size: 4em;
+}
+
+.preview-img {
+    background: grey;
+    min-height: 20em;
+    min-width: 100%;
+}
+
+ion-content {
+
+    ion-button {
+        min-height: 4em;
+    }
+}
+
+ion-input {
+    text-align: center;
+}
+
+:host {
+    ion-item {
+        --border-color: white; // default underline color
+        --highlight-color-invalid: red; // invalid underline color
+        --highlight-color-valid: grey; // valid underline color
+        --highlight-color-focused: transparent;
+    }
+}
+
+.tools {
+    text-align: center;
+    border-bottom: solid 1px;
+}

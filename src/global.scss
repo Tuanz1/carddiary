@@ -24,3 +24,41 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+@import "./assets/iconfont/iconfont.css";
+
+.color-picker-modal .modal-wrapper {
+    height: 35%;
+    top: 65%;
+    width: 100%;
+    position: absolute;
+    display: block;
+}
+
+.tag-picker-modal .modal-wrapper {
+    // height: 60%;
+    // top: 40%;
+    // width: 100%;
+    --background: transparent;
+    position: absolute;
+    display: block;
+}
+
+.tag-edit-modal .modal-wrapper {
+    height: 20%;
+    top: 40%;
+    left: 10%;
+    width: 80%;
+    position: absolute;
+    display: block;
+}
+
+.header-md:after {
+    left: 0;
+    bottom: -5px;
+    background-position: left 0 top -2px;
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    background-repeat: repeat-x;
+    content: "";
+}

@@ -1,4 +1,83 @@
-.welcome-card img {
-  max-height: 35vh;
-  overflow: hidden;
+.fill-height {
+  min-height: 24em;
+}
+
+ion-card-title {
+  text-align: center;
+  font-size: 3em;
+}
+
+ion-card-subtitle {
+  text-align: center;
+  font-size: 2em;
+}
+
+// .card-content {
+//   // background-color: #55dcff;
+// }
+
+.card-subtitle {
+  color: #ffffff;
+  text-align: right;
+}
+
+.card-title {
+  color: #ffffff;
+  text-align: right;
+}
+
+.btn-color-picker {
+  margin-left: 1em;
+}
+
+ion-card {
+  border-radius: 1em;
+  min-width: 18em;
+  min-height: 26em;
+}
+
+ion-grid {
+  --ion-grid-columns: 7;
+  text-align: right;
+}
+
+ion-slide {
+  max-width: 16em;
+}
+
+.select-year {
+  text-align: center;
+  margin-top: 4em;
+}
+
+.select-calendar {
+  margin-top: 2em;
+  text-align: center;
+}
+
+
+ion-button {
+  --border-radius: 2em;
+  --color: #858c9a;
+  --border-color: #858c9a;
+  --color-activated: #858c9a;
+  --ripple-color: #858c9a;
+  --border-width: 1px;
+}
+
+ion-item {
+  position: fixed;
+  bottom: 1em;
+  width: 80%;
+  --background: #ff000000;
+}
+
+.percentage {
+  color: white;
+  margin-left: 1em;
+  font-size: 0.8em;
+}
+
+.circle-button {
+  --ripple-color: transparent;
 }

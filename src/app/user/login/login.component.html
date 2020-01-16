@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>用户登录</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <span class="icon">
+    <img src="../../assets/icon/favicon.png" alt="">
+  </span>
+  <form [formGroup]="loginForm" #formDir="ngForm" (ngSubmit)="login()">
+    <ion-item>
+      <ion-label position="floating">用户</ion-label>
+      <ion-input id="username" type="text" formControlName="username" required></ion-input>
+    </ion-item>
+    <!-- <ion-label color="danger" *ngIf="username.invalid">
+      用户名不能为空
+    </ion-label> -->
+    <ion-label color="danger"
+      *ngIf="loginForm.get('username').hasError('required') && !loginForm.get('username').pristine || loginForm.get('username').hasError('minlength')">
+      用户名至少为4个字符
+    </ion-label>
+    <ion-item>
+      <ion-label position="floating">密码</ion-label>
+      <ion-input type="password" formControlName="password" required></ion-input>
+    </ion-item>
+    <ion-label color="danger"
+      *ngIf="loginForm.get('password').hasError('minlength') && !loginForm.get('password').pristine">密码长度为6-18
+    </ion-label>
+
+    <ion-button expand="full" type="submit">登录</ion-button>
+    <ion-button expand="full" (click)="openRegister()">注册</ion-button>
+  </form>
+</ion-content>

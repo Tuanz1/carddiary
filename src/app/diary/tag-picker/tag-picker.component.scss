@@ -1,0 +1,35 @@
+ion-backdrop {
+    height: 40%;
+}
+
+ion-content {
+    height: 60%;
+    top: 40%;
+}
+
+ion-grid {
+    padding: 0em 2em 1em 3em;
+    margin: 0;
+    --ion-grid-columns: 4;
+
+    ion-row {
+        padding: 0;
+        border-bottom: solid 1px grey;
+
+        ion-col {
+            padding: 0;
+            margin: 0;
+
+            ion-button {
+                padding: 0;
+                margin: 0;
+                height: 4em;
+                min-height: 4em;
+            }
+        }
+    }
+}
+
+.selected {
+    color: blue;
+}
