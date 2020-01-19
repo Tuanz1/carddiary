@@ -1,0 +1,65 @@
+ion-toolbar {
+    text-align: center;
+}
+
+ion-tiltle {
+    text-align: center;
+}
+
+ion-card {
+    max-width: 26em;
+    max-height: 9em;
+    max-width: 26em;
+    min-height: 12em;
+    margin-left: 1.5em;
+    margin-bottom: 2em;
+    border-radius: 10px;
+    padding: 0;
+}
+
+ion-grid {
+    padding: 0;
+    margin: 0;
+}
+
+ion-row {
+    align-items: center;
+    padding: 0;
+    margin: 0;
+}
+
+ion-col {
+    padding: 0;
+    margin: 0;
+
+    img {
+        width: 100%;
+        vertical-align: center;
+    }
+}
+
+.diary-img {
+    height: 10em;
+}
+
+
+p {
+    width: 100%;
+    text-align: center;
+    margin: 0;
+}
+
+.days {
+    font-size: 1em;
+}
+
+.date {
+    margin-top: 1em;
+    font-size: 2em;
+}
+
+ion-icon {
+    width: 100%;
+    text-align: center;
+    font-size: 2em;
+}

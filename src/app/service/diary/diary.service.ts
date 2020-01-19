@@ -1,18 +1,27 @@
 import {Injectable} from '@angular/core';
+import {CalendarService} from '../calendar/calendar.service';
 
 @Injectable({providedIn: 'root'})
 export class DiaryService {
   diary: any;
   diarys: Array<any>;
   Diary = Parse.Object.extend('Diary');
-  constructor() {}
+  constructor(private calendarService: CalendarService) {}
   queryDiarys(year: number, month: number) {
     console.log('query diarys');
     let query = new Parse.Query(this.Diary);
     query.equalTo('user', Parse.User.current());
     query.equalTo('year', year);
     query.equalTo('month', month);
-    return query.find();
+    query.include('photos');
+    query.include('labels');
+    return query.find()
+        .then(diarys => {
+          this.diarys = diarys;
+        })
+        .catch(err => {
+          console.log('query diarys err' + err);
+        });
   }
   queryDiary(date: Date) {
     console.log('query diary' + date);
@@ -24,6 +33,19 @@ export class DiaryService {
     query.include('photos');
     query.include('labels');
     return query.first();
+  }
+  setDiaryLabels(labels: Array<any>) {
+    let oldLabels = this.diary.get('labels');
+    for (let i = 0; i < oldLabels.length; i++) {
+      oldLabels[i].increment('count', -1);
+      oldLabels[i].save();
+    }
+    for (let i = 0; i < labels.length; i++) {
+      labels[i].increment('count');
+      labels[i].save();
+    }
+    this.diary.set('labels', labels);
+    this.updateDiary();
   }
   createDiary(date: Date) {
     console.log('创建日记' + date);
@@ -37,17 +59,32 @@ export class DiaryService {
     diary.set('day', date.getDate());
     diary.set('labels', []);
     diary.set('photos', []);
+    this.calendarService.wirte(date);
     return diary.save();
   }
   updateDiary() {
     return this.diary.save()
         .then(data => {
           console.log('更新日记');
-          console.log(data);
+          // console.log(data);
           this.diary = data;
         })
         .catch(err => {
           console.log('update diary err' + err);
         });
+  }
+  deleteDiary(diary: any) {
+    let photos = diary.get('photos');
+    for (let i = 0; i < photos.length; i++) {
+      photos[i].destroy();
+    }
+    let labels = diary.get('labels');
+    for (let i = 0; i < labels.length; i++) {
+      labels[i].increment('count', -1);
+      labels[i].save();
+    }
+    this.calendarService.clearWrite(
+        new Date(diary.get('year'), diary.get('month'), diary.get('day')));
+    diary.destroy();
   }
 }

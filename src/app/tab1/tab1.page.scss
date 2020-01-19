@@ -12,9 +12,6 @@ ion-card-subtitle {
   font-size: 2em;
 }
 
-// .card-content {
-//   // background-color: #55dcff;
-// }
 
 .card-subtitle {
   color: #ffffff;
@@ -36,6 +33,10 @@ ion-card {
   min-height: 26em;
 }
 
+.border-bottom {
+  border-bottom: solid 1px black;
+}
+
 ion-grid {
   --ion-grid-columns: 7;
   text-align: right;
@@ -47,14 +48,18 @@ ion-slide {
 
 .select-year {
   text-align: center;
-  margin-top: 4em;
+  margin-top: 3em;
+  margin-bottom: 2em;
 }
 
 .select-calendar {
-  margin-top: 2em;
+  margin-top: 3em;
   text-align: center;
-}
 
+  ion-button {
+    width: 10em;
+  }
+}
 
 ion-button {
   --border-radius: 2em;

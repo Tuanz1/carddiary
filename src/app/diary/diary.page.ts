@@ -16,31 +16,26 @@ import {TagPickerComponent} from './tag-picker/tag-picker.component';
 })
 export class DiaryPage implements OnInit {
   @ViewChild(IonSlides, {static: true}) slides: IonSlides;
-  date: string;
+  date: string = new Date().toString();
+  ;
   title: string;
   content: string;
   favorite: boolean = false;
   weather: string = 'icon-qing';
   emoji: string = 'icon-smile';
   photos: Array<any>;
+  first: string;
   constructor(
       private activatedRoute: ActivatedRoute,
       private diaryService: DiaryService, private photoService: PhotoService,
       private labelService: LabelService, private modalCtrl: ModalController,
-      private navCtrl: NavController) {
-    // this.labelService.genDefaultLabels();
-    this.date = new Date().toString();
-    this.activatedRoute.queryParams.subscribe(params => {
-      if (params.edit) {
-        console.log('params edit');
-      } else {
-        this.changeDiaryDate();
-      }
-    });
-  }
+      private navCtrl: NavController) {}
 
   async ngOnInit() {
-    await this.labelService.queryLabels();
+    this.activatedRoute.queryParams.subscribe(params => {
+      this.first = params.edit;
+    });
+    // await this.labelService.queryLabels();
   }
   clickFavoriteBtn() {
     this.favorite = !this.favorite;
@@ -54,8 +49,8 @@ export class DiaryPage implements OnInit {
     const {data} = await modal.onWillDismiss();
     this.photos = data.photos;
     this.diaryService.diary.set('photos', this.photos);
-    let cover = 'url(\"' + this.photos[data.home].get('photo').url() + '\")';
-    this.diaryService.diary.set('cover', cover);
+    this.diaryService.diary.set(
+        'cover', this.photos[data.home].get('photo').url());
     this.diaryService.diary.save();
   }
   async uploadImages(event) {
@@ -72,8 +67,7 @@ export class DiaryPage implements OnInit {
           });
     }
     if (this.diaryService.diary.get('cover') == undefined) {
-      let cover = 'url(\"' + this.photos[0].get('photo').url() + '\")';
-      this.diaryService.diary.set('cover', cover);
+      this.diaryService.diary.set('cover', this.photos[0].get('photo').url());
       this.diaryService.updateDiary();
     }
   }
@@ -93,6 +87,14 @@ export class DiaryPage implements OnInit {
         });
   }
   //每次修改日期，调用
+  switchDiary() {
+    if (this.first == 'false') {
+      this.changeDiaryDate();
+    } else {
+      this.loadDiaryData();
+      this.first = 'false';
+    }
+  }
   changeDiaryDate() {
     this.diaryService.queryDiary(new Date(this.date))
         .then(data => {
@@ -135,10 +137,8 @@ export class DiaryPage implements OnInit {
       this.emoji = data.emoji;
       this.weather = data.weather;
       this.favorite = data.favorite;
-      this.diaryService.diary.set(
-          'labels',
-          this.labelService.covertLabels(
-              this.weather, this.emoji, data.labels));
+      this.diaryService.setDiaryLabels(this.labelService.covertLabels(
+          this.weather, this.emoji, data.labels));
       this.updateDiary();
     }
   }

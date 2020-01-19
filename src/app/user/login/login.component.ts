@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {NavController} from '@ionic/angular';
+import {LabelService} from 'src/app/service/label/label.service';
 import {UserService} from 'src/app/service/user/user.service';
 
 @Component({
@@ -11,7 +12,8 @@ import {UserService} from 'src/app/service/user/user.service';
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   constructor(
-      private userService: UserService, private navCtrl: NavController) {}
+      private labelService: LabelService, private userService: UserService,
+      private navCtrl: NavController) {}
 
   ngOnInit() {
     this.loginForm = new FormGroup({
@@ -30,7 +32,8 @@ export class LoginComponent implements OnInit {
           console.log(user);
           // 用router会导致你的返回回到注册界面
           // this.router.navigate(['/tabs/tab1']);
-          this.navCtrl.navigateRoot('/');
+          this.labelService.queryLabels();
+          this.navCtrl.navigateRoot('/tabs/tab1');
         })
         .catch((err) => {
           console.log(err);

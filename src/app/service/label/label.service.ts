@@ -65,7 +65,7 @@ export class LabelService {
     lable.set('count', 0);
     lable.save()
         .then(data => {
-          console.log('create label' + name);
+          // console.log('create label' + name);
           this.userLabels.push(data);
         })
         .catch(err => {
@@ -76,6 +76,7 @@ export class LabelService {
    * 用户注册完成时，生成默认的24个label
    */
   genDefaultLabels() {
+    this.userLabels = new Array();
     const emojiLabels: Array < string >= [
       'icon-cool', 'icon-smile', 'icon-kiss', 'icon-blink', 'icon-sleep',
       'icon-unhappy', 'icon-line', 'icon-angry', 'icon-hurt', 'icon-cry',
@@ -117,7 +118,7 @@ export class LabelService {
     for (let i = 0; i < labels.length; i++) {
       if (labels[i].select) diaryLabels.push(this.userLabels[labels[i].index]);
     }
-    console.log(diaryLabels);
+    // console.log(diaryLabels);
 
     return diaryLabels;
   }

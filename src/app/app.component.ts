@@ -18,10 +18,13 @@ export class AppComponent {
   ) {
     this.initializeApp();
     this.initialzeParse();
-    // Parse.User.logOut();
-    // if (Parse.User.current()) {
-    // this.router.navigate(['/user'], {skipLocationChange: true});
-    // }
+    this.statusBar.overlaysWebView(false);
+    if (Parse.User.current()) {
+      console.log(Parse.User.current());
+      this.router.navigate(['/tabs/tab1']);
+    } else {
+      this.router.navigate(['/user']);
+    }
   }
 
   initializeApp() {

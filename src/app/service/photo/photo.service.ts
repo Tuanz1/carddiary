@@ -3,6 +3,7 @@ import {Injectable} from '@angular/core';
 @Injectable({providedIn: 'root'})
 export class PhotoService {
   Photo = Parse.Object.extend('Photo');
+  photos: Array<any>;
   constructor() {}
   uploadPhoto(file: File): Promise<any> {
     let photo = new this.Photo();
@@ -16,6 +17,12 @@ export class PhotoService {
   queryPhotos(): Promise<any> {
     let query = new Parse.Query(this.Photo);
     query.equalTo('user', Parse.User.current());
-    return query.find();
+    return query.find()
+        .then(data => {
+          this.photos = data;
+        })
+        .catch(err => {
+          console.log('查询photos' + err);
+        });
   }
 }

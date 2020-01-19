@@ -1,3 +1,33 @@
-<p>
-  list works!
-</p>
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title slot="end">
+      {{year}}/{{month+1}}
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngFor="let diary of diarys; let i = index" (click)="openDiaryPreview(i)">
+    <ion-grid>
+      <ion-row>
+        <ion-col size=" 4">
+          <ion-row>
+            <p class="date">{{diary.get('day')}}</p>
+          </ion-row>
+          <ion-row>
+            <p class="days">{{getDate(diary.get('day'))}}</p>
+          </ion-row>
+          <ion-row>
+            <ion-icon color="light" name="rainy"></ion-icon>
+          </ion-row>
+        </ion-col>
+        <ion-col size="8" class="diary-img">
+          <img [src]="diary.get('cover')" alt="">
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+</ion-content>

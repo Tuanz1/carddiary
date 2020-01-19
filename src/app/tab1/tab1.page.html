@@ -1,4 +1,4 @@
-<!-- <ion-header>
+<ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-button shape="round" fill="clear" (click)="test()">
@@ -6,14 +6,12 @@
       </ion-button>
     </ion-buttons>
     <ion-buttons slot="end">
-      <ion-button shape="round" slot="end" fill="clear" (click)="currentDate()">
+      <ion-button shape="round" slot="end" fill="clear" (click)="switchToCurDate()">
         {{year}}/{{month+1}}/{{day}}
       </ion-button>
     </ion-buttons>
-
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
   <div class="select-year">
     <ion-button fill="clear" color="dark">
@@ -23,56 +21,54 @@
       </ion-datetime>
     </ion-button>
   </div>
-
   <ion-slides [options]="slideOpts">
     <ion-slide *ngFor="let month of calendars;let j = index" [@viewMode]="viewMode">
-      <ion-card class="calendar-content" [ngStyle]="display('calendar')">
+      <ion-card class="calendar-content" [hidden]="viewMode == 'card'">
         <ion-card-header>
-          <ion-card-title>{{month.attributes.num}}</ion-card-title>
-          <ion-card-subtitle>{{month.attributes.abb}}</ion-card-subtitle>
-
+          <ion-card-title>{{month.get('month')}}</ion-card-title>
+          <ion-card-subtitle>{{month.get('month') | monthAbb}}</ion-card-subtitle>
         </ion-card-header>
         <ion-card-content>
           <ion-grid>
             <ion-row>
-              <ion-col *ngFor=" let i of grid[0]" [ngStyle]="month|dayCSS:i">
-                {{month.attributes.days[i]}}
+              <ion-col *ngFor=" let i of grid[0]" [ngStyle]="month|dayCss:i">
+                <span [ngClass]="{'border-bottom':day==month.get('days')[i]}"> {{month.get('days')[i]}}</span>
               </ion-col>
             </ion-row>
             <ion-row>
-              <ion-col *ngFor=" let i of grid[1]" [ngStyle]="month|dayCSS:i">
-                {{month.attributes.days[i]}}
+              <ion-col *ngFor=" let i of grid[1]" [ngStyle]="month|dayCss:i">
+                <span [ngClass]="{'border-bottom':day==month.get('days')[i]}"> {{month.get('days')[i]}}</span>
               </ion-col>
             </ion-row>
             <ion-row>
-              <ion-col *ngFor=" let i of grid[2]" [ngStyle]="month|dayCSS:i">
-                {{month.attributes.days[i]}}
+              <ion-col *ngFor=" let i of grid[2]" [ngStyle]="month|dayCss:i">
+                <span [ngClass]="{'border-bottom':day==month.get('days')[i]}"> {{month.get('days')[i]}}</span>
               </ion-col>
             </ion-row>
             <ion-row>
-              <ion-col *ngFor=" let i of grid[3]" [ngStyle]="month|dayCSS:i">
-                {{month.attributes.days[i]}}
+              <ion-col *ngFor=" let i of grid[3]" [ngStyle]="month|dayCss:i">
+                <span [ngClass]="{'border-bottom':day==month.get('days')[i]}"> {{month.get('days')[i]}}</span>
               </ion-col>
             </ion-row>
             <ion-row>
-              <ion-col *ngFor=" let i of grid[4]" [ngStyle]="month|dayCSS:i">
-                {{month.attributes.days[i]}}
+              <ion-col *ngFor=" let i of grid[4]" [ngStyle]="month| dayCss : i">
+                <span [ngClass]="{'border-bottom':day==month.get('days')[i]}"> {{month.get('days')[i]}}</span>
               </ion-col>
             </ion-row>
           </ion-grid>
-
         </ion-card-content>
       </ion-card>
-      <div [ngStyle]="display('card')">
-        <ion-card class="card-content" [ngStyle]="month.attributes.background | backgroundCSS">
-          <ion-card-header class="fill-height" (click)="openListPage(j)">
-            <ion-card-title class="card-title">{{month.attributes.num}}</ion-card-title>
-            <ion-card-subtitle class="card-subtitle">{{month.attributes.abb}}</ion-card-subtitle>
+
+      <div [hidden]="viewMode == 'calendar'">
+        <ion-card class="card-content" [ngStyle]="{'background': month.get('background')}">
+          <ion-card-header class="fill-height" (click)="openDiaryList()">
+            <ion-card-title class="card-title">{{month.get('month')}}</ion-card-title>
+            <ion-card-subtitle class="card-subtitle">{{month.get('month') | monthAbb}}</ion-card-subtitle>
           </ion-card-header>
           <ion-card-content>
             <ion-item lines="none">
-              <ion-progress-bar [value]="month.attributes.count / month.attributes.total"
-                [buffer]="month.attributes.count / month.attributes.total" color="light"></ion-progress-bar>
+              <ion-progress-bar [value]="month.get('count') / month.get('total')"
+                [buffer]="month.get('count') / month.get('total')" color="light"></ion-progress-bar>
               <div class="percentage">{{month.attributes.count}}/{{month.attributes.total}}</div>
               <ion-button class="btn-color-picker" shape="round" fill="clear" color="light"
                 (click)="openColorPicker(j)">
@@ -84,9 +80,10 @@
       </div>
     </ion-slide>
   </ion-slides>
+
   <div class="select-calendar">
     <ion-button [@viewMode]="viewMode" color="dark" class="circle-button" fill="{{btnFill}}" (click)="switchViewMode()">
       {{btnTips}}
     </ion-button>
   </div>
-</ion-content> -->
+</ion-content>

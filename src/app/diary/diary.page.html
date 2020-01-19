@@ -12,7 +12,7 @@
     </ion-buttons>
     <ion-button class="btn-datetime" fill="clear" color="dark">
       <ion-datetime displayFormat="YYYY/MM/DD" min="1994-01-01" max="2030-12-31" [(ngModel)]="date"
-        (ionChange)="changeDiaryDate()">
+        (ionChange)="switchDiary()">
       </ion-datetime>
     </ion-button>
     <ion-buttons slot="end">
@@ -40,9 +40,9 @@
     </ion-button>
 
   </div>
-  <ion-slides pager="true" [options]="options">
-    <ion-slide *ngFor="let photo of photos; let i =index">
-      <ion-img class="preview-img" [src]="photo.get('photo').url()"></ion-img>
+  <ion-slides pager="true">
+    <ion-slide *ngFor="let photo of photos; let i =index" [ngStyle]="photo.get('photo').url() | background">
+      <!-- <ion-img class="preview-img" [src]=""></ion-img> -->
     </ion-slide>
   </ion-slides>
   <ion-item>

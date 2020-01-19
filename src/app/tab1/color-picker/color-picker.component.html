@@ -1,0 +1,20 @@
+<ion-grid class="my-modal">
+  <ion-row>
+    <span class="input-button">
+      <ion-button color="dark" expand="full">图片
+        <ion-icon name="cloud-upload" slot="end"></ion-icon>
+      </ion-button>
+      <input type="file" accept="image/jpeg, image/png" capture="camera" (change)="selectImage($event)">
+    </span>
+  </ion-row>
+  <ion-row>
+    <ion-label>颜色</ion-label>
+  </ion-row>
+  <ion-row>
+    <ion-col *ngFor="let color of colors;let i = index" size="1">
+      <button [ngStyle]="getColor(i)" (click)="selectColor(i)">
+        <ion-icon name="checkmark" *ngIf="selected(i)" [ngStyle]="{'color':'#ffffff', 'font-size':'1.5em'}"></ion-icon>
+      </button>
+    </ion-col>
+  </ion-row>
+</ion-grid>
