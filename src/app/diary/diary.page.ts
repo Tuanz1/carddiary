@@ -25,6 +25,11 @@ export class DiaryPage implements OnInit {
   emoji: string = 'icon-smile';
   photos: Array<any>;
   first: string;
+  options = {
+    autoplay: {
+      delay: 3500,
+    },
+  };
   constructor(
       private activatedRoute: ActivatedRoute,
       private diaryService: DiaryService, private photoService: PhotoService,
@@ -35,7 +40,6 @@ export class DiaryPage implements OnInit {
     this.activatedRoute.queryParams.subscribe(params => {
       this.first = params.edit;
     });
-    // await this.labelService.queryLabels();
   }
   clickFavoriteBtn() {
     this.favorite = !this.favorite;
@@ -132,7 +136,6 @@ export class DiaryPage implements OnInit {
     });
     await modal.present();
     const {data} = await modal.onWillDismiss();
-    console.log(data);
     if (data != undefined) {
       this.emoji = data.emoji;
       this.weather = data.weather;

@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {ActionSheetController, IonSlides} from '@ionic/angular';
+import {ActionSheetController, IonSlides, NavController} from '@ionic/angular';
 import {DiaryService} from 'src/app/service/diary/diary.service';
 
 @Component({
@@ -14,12 +14,17 @@ export class PreviewComponent implements OnInit {
   year: string;
   month: string;
   day: string;
-  options: object = {
-
+  weather: string;
+  emoji: string;
+  favorite: boolean;
+  options = {
+    autoplay: {
+      delay: 5000,
+    },
   };
   constructor(
       private diaryService: DiaryService, private router: Router,
-      private activatedRoute: ActivatedRoute,
+      private navCtrl: NavController, private activatedRoute: ActivatedRoute,
       private actionSheetCtrl: ActionSheetController) {}
 
   ngOnInit() {
@@ -28,7 +33,16 @@ export class PreviewComponent implements OnInit {
       this.year = params.year;
       this.month = params.month;
       this.day = params.day;
-      this.slides.slideTo(Number(this.day));
+      let index = Number(this.day);
+      this.slides.slideTo(index);
+      this.favorite = Boolean(this.diarys[index].get('favorite'));
+      let labels = this.diarys[index].get('labels');
+      for (let i = 0; i < labels.length; i++) {
+        if (labels[i].get('type') == 'weather')
+          this.weather = labels[i].get('name');
+        else if (labels[i].get('type') == 'emoji')
+          this.emoji = labels[i].get('name');
+      }
     });
   }
   async openEdit() {
@@ -73,6 +87,16 @@ export class PreviewComponent implements OnInit {
     this.diarys.splice(index, 1);
   }
   close() {
-    this.router.navigate(['/']);
+    this.navCtrl.navigateRoot('/tabs/tab1');
+  }
+  async ionSlideChange(event) {
+    let index = await this.slides.getActiveIndex();
+    this.favorite = Boolean(this.diarys[index].get('favorite'));
+    let labels = this.diarys[index].get('labels');
+    for (let i = 0; i < labels.length; i++) {
+      if (labels[i].get('type') == 'weather')
+        this.weather = labels[i].get('name');
+      if (labels[i].get('type') == 'emoji') this.emoji = labels[i].get('name');
+    }
   }
 }

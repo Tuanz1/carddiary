@@ -40,7 +40,7 @@
     </ion-button>
 
   </div>
-  <ion-slides pager="true">
+  <ion-slides pager="true" [options]="options">
     <ion-slide *ngFor="let photo of photos; let i =index" [ngStyle]="photo.get('photo').url() | background">
       <!-- <ion-img class="preview-img" [src]=""></ion-img> -->
     </ion-slide>

@@ -1,13 +1,13 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-button shape="round" fill="clear" (click)="test()">
+      <ion-button shape="round" fill="clear" (click)="openLogin()">
         <ion-icon slot="icon-only" name="search"></ion-icon>
       </ion-button>
     </ion-buttons>
     <ion-buttons slot="end">
       <ion-button shape="round" slot="end" fill="clear" (click)="switchToCurDate()">
-        {{year}}/{{month+1}}/{{day}}
+        {{year}}/{{month}}/{{day}}
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
@@ -31,28 +31,33 @@
         <ion-card-content>
           <ion-grid>
             <ion-row>
-              <ion-col *ngFor=" let i of grid[0]" [ngStyle]="month|dayCss:i">
-                <span [ngClass]="{'border-bottom':day==month.get('days')[i]}"> {{month.get('days')[i]}}</span>
+              <ion-col *ngFor=" let i of grid[0]" (click)="openDiaryPreview(i)">
+                <span [ngStyle]="month|dayCss:i">
+                  {{month.get('days')[i]}}</span>
               </ion-col>
             </ion-row>
             <ion-row>
-              <ion-col *ngFor=" let i of grid[1]" [ngStyle]="month|dayCss:i">
-                <span [ngClass]="{'border-bottom':day==month.get('days')[i]}"> {{month.get('days')[i]}}</span>
+              <ion-col *ngFor=" let i of grid[1]" (click)="openDiaryPreview(i)">
+                <span [ngStyle]="month|dayCss:i">
+                  {{month.get('days')[i]}}</span>
               </ion-col>
             </ion-row>
             <ion-row>
-              <ion-col *ngFor=" let i of grid[2]" [ngStyle]="month|dayCss:i">
-                <span [ngClass]="{'border-bottom':day==month.get('days')[i]}"> {{month.get('days')[i]}}</span>
+              <ion-col *ngFor=" let i of grid[2]" (click)="openDiaryPreview(i)">
+                <span [ngStyle]="month|dayCss:i">
+                  {{month.get('days')[i]}}</span>
               </ion-col>
             </ion-row>
             <ion-row>
-              <ion-col *ngFor=" let i of grid[3]" [ngStyle]="month|dayCss:i">
-                <span [ngClass]="{'border-bottom':day==month.get('days')[i]}"> {{month.get('days')[i]}}</span>
+              <ion-col *ngFor=" let i of grid[3]" (click)="openDiaryPreview(i)">
+                <span [ngStyle]="month|dayCss:i">
+                  {{month.get('days')[i]}}</span>
               </ion-col>
             </ion-row>
             <ion-row>
-              <ion-col *ngFor=" let i of grid[4]" [ngStyle]="month| dayCss : i">
-                <span [ngClass]="{'border-bottom':day==month.get('days')[i]}"> {{month.get('days')[i]}}</span>
+              <ion-col *ngFor=" let i of grid[4]" (click)="openDiaryPreview(i)">
+                <span [ngStyle]="month|dayCss:i">
+                  {{month.get('days')[i]}}</span>
               </ion-col>
             </ion-row>
           </ion-grid>
@@ -72,7 +77,7 @@
               <div class="percentage">{{month.attributes.count}}/{{month.attributes.total}}</div>
               <ion-button class="btn-color-picker" shape="round" fill="clear" color="light"
                 (click)="openColorPicker(j)">
-                <ion-icon slot="icon-only" name="color-palette"></ion-icon>
+                <ion-icon slot="icon-only" name="color-fill"></ion-icon>
               </ion-button>
             </ion-item>
           </ion-card-content>

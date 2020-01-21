@@ -13,20 +13,21 @@
   <ion-card *ngFor="let diary of diarys; let i = index" (click)="openDiaryPreview(i)">
     <ion-grid>
       <ion-row>
-        <ion-col size=" 4">
-          <ion-row>
-            <p class="date">{{diary.get('day')}}</p>
-          </ion-row>
-          <ion-row>
-            <p class="days">{{getDate(diary.get('day'))}}</p>
-          </ion-row>
-          <ion-row>
-            <ion-icon color="light" name="rainy"></ion-icon>
-          </ion-row>
-        </ion-col>
         <ion-col size="8" class="diary-img">
-          <img [src]="diary.get('cover')" alt="">
+
+          <img [src]="diary.get('cover') || '../../assets/imgs/background.png'" alt="">
         </ion-col>
+        <ion-col size=" 4">
+          <div [ngStyle]="randomColor()">
+            <ion-row>
+              <p class="date">{{diary.get('day')}}</p>
+            </ion-row>
+            <ion-row>
+              <p class="days">{{getDate(diary.get('day'))}}</p>
+            </ion-row>
+          </div>
+        </ion-col>
+
       </ion-row>
     </ion-grid>
   </ion-card>

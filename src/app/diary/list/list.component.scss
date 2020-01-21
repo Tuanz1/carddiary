@@ -35,6 +35,7 @@ ion-col {
     img {
         width: 100%;
         vertical-align: center;
+        height: 12em;
     }
 }
 
@@ -50,12 +51,11 @@ p {
 }
 
 .days {
-    font-size: 1em;
+    font-size: 2em;
 }
 
 .date {
-    margin-top: 1em;
-    font-size: 2em;
+    font-size: 3em;
 }
 
 ion-icon {

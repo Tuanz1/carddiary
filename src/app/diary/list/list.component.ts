@@ -21,7 +21,6 @@ export class ListComponent implements OnInit {
       this.year = Number(params.year);
       this.month = Number(params.month);
     });
-    console.log(this.diarys);
   }
   getDate(day: number) {
     return this.abbs[new Date(this.year, this.month, day).getDay()];
@@ -30,5 +29,10 @@ export class ListComponent implements OnInit {
     this.router.navigate(
         ['/diary/preview'],
         {queryParams: {year: this.year, month: this.month, day: index}});
+  }
+  randomColor(): object {
+    let colors = ['#65dbbff', '#65bbff', '#6c65ff', '#6c67ff', '#fe65cf'];
+    let i = Math.floor(Math.random() * 5);
+    return {color: colors[i]};
   }
 }

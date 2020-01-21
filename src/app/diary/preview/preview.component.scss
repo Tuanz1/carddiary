@@ -5,19 +5,24 @@ ion-slides {
         ion-content {
             ion-slides {
                 width: 100%;
-                height: 18em;
-                background-color: grey;
+                height: 16em;
+                background: url('../../../assets/imgs/background.png') center/100% 100% no-repeat;
+                --bullet-background-active: white;
 
                 ion-slide {
-                    height: 18em;
+                    height: 16em;
 
                     img {
                         background: grey;
-                        height: 18em;
+                        height: 16em;
                         min-width: 100%;
                     }
                 }
             }
         }
     }
+}
+
+.tools {
+    display: inline-flex;
 }

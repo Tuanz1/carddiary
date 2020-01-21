@@ -1,1 +1,59 @@
+.user-info-card {
+    position: relative;
 
+    ion-avatar {
+        --border-radius: 10px;
+        min-width: 2em;
+        position: absolute;
+        left: 50%;
+        top: -2em;
+        margin-left: -2em;
+    }
+
+    ion-card {
+        min-height: 10em;
+        margin-top: 3.4em;
+
+        ion-card-title {
+            margin-top: 2.6em;
+            text-align: center;
+        }
+
+        ion-card-subtitle {
+            margin-top: 1em;
+            text-align: center;
+        }
+    }
+}
+
+.statistics-card {
+    padding: 1em 1em;
+
+    ion-row {
+        justify-content: center;
+    }
+}
+
+.photos-card {
+    ion-row {
+        ion-col {
+            background-color: grey;
+        }
+    }
+}
+
+ion-grid {
+    margin: 0;
+    padding: 0;
+
+    ion-row {
+        margin: 0;
+        padding: 0;
+
+        ion-col {
+            margin: 0;
+            padding: 0;
+            justify-content: center;
+        }
+    }
+}

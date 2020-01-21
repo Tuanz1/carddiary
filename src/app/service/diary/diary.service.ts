@@ -8,13 +8,13 @@ export class DiaryService {
   Diary = Parse.Object.extend('Diary');
   constructor(private calendarService: CalendarService) {}
   queryDiarys(year: number, month: number) {
-    console.log('query diarys');
     let query = new Parse.Query(this.Diary);
     query.equalTo('user', Parse.User.current());
     query.equalTo('year', year);
     query.equalTo('month', month);
     query.include('photos');
     query.include('labels');
+    query.ascending('day');
     return query.find()
         .then(diarys => {
           this.diarys = diarys;
@@ -24,7 +24,6 @@ export class DiaryService {
         });
   }
   queryDiary(date: Date) {
-    console.log('query diary' + date);
     let query = new Parse.Query(this.Diary);
     query.equalTo('user', Parse.User.current());
     query.equalTo('year', date.getFullYear());
@@ -48,7 +47,6 @@ export class DiaryService {
     this.updateDiary();
   }
   createDiary(date: Date) {
-    console.log('创建日记' + date);
     let diary = new this.Diary();
     diary.set('user', Parse.User.current());
     diary.set('title', '');
@@ -86,5 +84,17 @@ export class DiaryService {
     this.calendarService.clearWrite(
         new Date(diary.get('year'), diary.get('month'), diary.get('day')));
     diary.destroy();
+  }
+
+  countFavoriteDiary(): Promise<any> {
+    let query = new Parse.Query(this.Diary);
+    query.equalTo('user', Parse.User.current());
+    query.equalTo('favorite', true);
+    return query.count();
+  }
+  countDiarys(): Promise<any> {
+    let query = new Parse.Query(this.Diary);
+    query.equalTo('user', Parse.User.current());
+    return query.count();
   }
 }

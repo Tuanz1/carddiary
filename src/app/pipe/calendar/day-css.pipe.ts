@@ -8,6 +8,7 @@ export class DayCssPipe implements PipeTransform {
    * @param index 第几日的css
    */
   transform(value: any, index: number): object {
+    let date = new Date();
     let css = {'color': '#000000', 'opacity': '1', 'border-bottom': ''};
     let write = value.get('write')[index];
     if (!write) css['opacity'] = '0.3';
@@ -20,6 +21,10 @@ export class DayCssPipe implements PipeTransform {
         css['color'] = 'red';
         break;
     }
+    if (value.get('year') == date.getFullYear() &&
+        value.get('month') == date.getMonth() + 1 &&
+        value.get('days')[index] == date.getDate())
+      css['border-bottom'] = 'solid 2px black';
     return css;
   }
 }

@@ -17,12 +17,7 @@ export class PhotoService {
   queryPhotos(): Promise<any> {
     let query = new Parse.Query(this.Photo);
     query.equalTo('user', Parse.User.current());
-    return query.find()
-        .then(data => {
-          this.photos = data;
-        })
-        .catch(err => {
-          console.log('查询photos' + err);
-        });
+    query.limit(5);
+    return query.find();
   }
 }

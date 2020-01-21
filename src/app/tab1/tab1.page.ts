@@ -30,7 +30,7 @@ export class Tab1Page implements OnInit {
   btnTips: String = 'Calendar';
   btnFill: String = 'outline';
   viewMode: string = 'card';
-
+  curDate: Date;
   calendars: Array<any>;
   year: number;
   month: number;
@@ -45,12 +45,13 @@ export class Tab1Page implements OnInit {
   constructor(
       private calendarService: CalendarService,
       private diaryService: DiaryService, private router: Router,
-      private modalCtrl: ModalController) {
-    let curDate = new Date();
-    this.year = curDate.getFullYear();
+      private modalCtrl: ModalController) {}
+  async ngOnInit() {
+    this.curDate = new Date();
+    this.year = this.curDate.getFullYear();
     this.date = this.year + '';
-    this.month = curDate.getMonth();
-    this.day = curDate.getDate();
+    this.month = this.curDate.getMonth() + 1;
+    this.day = this.curDate.getDate();
     this.slideOpts = {
       initialSlide: this.month,
       speed: 300,
@@ -58,13 +59,9 @@ export class Tab1Page implements OnInit {
       slidesPerView: 'auto',
       centeredSlides: true,
     };
-  }
-  async ngOnInit() {
     await this.changeYearCalendarByYear(this.year);
   }
-  test() {
-    console.log('test func');
-  }
+
   changeYearCalendar() {
     let year = new Date(this.date).getFullYear();
     this.changeYearCalendarByYear(year);
@@ -124,9 +121,15 @@ export class Tab1Page implements OnInit {
   async openDiaryList() {
     let index = await this.ionSlides.getActiveIndex();
     await this.diaryService.queryDiarys(this.year, index);
-    console.log(this.diaryService.diarys);
-
     this.router.navigate(
         ['./diary/list'], {queryParams: {year: this.year, month: this.month}});
+  }
+  openLogin() {
+    this.router.navigate(['/user/login']);
+  }
+  openDiaryPreview(index: number) {
+    this.router.navigate(
+        ['/diary/preview'],
+        {queryParams: {year: this.year, month: this.month, day: index}});
   }
 }
