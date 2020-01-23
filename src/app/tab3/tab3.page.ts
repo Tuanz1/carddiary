@@ -9,6 +9,7 @@ import {PhotoService} from '../service/photo/photo.service';
   styleUrls: ['tab3.page.scss']
 })
 export class Tab3Page implements OnInit {
+  segment: string = 'weather';
   tips: string;
   favoriteNum;
   totalNum;

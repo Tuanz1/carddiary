@@ -49,6 +49,7 @@ ion-grid {
     ion-row {
         margin: 0;
         padding: 0;
+        justify-content: center;
 
         ion-col {
             margin: 0;
@@ -56,4 +57,12 @@ ion-grid {
             justify-content: center;
         }
     }
+}
+
+.vertical-progress-bar {
+    width: 0.3em;
+    background-color: grey;
+    min-height: 5em;
+    border-top-right-radius: 1em;
+    border-top-left-radius: 1em;
 }

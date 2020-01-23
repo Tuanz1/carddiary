@@ -100,6 +100,7 @@ export class CalendarService {
       let write = this.calendars[month].get('write');
       write[offset - 1] = true;
       this.calendars[month].set('write', write);
+      this.calendars[month].increment('count');
       this.calendars[month].save();
     } else {
       let query = new Parse.Query(this.Calendar);
@@ -116,6 +117,7 @@ export class CalendarService {
                       calendar.get('total') + day;
                   let write = calendar.get('write');
                   write[offset - 1] = true;
+                  this.calendars[month].increment('count');
                   calendar.save();
                 }
               });
@@ -136,6 +138,7 @@ export class CalendarService {
       let write = this.calendars[month].get('write');
       write[offset - 1] = false;
       this.calendars[month].set('write', write);
+      this.calendars[month].increment('count', -1);
       this.calendars[month].save();
     } else {
       let query = new Parse.Query(this.Calendar);
@@ -149,6 +152,7 @@ export class CalendarService {
                     calendar.get('write').length - calendar.get('total') + day;
                 let write = calendar.get('write');
                 write[offset - 1] = false;
+                this.calendars[month].increment('count', -1);
                 calendar.save();
               }
             });

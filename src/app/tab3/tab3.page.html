@@ -14,9 +14,7 @@
 </ion-header>
 
 <ion-content>
-
   <div class="user-info-card">
-
     <ion-avatar>
       <ion-img [src]="getAvatar()"></ion-img>
     </ion-avatar>
@@ -43,7 +41,7 @@
       </ion-row>
     </ion-grid>
   </ion-card>
-  <ion-card>
+  <!-- <ion-card>
     <ion-grid class="photos-card">
       <ion-row>
         <ion-col size="12">
@@ -79,13 +77,13 @@
         </ion-col>
       </ion-row>
     </ion-grid>
-  </ion-card>
+  </ion-card> -->
   <ion-card>
-    <ion-segment>
-      <ion-segment-button value="friends">
+    <ion-segment [(ngModel)]="segment">
+      <ion-segment-button value="weather" checked>
         <ion-label>天气</ion-label>
       </ion-segment-button>
-      <ion-segment-button value="enemies">
+      <ion-segment-button value="emoji">
         <ion-label>心情</ion-label>
       </ion-segment-button>
       <ion-segment-button value="tag">
@@ -93,7 +91,118 @@
       </ion-segment-button>
     </ion-segment>
     <ion-card-content>
-
+      <span [ngSwitch]="segment">
+        <span *ngSwitchCase="'weather'">
+          <ion-grid>
+            <ion-row>
+              <ion-col size="2">
+                <ion-button fill="clear" style="height: 10em;">
+                  <ion-grid>
+                    <ion-row>
+                      <div class="vertical-progress-bar"></div>
+                    </ion-row>
+                    <ion-row>
+                      <ion-col size="12">
+                        <ion-icon name="rainy" style="size: 1em;"></ion-icon>
+                      </ion-col>
+                    </ion-row>
+                  </ion-grid>
+                </ion-button>
+              </ion-col>
+              <ion-col size="2">
+                <ion-button fill="clear" style="height: 10em;">
+                  <ion-grid>
+                    <ion-row>
+                      <div class="vertical-progress-bar"></div>
+                    </ion-row>
+                    <ion-row>
+                      <ion-col size="12">
+                        <ion-icon name="rainy" style="size: 1em;"></ion-icon>
+                      </ion-col>
+                    </ion-row>
+                  </ion-grid>
+                </ion-button>
+              </ion-col>
+              <ion-col size="2">
+                <ion-button fill="clear" style="height: 10em;">
+                  <ion-grid>
+                    <ion-row>
+                      <div class="vertical-progress-bar"></div>
+                    </ion-row>
+                    <ion-row>
+                      <ion-col size="12">
+                        <ion-icon name="rainy" style="size: 1em;"></ion-icon>
+                      </ion-col>
+                    </ion-row>
+                  </ion-grid>
+                </ion-button>
+              </ion-col>
+              <ion-col size="2">
+                <ion-button fill="clear" style="height: 10em;">
+                  <ion-grid>
+                    <ion-row>
+                      <div class="vertical-progress-bar"></div>
+                    </ion-row>
+                    <ion-row>
+                      <ion-col size="12">
+                        <ion-icon name="rainy" style="size: 1em;"></ion-icon>
+                      </ion-col>
+                    </ion-row>
+                  </ion-grid>
+                </ion-button>
+              </ion-col>
+              <ion-col size="2">
+                <ion-button fill="clear" style="height: 10em;">
+                  <ion-grid>
+                    <ion-row>
+                      <div class="vertical-progress-bar"></div>
+                    </ion-row>
+                    <ion-row>
+                      <ion-col size="12">
+                        <ion-icon name="rainy" style="size: 1em;"></ion-icon>
+                      </ion-col>
+                    </ion-row>
+                  </ion-grid>
+                </ion-button>
+              </ion-col>
+              <ion-col size="2">
+                <ion-button fill="clear" style="height: 10em;">
+                  <ion-grid>
+                    <ion-row>
+                      <div class="vertical-progress-bar"></div>
+                    </ion-row>
+                    <ion-row>
+                      <ion-col size="12">
+                        <ion-icon name="rainy" style="size: 1em;"></ion-icon>
+                      </ion-col>
+                    </ion-row>
+                  </ion-grid>
+                </ion-button>
+              </ion-col>
+              <ion-col size="2">
+                <ion-button fill="clear" style="height: 10em;">
+                  <ion-grid>
+                    <ion-row>
+                      <div class="vertical-progress-bar"></div>
+                    </ion-row>
+                    <ion-row>
+                      <ion-col size="12">
+                        <ion-icon name="rainy" style="size: 1em;"></ion-icon>
+                      </ion-col>
+                    </ion-row>
+                  </ion-grid>
+                </ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </span>
+        <span *ngSwitchCase="'emoji'">
+          <ion-label>心情</ion-label>
+        </span>
+        <span *ngSwitchCase="'tag'">
+          <ion-label>标签</ion-label>
+        </span>
+      </span>
     </ion-card-content>
   </ion-card>
 </ion-content>
