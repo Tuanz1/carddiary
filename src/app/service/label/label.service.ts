@@ -13,7 +13,7 @@ export class LabelService {
     query.descending('type');
     return query.find()
         .then(data => {
-          console.log('user labels length' + data.length);
+          // console.log('user labels length' + data.length);
           this.userLabels = data;
         })
         .catch(err => {

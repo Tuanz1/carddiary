@@ -31,10 +31,10 @@ export class AppComponent {
 
   initializeApp() {
     this.platform.ready().then(() => {
-      this.statusBar.overlaysWebView(true);
-      this.statusBar.styleBlackTranslucent();
+      this.statusBar.hide();
+      // this.statusBar.overlaysWebView(true);
+      // this.statusBar.styleBlackTranslucent();
       this.splashScreen.hide();
-
       this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
     });
   }

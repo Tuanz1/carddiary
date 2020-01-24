@@ -55,6 +55,24 @@ ion-grid {
             margin: 0;
             padding: 0;
             justify-content: center;
+            text-align: center;
+            color: black;
+
+            span {
+                font-size: 3em;
+            }
+
+            ion-chip {
+                min-width: 6.5em;
+                text-align: center;
+            }
+
+            ion-badge {
+                position: absolute;
+                top: 0;
+                right: 0;
+                width: 2em;
+            }
         }
     }
 }

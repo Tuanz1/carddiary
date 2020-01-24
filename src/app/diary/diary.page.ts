@@ -23,7 +23,7 @@ export class DiaryPage implements OnInit {
   favorite: boolean = false;
   weather: string = 'icon-qing';
   emoji: string = 'icon-smile';
-  photos: Array<any>;
+  photos: Array<any> = new Array();
   first: string;
   options = {
     autoplay: {
@@ -40,6 +40,10 @@ export class DiaryPage implements OnInit {
     this.activatedRoute.queryParams.subscribe(params => {
       this.first = params.edit;
     });
+
+    if (!this.labelService.userLabels) {
+      await this.labelService.queryLabels();
+    }
   }
   clickFavoriteBtn() {
     this.favorite = !this.favorite;
