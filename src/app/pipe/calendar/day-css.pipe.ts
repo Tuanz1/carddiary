@@ -15,10 +15,10 @@ export class DayCssPipe implements PipeTransform {
     let i = index % 7;
     switch (i) {
       case 0:
-        css['color'] = 'blue';
+        css['color'] = '#70c9f5';
         break;
       case 6:
-        css['color'] = 'red';
+        css['color'] = '#e54b8b';
         break;
     }
     if (value.get('year') == date.getFullYear() &&

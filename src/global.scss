@@ -26,6 +26,11 @@
 @import "~@ionic/angular/css/flex-utils.css";
 @import "./assets/iconfont/iconfont.css";
 
+@font-face {
+    font-family: 'robot-light';
+    src: url("assets/font/Roboto-Light.ttf");
+}
+
 .color-picker-modal .modal-wrapper {
     height: 35%;
     top: 65%;

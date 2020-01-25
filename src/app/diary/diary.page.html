@@ -23,46 +23,47 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
-
   <div class="preview">
     <span class="btn-add">
       <input class="file-input" type="file" accept="image/jpeg, image/png" capture="camera" multiple="multiple"
         (change)="uploadImages($event)">
-      <ion-button fill="clear" color="light">
+      <ion-button color="medium">
         <ion-icon class="icon-add" slot="icon-only" name="add"></ion-icon>
       </ion-button>
     </span>
-    <ion-button fill="clear" color="light" (click)="deleteImage()" *ngIf="photos.length > 0">
+    <ion-button color="medium" (click)="deleteImage()" *ngIf="photos.length > 0">
       <ion-icon class="icon-imges" slot="icon-only" name="remove"></ion-icon>
     </ion-button>
-    <ion-button fill="clear" color="light" (click)="openImageManager()" *ngIf="photos.length > 0">
+    <ion-button color="medium" (click)="openImageManager()" *ngIf="photos.length > 0">
       <ion-icon class="icon-imges" slot="icon-only" name="logo-buffer"></ion-icon>
     </ion-button>
-
   </div>
   <ion-slides pager="true" [options]="options">
+
     <ion-slide *ngFor="let photo of photos; let i =index" [ngStyle]="photo.get('photo').url() | background">
       <!-- <ion-img class="preview-img" [src]=""></ion-img> -->
     </ion-slide>
   </ion-slides>
-  <ion-item>
+  <ion-item style="text-align: center;">
     <ion-input placeholder="标题" [(ngModel)]="title"></ion-input>
   </ion-item>
-  <div class="tools">
-    <ion-button fill="clear" color="dark" (click)="openTagPickerModal()">
-      <span class="iconfont {{weather}}"></span>
-    </ion-button>
-    <ion-button fill="clear" color="dark" (click)="openTagPickerModal()">
-      <span class="iconfont {{emoji}}"></span>
-    </ion-button>
-    <ion-button class="btn-heart" fill="clear" color="dark" (click)="clickFavoriteBtn()">
-      <ion-icon *ngIf="favorite == false" slot="icon-only" name="heart-empty"></ion-icon>
-      <ion-icon *ngIf="favorite == true" color="danger" slot="icon-only" name="heart"></ion-icon>
-    </ion-button>
-    <ion-button fill="clear" color="dark" (click)="openTagPickerModal()">
-      <ion-icon slot="icon-only" name="pricetag"></ion-icon>
-    </ion-button>
-  </div>
+  <ion-item>
+    <div class="tools">
+      <ion-button fill="clear" color="dark" (click)="openTagPickerModal()">
+        <span class="iconfont {{weather}}"></span>
+      </ion-button>
+      <ion-button fill="clear" color="dark" (click)="openTagPickerModal()">
+        <span class="iconfont {{emoji}}"></span>
+      </ion-button>
+      <ion-button class="btn-heart" fill="clear" color="dark" (click)="clickFavoriteBtn()">
+        <ion-icon *ngIf="favorite == false" slot="icon-only" name="heart-empty"></ion-icon>
+        <ion-icon *ngIf="favorite == true" color="danger" slot="icon-only" name="heart"></ion-icon>
+      </ion-button>
+      <ion-button fill="clear" color="dark" (click)="openTagPickerModal()">
+        <ion-icon slot="icon-only" name="pricetag"></ion-icon>
+      </ion-button>
+    </div>
+  </ion-item>
   <ion-item>
     <ion-textarea placeholder="记下今天的你..." autofocus="true" rows="16" [(ngModel)]="content"></ion-textarea>
   </ion-item>

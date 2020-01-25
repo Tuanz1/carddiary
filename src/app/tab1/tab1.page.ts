@@ -55,7 +55,7 @@ export class Tab1Page implements OnInit {
     this.slideOpts = {
       initialSlide: this.month,
       speed: 300,
-      spaceBetween: 0,
+      spaceBetween: 10,
       slidesPerView: 'auto',
       centeredSlides: true,
     };

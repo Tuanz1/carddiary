@@ -1,46 +1,55 @@
-.fill-height {
-  min-height: 24em;
-}
-
-ion-card-title {
-  text-align: center;
-  font-size: 3em;
-}
-
-ion-card-subtitle {
-  text-align: center;
-  font-size: 2em;
-}
-
-
-.card-subtitle {
-  color: #ffffff;
-  text-align: right;
-}
-
-.card-title {
-  color: #ffffff;
-  text-align: right;
-}
-
-.btn-color-picker {
-  margin-left: 1em;
-}
-
 ion-card {
   border-radius: 1em;
-  min-width: 18em;
+  min-width: 19em;
   min-height: 28em;
+  font-family: 'robot-light';
+
+  ion-card-header {
+    ion-card-title {
+      text-align: center;
+      font-size: 3em;
+    }
+
+    ion-card-subtitle {
+      text-align: center;
+      font-size: 2em;
+      color: black;
+    }
+
+    ion-grid {
+      ion-row {
+        ion-col {
+          .card-subtitle {
+            color: #ffffff;
+          }
+
+          .card-title {
+            color: #ffffff;
+          }
+        }
+      }
+    }
+  }
+
+  ion-card-content {
+    ion-grid {
+      --ion-grid-columns: 7;
+      text-align: right;
+
+      ion-row {
+        ion-col {
+          font-size: 1.2em;
+        }
+      }
+    }
+  }
 }
 
 .border-bottom {
   border-bottom: solid 1px black;
 }
 
-ion-grid {
-  --ion-grid-columns: 7;
-  text-align: right;
-}
+
 
 ion-slide {
   max-width: 16em;
@@ -49,11 +58,11 @@ ion-slide {
 .select-year {
   text-align: center;
   margin-top: 2em;
-  margin-bottom: 1em;
+  margin-bottom: 3em;
 }
 
 .select-calendar {
-  margin-top: 2em;
+  margin-top: 3em;
   text-align: center;
 
   ion-button {
@@ -73,8 +82,8 @@ ion-button {
 ion-item {
   position: fixed;
   bottom: 1em;
-  width: 80%;
-  --background: #ff000000;
+  width: 90%;
+  --background: transparent;
 }
 
 .percentage {
@@ -83,6 +92,15 @@ ion-item {
   font-size: 0.8em;
 }
 
-.circle-button {
+.switch-button {
   --ripple-color: transparent;
+  font-family: 'robot-light';
+}
+
+.fill-height {
+  min-height: 24em;
+}
+
+.btn-color-picker {
+  margin-left: 1em;
 }

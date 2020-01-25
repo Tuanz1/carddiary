@@ -5,7 +5,6 @@ export class Month {
   ];
   constructor(num: number, offset: number, total: number) {
     this.num = num;
-    this.abb = Month.abbs[num];
     this.count = 0;
     this.total = total;
     this.days = new Array<string>();
@@ -19,7 +18,6 @@ export class Month {
     this.write.fill(false);
   }
   num: number;
-  abb: string;
   days: Array<string>;
   write: Array<boolean>;
   count: number;

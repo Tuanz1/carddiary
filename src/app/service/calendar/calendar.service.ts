@@ -71,7 +71,6 @@ export class CalendarService {
     console.log('gen write date' + date);
     let year = date.getFullYear();
     let m = date.getMonth();
-    console.log(m);
     let day = date.getDate();
     for (let i = 1; i <= 12; i++) {
       let offset = new Date(year, i - 1, 1).getDay();
