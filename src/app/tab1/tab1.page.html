@@ -13,6 +13,7 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
+  <ion-progress-bar type="indeterminate" [hidden]="!loading"></ion-progress-bar>
   <div class="select-year">
     <ion-button fill="clear" color="dark">
       <ion-icon slot="end" name="arrow-dropdown"></ion-icon>

@@ -29,12 +29,12 @@
         <ion-icon slot="icon-only" name="more"></ion-icon>
       </ion-button>
     </ion-item>
-    <ion-row>
-      <span *ngFor="let customLabel of customLabels">
+    <!-- <ion-row style="height: 100%;">
+      <ion-col *ngFor="let customLabel of customLabels" style="display: inherit;">
         <ion-chip *ngIf="customLabel.select" color="primary">
-          <ion-label>{{customLabel.name}}</ion-label>
+          {{customLabel.name}}
         </ion-chip>
-      </span>
-    </ion-row>
+      </ion-col>
+    </ion-row> -->
   </ion-grid>
 </ion-content>

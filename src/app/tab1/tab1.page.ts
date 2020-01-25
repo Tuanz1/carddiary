@@ -30,6 +30,7 @@ export class Tab1Page implements OnInit {
   btnTips: String = 'Calendar';
   btnFill: String = 'outline';
   viewMode: string = 'card';
+  loading: boolean = false;
   curDate: Date;
   calendars: Array<any>;
   year: number;
@@ -119,10 +120,12 @@ export class Tab1Page implements OnInit {
     this.ionSlides.slideTo(this.month, 150);
   }
   async openDiaryList() {
+    this.loading = true;
     let index = await this.ionSlides.getActiveIndex();
     await this.diaryService.queryDiarys(this.year, index);
+    this.loading = false;
     this.router.navigate(
-        ['./diary/list'], {queryParams: {year: this.year, month: this.month}});
+        ['./diary/list'], {queryParams: {year: this.year, month: index}});
   }
   openLogin() {
     this.router.navigate(['/user/login']);

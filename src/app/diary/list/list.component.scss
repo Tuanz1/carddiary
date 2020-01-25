@@ -9,7 +9,7 @@ ion-tiltle {
 ion-card {
     max-width: 26em;
     max-height: 9em;
-    max-width: 26em;
+    width: 26em;
     min-height: 12em;
     margin-left: 1.5em;
     margin-bottom: 2em;
@@ -20,22 +20,22 @@ ion-card {
 ion-grid {
     padding: 0;
     margin: 0;
-}
 
-ion-row {
-    align-items: center;
-    padding: 0;
-    margin: 0;
-}
+    ion-row {
+        align-items: center;
+        padding: 0;
+        margin: 0;
+    }
 
-ion-col {
-    padding: 0;
-    margin: 0;
+    ion-col {
+        padding: 0;
+        margin: 0;
+        text-align: center;
 
-    img {
-        width: 100%;
-        vertical-align: center;
-        height: 12em;
+        img {
+            width: 100%;
+            min-height: 12em;
+        }
     }
 }
 
@@ -44,22 +44,39 @@ ion-col {
 }
 
 
-p {
+span {
     width: 100%;
     text-align: center;
     margin: 0;
 }
 
 .days {
-    font-size: 2em;
+    font-size: 1em;
 }
 
 .date {
-    font-size: 3em;
+    font-size: 2em;
 }
 
 ion-icon {
     width: 100%;
     text-align: center;
     font-size: 2em;
+}
+
+.inner-title {
+    transform: skewX(-30deg);
+    position: absolute;
+    bottom: 1em;
+    right: -1em;
+    padding-right: 2em;
+    padding-left: 1em;
+    background: white;
+    color: black;
+    height: 1.6em;
+
+    .title {
+        transform: skewX(30deg);
+        color: black;
+    }
 }

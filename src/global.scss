@@ -31,21 +31,30 @@
     src: url("assets/font/Roboto-Light.ttf");
 }
 
+app-tag-picker {
+    align-items: center;
+}
+
 .color-picker-modal .modal-wrapper {
     height: 35%;
     top: 65%;
     width: 100%;
     position: absolute;
     display: block;
+    max-width: 36em;
 }
 
 .tag-picker-modal .modal-wrapper {
-    // height: 60%;
+    display: flex;
+    justify-content: center;
+    height: 100%;
     // top: 40%;
-    // width: 100%;
+    width: 100%;
     --background: transparent;
-    position: absolute;
-    display: block;
+    align-items: center;
+    // max-width: 36em;
+    // position: absolute;
+    // display: block;
 }
 
 .tag-edit-modal .modal-wrapper {

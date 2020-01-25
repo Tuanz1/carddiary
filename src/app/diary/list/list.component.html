@@ -10,25 +10,61 @@
 </ion-header>
 
 <ion-content>
-  <ion-card *ngFor="let diary of diarys; let i = index" (click)="openDiaryPreview(i)">
-    <ion-grid>
-      <ion-row>
-        <ion-col size="8" class="diary-img">
-
-          <img [src]="diary.get('cover') || '../../assets/imgs/background.png'" alt="">
-        </ion-col>
-        <ion-col size=" 4">
-          <div [ngStyle]="randomColor()">
-            <ion-row>
-              <p class="date">{{diary.get('day')}}</p>
+  <ion-grid>
+    <ion-row>
+      <ion-col *ngFor="let diary of diarys; let i = index">
+        <ion-card (click)="openDiaryPreview(i)">
+          <ion-grid>
+            <ion-row style="height: 12em;">
+              <ion-col size="3">
+                <div [ngStyle]="randomColor()">
+                  <ion-row>
+                    <span class="date">{{diary.get('day')}}</span>
+                  </ion-row>
+                  <ion-row>
+                    <span class="days">{{getDate(diary.get('day'))}}</span>
+                  </ion-row>
+                </div>
+                <ion-row style="justify-content: center;" *ngFor="let label of diary.get('labels')">
+                  <ion-col *ngIf="label.get('type')=='emoji'" style="padding-top:1em;color:#70c9f5;">
+                    <span class="iconfont {{label.get('name')}}"></span>
+                  </ion-col>
+                </ion-row>
+              </ion-col>
+              <ion-col size="9" class="diary-img" style="height: 12em;" *ngIf="diary.get('cover')">
+                <img [src]="diary.get('cover') || '../../assets/imgs/background.png'" alt="">
+                <div class="inner-title" [hidden]="diary.get('title')==''">
+                  <div class="title">{{diary.get('title')}}</div>
+                </div>
+              </ion-col>
+              <ion-col size="9" class="diary-img" style="height: 12em;" *ngIf="!diary.get('cover')"
+                style="border-left:solid 1px #ededed">
+                <ion-row>
+                  <ion-col size="2">
+                    <ion-icon name="quote" color="light" style="transform: rotateZ(180deg);"></ion-icon>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-label style="padding-left: 2em;
+                  color: black; overflow: hidden;height: 1.5em;">{{diary.get('title')}}</ion-label>
+                </ion-row>
+                <ion-row>
+                  <ion-note style="padding: 1em 2em;
+                  text-align: left;
+                  overflow: hidden;
+                  height: 4em;">{{diary.get('content')}}</ion-note>
+                </ion-row>
+                <ion-row>
+                  <ion-col size="9"></ion-col>
+                  <ion-col size="3">
+                    <ion-icon name="quote" color="light"></ion-icon>
+                  </ion-col>
+                </ion-row>
+              </ion-col>
             </ion-row>
-            <ion-row>
-              <p class="days">{{getDate(diary.get('day'))}}</p>
-            </ion-row>
-          </div>
-        </ion-col>
-
-      </ion-row>
-    </ion-grid>
-  </ion-card>
+          </ion-grid>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
