@@ -52,6 +52,7 @@ export class DiaryService {
     diary.set('title', '');
     diary.set('content', '');
     diary.set('favorite', false);
+    diary.set('home', -1);
     diary.set('year', date.getFullYear());
     diary.set('month', date.getMonth());
     diary.set('day', date.getDate());
@@ -64,7 +65,6 @@ export class DiaryService {
     return this.diary.save()
         .then(data => {
           console.log('更新日记');
-          // console.log(data);
           this.diary = data;
         })
         .catch(err => {

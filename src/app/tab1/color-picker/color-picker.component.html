@@ -1,10 +1,10 @@
 <ion-grid class="my-modal">
   <ion-row>
     <span class="input-button">
-      <ion-button color="dark" expand="full">图片
+      <ion-button color="dark" expand="full">
+        <input type="file" accept="image/jpeg, image/png" capture="camera" (change)="selectImage($event)">图片
         <ion-icon name="cloud-upload" slot="end"></ion-icon>
       </ion-button>
-      <input type="file" accept="image/jpeg, image/png" capture="camera" (change)="selectImage($event)">
     </span>
   </ion-row>
   <ion-row>

@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-button shape="round" fill="clear" (click)="openLogin()">
+      <ion-button shape="round" fill="clear" routerLink="/search">
         <ion-icon slot="icon-only" name="search"></ion-icon>
       </ion-button>
     </ion-buttons>
@@ -62,7 +62,12 @@
               </ion-col>
             </ion-row>
           </ion-grid>
+
+
         </ion-card-content>
+        <div class="tips">
+          <ion-label>挑一个日子开始写</ion-label>
+        </div>
       </ion-card>
 
       <div [hidden]="viewMode == 'calendar'">

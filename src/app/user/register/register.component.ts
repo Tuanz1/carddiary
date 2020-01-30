@@ -14,17 +14,19 @@ export class RegisterComponent implements OnInit {
   password: string;
   constructor(
       private labelService: LabelService, private userService: UserService,
+      private calendarService: CalendarService,
       private navCtrl: NavController) {}
 
   ngOnInit() {}
   register() {
     this.userService.register(this.username, this.password)
         .then(data => {
+          this.calendarService.queryCalendar(new Date().getFullYear());
           this.labelService.genDefaultLabels();
           this.navCtrl.navigateRoot('/');
         })
         .catch(err => {
           alert(err);
-        })
+        });
   }
 }

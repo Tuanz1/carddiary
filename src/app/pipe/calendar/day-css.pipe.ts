@@ -18,7 +18,7 @@ export class DayCssPipe implements PipeTransform {
         css['color'] = '#70c9f5';
         break;
       case 6:
-        css['color'] = '#e54b8b';
+        css['color'] = '#f975ac';
         break;
     }
     if (value.get('year') == date.getFullYear() &&

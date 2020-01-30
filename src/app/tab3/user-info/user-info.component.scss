@@ -1,0 +1,37 @@
+ion-title {
+    text-align: center;
+}
+
+ion-input {
+    --background: #ededed;
+    border-radius: 10px;
+    text-align: center;
+}
+
+ion-textarea {
+    --background: #ededed;
+    border-radius: 10px;
+    text-align: center;
+}
+
+img {
+    height: 5em;
+    width: 5em;
+    border-radius: 5px;
+}
+
+:host {
+    ion-item {
+        --border-color: white; // default underline color
+        --highlight-color-invalid: red; // invalid underline color
+        --highlight-color-valid: transparent; // valid underline color
+        --highlight-color-focused: transparent;
+    }
+}
+
+.inner-file-input {
+    position: absolute;
+    left: 0;
+    opacity: 0;
+    font-size: 4em;
+}

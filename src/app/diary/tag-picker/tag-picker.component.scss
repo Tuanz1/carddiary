@@ -10,7 +10,8 @@ ion-backdrop {
 ion-content {
     z-index: 2;
     top: 45%;
-    overflow-y: scroll;
+    height: 55%;
+    max-height: 32em;
     max-width: 30em;
 }
 
@@ -27,6 +28,11 @@ ion-grid {
         ion-col {
             padding: 0;
             margin: 0;
+
+            ion-chip {
+                max-width: 100%;
+                overflow: hidden;
+            }
 
             ion-button {
                 padding: 0;

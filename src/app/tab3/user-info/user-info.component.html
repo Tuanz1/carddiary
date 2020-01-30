@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="dismiss()">
+        <ion-icon name="arrow-back" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>日记信息</ion-title>
+    <ion-buttons slot="end" style="opacity: 0;">
+      <ion-button>
+        <ion-icon name="arrow-back" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-list>
+    <ion-list-header>
+      <ion-label>日记本封面</ion-label>
+    </ion-list-header>
+    <ion-item>
+      <img [src]="img">
+      <ion-button size="default" color="medium" slot="end"> <input class="inner-file-input" type="file"
+          accept="image/jpeg, image/png" (change)="uploadUserAvatar($event)">更换图片</ion-button>
+    </ion-item>
+    <ion-list-header>
+      <ion-label>日记名称</ion-label>
+    </ion-list-header>
+  </ion-list>
+  <ion-item>
+    <ion-input [(ngModel)]="name"></ion-input>
+  </ion-item>
+  <ion-list-header>
+    <ion-label>今日感想</ion-label>
+  </ion-list-header>
+  <ion-item>
+    <ion-textarea [(ngModel)]="signature"></ion-textarea>
+  </ion-item>
+  <ion-item>
+    <ion-button size="default" color="medium" style="width: 100%;margin-top: 2em;" (click)=" updateUserInfo()">完成
+    </ion-button>
+  </ion-item>
+</ion-content>

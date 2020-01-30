@@ -24,13 +24,12 @@
 </ion-header>
 <ion-content>
   <div class="preview">
-    <span class="btn-add">
-      <input class="file-input" type="file" accept="image/jpeg, image/png" capture="camera" multiple="multiple"
+
+    <ion-button color="medium">
+      <input class="inner-file-input" type="file" accept="image/jpeg, image/png" capture="camera" multiple="multiple"
         (change)="uploadImages($event)">
-      <ion-button color="medium">
-        <ion-icon class="icon-add" slot="icon-only" name="add"></ion-icon>
-      </ion-button>
-    </span>
+      <ion-icon class="icon-add" slot="icon-only" name="add"></ion-icon>
+    </ion-button>
     <ion-button color="medium" (click)="deleteImage()" *ngIf="photos.length > 0">
       <ion-icon class="icon-imges" slot="icon-only" name="remove"></ion-icon>
     </ion-button>

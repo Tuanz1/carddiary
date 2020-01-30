@@ -20,6 +20,10 @@ const routes: Routes = [
     loadChildren: () =>
         import('./setting/setting.module').then(m => m.SettingPageModule)
   },
+  {
+    path: 'search',
+    loadChildren: () => import('./search/search.module').then( m => m.SearchPageModule)
+  },
 ];
 @NgModule({
   imports:

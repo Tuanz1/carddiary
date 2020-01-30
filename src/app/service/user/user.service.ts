@@ -13,4 +13,15 @@ export class UserService {
     user.set('password', password);
     return user.signUp();
   }
+  updateUserAvatar(photo: File): Promise<any> {
+    let file = new Parse.File(photo.name, photo);
+    Parse.User.current().set('avatar', file);
+    return Parse.User.current().save();
+  }
+  updateUserInfo(name: string, signature: string): Promise<any> {
+    let user = Parse.User.current();
+    user.set('title', name);
+    user.set('signature', signature);
+    return user.save();
+  }
 }

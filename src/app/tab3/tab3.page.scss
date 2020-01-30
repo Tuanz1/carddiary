@@ -1,3 +1,11 @@
+.create-icon {
+    font-size: 1.8em;
+    position: absolute;
+    right: 0.5em;
+    top: 0.5em;
+    color: #ededed;
+}
+
 .user-info-card {
     position: relative;
 
@@ -37,7 +45,7 @@
 .photos-card {
     ion-row {
         ion-col {
-            background-color: grey;
+            background-color: #ededed;
         }
     }
 }
@@ -59,28 +67,28 @@ ion-grid {
             color: black;
 
             span {
-                font-size: 3em;
+                font-size: 1.5em;
             }
 
             ion-chip {
-                min-width: 6.5em;
                 text-align: center;
-            }
+                height: 2.2em;
 
-            ion-badge {
-                position: absolute;
-                top: 0;
-                right: 0;
-                width: 2em;
+                ion-label {
+                    width: 100%;
+                }
+
+                ion-note {
+                    text-align: center;
+                    margin-left: 0.3em;
+                }
             }
         }
     }
 }
 
-.vertical-progress-bar {
-    width: 0.3em;
-    background-color: grey;
-    min-height: 5em;
-    border-top-right-radius: 1em;
-    border-top-left-radius: 1em;
+.block {
+    height: 50px;
+    width: 4px;
+    background-color: #ededed;
 }

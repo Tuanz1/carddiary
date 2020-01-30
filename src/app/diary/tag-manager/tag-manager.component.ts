@@ -15,12 +15,8 @@ export class TagManagerComponent implements OnInit {
 
   constructor(
       private modalCtrl: ModalController, private labelService: LabelService) {}
-  test() {
-    console.log('test click');
-  }
+
   ngOnInit() {}
-
-
   async openTagAddModal() {
     const modal = await this.modalCtrl.create({
       component: TagEditComponent,

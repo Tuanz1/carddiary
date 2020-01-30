@@ -1,9 +1,31 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>setting</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>设置</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <ion-list>
+    <ion-list-header>
+      <ion-label>界面</ion-label>
+    </ion-list-header>
+    <ion-item>
+      <ion-label>显示状态栏</ion-label>
+      <ion-toggle (ionChange)="switchStatusBar($event)" [(ngModel)]="status" slot="end" color="secondary"></ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-label>允许旋转</ion-label>
+      <ion-toggle (ionChange)="lockDirection($event)" [(ngModel)]="rotate" slot="end" color="secondary"></ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-label>夜间模式</ion-label>
+      <ion-toggle (ionChange)="lockDirection($event)" slot="end" color="secondary"></ion-toggle>
+    </ion-item>
+  </ion-list>
+  <ion-button (click)="logOut()" expand="full" color="danger" shape="round" style="padding: 0 1em;">
+    退出用户
+  </ion-button>
 </ion-content>

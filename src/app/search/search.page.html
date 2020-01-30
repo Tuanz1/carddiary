@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar>
+
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <form [formGroup]="searchForm" (ngSubmit)="search()">
+      <ion-searchbar placeholder="请输入搜索关键词" type="search" animated formControlName="keywords"></ion-searchbar>
+      <ion-buttons slot="end">
+        <ion-button (click)="search()" color="dark">
+          搜索
+        </ion-button>
+      </ion-buttons>
+    </form>
+
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+
+</ion-content>

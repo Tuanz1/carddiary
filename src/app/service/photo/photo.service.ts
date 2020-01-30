@@ -17,8 +17,7 @@ export class PhotoService {
   queryPhotos(): Promise<any> {
     let query = new Parse.Query(this.Photo);
     query.equalTo('user', Parse.User.current());
-    query.descending('createAt');
-    query.limit(5);
+    query.descending('updatedAt');
     return query.find();
   }
 }

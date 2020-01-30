@@ -104,3 +104,13 @@ ion-item {
 .btn-color-picker {
   margin-left: 1em;
 }
+
+.tips {
+  position: absolute;
+  bottom: 1em;
+  width: 100%;
+
+  ion-label {
+    text-align: center;
+  }
+}

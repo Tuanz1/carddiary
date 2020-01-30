@@ -1,13 +1,13 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-button>
+      <ion-button (click)="updateData()">
         <ion-icon slot="icon-only" name="refresh"></ion-icon>
       </ion-button>
     </ion-buttons>
     <ion-buttons slot="end">
-      <ion-button fill="clear" (click)="getPhotos()">
-        <ion-icon slot="icon-only" name="menu"></ion-icon>
+      <ion-button fill="clear" (click)="openSetting()">
+        <ion-icon slot="icon-only" name="settings"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
@@ -16,15 +16,12 @@
 <ion-content>
   <div class="user-info-card">
     <ion-avatar>
-      <ion-img [src]="getAvatar()"></ion-img>
+      <ion-img [src]="avatar"></ion-img>
     </ion-avatar>
     <ion-card>
-      <ion-icon name="create" style="font-size: 2em;
-      position: absolute;
-      right: 0.3em;
-      top: 0.3em;"></ion-icon>
-      <ion-card-title>日记名称</ion-card-title>
-      <ion-card-subtitle>今天有什么感想</ion-card-subtitle>
+      <ion-icon name="create" class="create-icon" (click)="openUserInfo()"></ion-icon>
+      <ion-card-title>{{title}}</ion-card-title>
+      <ion-card-subtitle>{{signature}}</ion-card-subtitle>
     </ion-card>
   </div>
   <ion-card>
@@ -49,7 +46,7 @@
     <ion-grid class="photos-card">
       <ion-row>
         <ion-col size="12">
-          <ion-item lines="full">
+          <ion-item lines="none">
             <ion-label slot="start">照片</ion-label>
             <ion-button fill="clear" slot="end">
               <ion-icon slot="icon-only" name="more"></ion-icon>
@@ -82,7 +79,7 @@
       </ion-row>
     </ion-grid>
   </ion-card>
-  <ion-card>
+  <ion-card style="height: 14em;">
     <ion-segment [(ngModel)]="segment">
       <ion-segment-button value="weather" checked>
         <ion-label>天气</ion-label>
@@ -90,40 +87,48 @@
       <ion-segment-button value="emoji">
         <ion-label>心情</ion-label>
       </ion-segment-button>
-      <ion-segment-button value="tag">
-        <ion-label>标签</ion-label>
-      </ion-segment-button>
+
     </ion-segment>
-    <ion-card-content>
+    <ion-card-content style="overflow-x: scroll;min-height: 5em;">
       <span [ngSwitch]="segment">
         <span *ngSwitchCase="'weather'">
-          <ion-grid>
-            <ion-row>
-              <ion-col *ngFor="let weather of weatherLabels" size="3">
-                <span class="iconfont {{weather.get('name')}}"></span>
-                <ion-badge color="light">{{weather.get('count')}}</ion-badge>
+          <ion-grid style="width: 200%;">
+            <ion-row style="display: flex;
+            flex-direction: row;
+            align-items: flex-end;height: 8em;">
+              <ion-col *ngFor="let weather of weatherLabels" size="1">
+                <ion-row>
+                  {{weather.get('count')}}
+                </ion-row>
+                <ion-row>
+                  <span class="block" [ngStyle]="{height: calHeight(weather.get('count'))}"></span>
+                </ion-row>
+                <ion-row>
+                  <ion-col>
+                    <span class="iconfont {{weather.get('name')}}"></span>
+                  </ion-col>
+                </ion-row>
               </ion-col>
             </ion-row>
           </ion-grid>
         </span>
         <span *ngSwitchCase="'emoji'">
-          <ion-grid>
-            <ion-row>
-              <ion-col *ngFor="let emoji of emojiLabels" size="3">
-                <span class="iconfont {{emoji.get('name')}}"></span>
-                <ion-badge color="light">{{emoji.get('count')}}</ion-badge>
-              </ion-col>
-            </ion-row>
-          </ion-grid>
-        </span>
-        <span *ngSwitchCase="'tag'">
-          <ion-grid>
-            <ion-row>
-              <ion-col *ngFor="let custom of customLabels">
-                <ion-chip>
-                  {{custom.get('name')}}
-                </ion-chip>
-                <ion-badge color="light">{{custom.get('count')}}</ion-badge>
+          <ion-grid style="width: 200%;">
+            <ion-row style="display: flex;
+            flex-direction: row;
+            align-items: flex-end;height: 8em;">
+              <ion-col *ngFor="let emoji of emojiLabels" size="1">
+                <ion-row>
+                  {{emoji.get('count')}}
+                </ion-row>
+                <ion-row>
+                  <span class="block" [ngStyle]="{height: calHeight(emoji.get('count'))}"></span>
+                </ion-row>
+                <ion-row>
+                  <ion-col>
+                    <span class="iconfont {{emoji.get('name')}}"></span>
+                  </ion-col>
+                </ion-row>
               </ion-col>
             </ion-row>
           </ion-grid>

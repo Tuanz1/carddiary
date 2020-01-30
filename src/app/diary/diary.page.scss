@@ -58,17 +58,13 @@ ion-grid {
         font-size: 4em;
     }
 
-    .btn-add {
-        position: relative;
-
-        .file-input {
-            position: absolute;
-            top: 0;
-            width: 100%;
-            font-size: 4em;
-            z-index: 2;
-            opacity: 0;
-        }
+    .inner-file-input {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        font-size: 4em;
+        z-index: 2;
+        opacity: 0;
     }
 
     ion-button {
@@ -76,6 +72,8 @@ ion-grid {
         height: 5em;
     }
 }
+
+
 
 .icon-imges {
     font-size: 4em;

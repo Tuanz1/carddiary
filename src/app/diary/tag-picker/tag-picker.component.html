@@ -19,22 +19,22 @@
       <ion-col size="4">
         <ion-item lines="none">
           <ion-label slot="start">喜欢</ion-label>
-          <ion-toggle color="danger" slot="end" [(ngModel)]="favorite"></ion-toggle>
+          <ion-toggle color="primary" slot="end" [(ngModel)]="favorite"></ion-toggle>
         </ion-item>
       </ion-col>
     </ion-row>
     <ion-item lines="none" (click)="openTagManagerModal()">
       <ion-label slot="start">标签</ion-label>
-      <ion-button fill="clear" slot="end">
+      <ion-button fill="clear" slot="end" color="dark">
         <ion-icon slot="icon-only" name="more"></ion-icon>
       </ion-button>
     </ion-item>
-    <!-- <ion-row style="height: 100%;">
-      <ion-col *ngFor="let customLabel of customLabels" style="display: inherit;">
+    <!-- <div class="tags">
+      <div *ngFor="let customLabel of customLabels">
         <ion-chip *ngIf="customLabel.select" color="primary">
-          {{customLabel.name}}
+          <ion-label>{{customLabel.name}}</ion-label>
         </ion-chip>
-      </ion-col>
-    </ion-row> -->
+      </div>
+    </div> -->
   </ion-grid>
 </ion-content>

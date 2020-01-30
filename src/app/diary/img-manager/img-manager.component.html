@@ -21,7 +21,7 @@
         <img [src]="photo.get('photo').url()">
       </ion-thumbnail>
       <ion-button slot="end" fill="clear" color="light" (click)="setHome(i)">
-        <ion-icon name="home" slot="icon-only" [ngClass]="{'home-icon':i === home}">
+        <ion-icon name="home" slot="icon-only" [ngClass]="{'home-icon':i == home}">
         </ion-icon>
       </ion-button>
       <ion-button slot="end" fill="clear" (click)="deletePhoto(i)">

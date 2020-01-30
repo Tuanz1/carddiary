@@ -1,10 +1,11 @@
 import {animate, state, style, transition, trigger,} from '@angular/animations';
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {Router} from '@angular/router';
+import {Component, DoCheck, Input, OnInit, SimpleChange, ViewChild} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
 import {IonSlides, ModalController, ToastController} from '@ionic/angular';
 
 import {CalendarService} from '../service/calendar/calendar.service';
 import {DiaryService} from '../service/diary/diary.service';
+
 import {ColorPickerComponent} from './color-picker/color-picker.component';
 
 
@@ -46,15 +47,21 @@ export class Tab1Page implements OnInit {
   constructor(
       private calendarService: CalendarService,
       private diaryService: DiaryService, private router: Router,
-      private modalCtrl: ModalController) {}
+      private modalCtrl: ModalController,
+      private activatedRoute: ActivatedRoute) {}
   async ngOnInit() {
+    this.activatedRoute.queryParams.subscribe(params => {
+      if (params.refresh == 'true') {
+        this.changeYearCalendarByYear(this.year);
+      }
+    });
     this.curDate = new Date();
     this.year = this.curDate.getFullYear();
     this.date = this.year + '';
     this.month = this.curDate.getMonth() + 1;
     this.day = this.curDate.getDate();
     this.slideOpts = {
-      initialSlide: this.month,
+      initialSlide: this.month - 1,
       speed: 300,
       spaceBetween: 10,
       slidesPerView: 'auto',
@@ -63,16 +70,17 @@ export class Tab1Page implements OnInit {
     await this.changeYearCalendarByYear(this.year);
   }
 
+
   changeYearCalendar() {
     let year = new Date(this.date).getFullYear();
     this.changeYearCalendarByYear(year);
   }
   async changeYearCalendarByYear(year: number) {
     await this.calendarService.queryCalendar(year);
+    console.log('更新日历卡片');
+
     this.calendars = this.calendarService.calendars;
   }
-
-
 
   /**
    * 打开月份卡片背景设置modal
@@ -117,7 +125,7 @@ export class Tab1Page implements OnInit {
       await this.changeYearCalendarByYear(year);
       this.date = this.year + '';
     }
-    this.ionSlides.slideTo(this.month, 150);
+    this.ionSlides.slideTo(this.month - 1, 250);
   }
   async openDiaryList() {
     this.loading = true;
@@ -130,9 +138,21 @@ export class Tab1Page implements OnInit {
   openLogin() {
     this.router.navigate(['/user/login']);
   }
-  openDiaryPreview(index: number) {
-    this.router.navigate(
-        ['/diary/preview'],
-        {queryParams: {year: this.year, month: this.month, day: index}});
+  async openDiaryPreview(index: number) {
+    let month = await this.ionSlides.getActiveIndex();
+    if (this.calendars[month].get('write')[index]) {
+      this.loading = true;
+      await this.diaryService.queryDiarys(this.year, month);
+      this.loading = false;
+      this.router.navigate(
+          ['/diary/preview'],
+          {queryParams: {year: this.year, month: this.month, day: index}});
+    } else {
+      index = this.calendars[month].get('days')[index];
+      this.router.navigate(['/diary'], {
+        queryParams:
+            {edit: false, date: new Date(this.year, month, index).toString()}
+      });
+    }
   }
 }

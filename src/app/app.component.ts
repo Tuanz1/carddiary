@@ -1,9 +1,7 @@
 import {Component} from '@angular/core';
 import {Router} from '@angular/router';
-import {ScreenOrientation} from '@ionic-native/screen-orientation/ngx';
-import {SplashScreen} from '@ionic-native/splash-screen/ngx';
-import {StatusBar} from '@ionic-native/status-bar/ngx';
 import {Platform} from '@ionic/angular';
+import {SettingService} from './service/setting/setting.service';
 
 @Component({
   selector: 'app-root',
@@ -12,17 +10,12 @@ import {Platform} from '@ionic/angular';
 })
 export class AppComponent {
   constructor(
-      private platform: Platform,
-      private splashScreen: SplashScreen,
-      private statusBar: StatusBar,
-      private router: Router,
-      private screenOrientation: ScreenOrientation,
-  ) {
+      private platform: Platform, private router: Router,
+      private settingService: SettingService) {
     this.initializeApp();
     this.initialzeParse();
 
     if (Parse.User.current()) {
-      console.log(Parse.User.current());
       this.router.navigate(['/tabs/tab1']);
     } else {
       this.router.navigate(['/user']);
@@ -31,11 +24,7 @@ export class AppComponent {
 
   initializeApp() {
     this.platform.ready().then(() => {
-      this.statusBar.hide();
-      // this.statusBar.overlaysWebView(true);
-      // this.statusBar.styleBlackTranslucent();
-      this.splashScreen.hide();
-      this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
+      this.settingService.initSettings();
     });
   }
   initialzeParse() {

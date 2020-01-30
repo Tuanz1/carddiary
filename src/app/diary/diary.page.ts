@@ -16,8 +16,8 @@ import {TagPickerComponent} from './tag-picker/tag-picker.component';
 })
 export class DiaryPage implements OnInit {
   @ViewChild(IonSlides, {static: true}) slides: IonSlides;
-  date: string = new Date().toString();
-  ;
+  home: number;
+  date: string;
   title: string;
   content: string;
   favorite: boolean = false;
@@ -39,8 +39,11 @@ export class DiaryPage implements OnInit {
   async ngOnInit() {
     this.activatedRoute.queryParams.subscribe(params => {
       this.first = params.edit;
+      if (params.date == 'none')
+        this.date = new Date().toString();
+      else
+        this.date = new Date(params.date).toString();
     });
-
     if (!this.labelService.userLabels) {
       await this.labelService.queryLabels();
     }
@@ -51,15 +54,14 @@ export class DiaryPage implements OnInit {
   async openImageManager() {
     const modal = await this.modalCtrl.create({
       component: ImgManagerComponent,
-      componentProps: {photos: this.photos}
+      componentProps: {photos: this.photos, home: this.home}
     });
     await modal.present();
     const {data} = await modal.onWillDismiss();
     this.photos = data.photos;
+    this.home = data.home;
     this.diaryService.diary.set('photos', this.photos);
-    this.diaryService.diary.set(
-        'cover', this.photos[data.home].get('photo').url());
-    this.diaryService.diary.save();
+    this.updateDiary();
   }
   async uploadImages(event) {
     let imgs = event.target.files;
@@ -68,31 +70,25 @@ export class DiaryPage implements OnInit {
           .then(photo => {
             this.diaryService.diary.add('photos', photo);
             this.photos.push(photo);
-            this.diaryService.updateDiary();
           })
           .catch(err => {
             alert(err);
           });
     }
-    if (this.diaryService.diary.get('cover') == undefined) {
-      this.diaryService.diary.set('cover', this.photos[0].get('photo').url());
-      this.diaryService.updateDiary();
+    if (this.home == -1) {
+      this.home = 0;
     }
+    this.updateDiary();
   }
   async deleteImage() {
     let index = await this.slides.getActiveIndex();
     this.photoService.deletePhoto(this.photos[index]);
+    if (index == this.home) this.home = 0;
     this.photos.splice(index, 1);
+    if (this.photos.length == 0) this.home = -1;
     // 使用remove导致无法删除
     this.diaryService.diary.set('photos', this.photos);
-    this.diaryService.diary.save()
-        .then(
-            data => {
-                // 先删除photo会导致diary里面的photo指针无法删除
-            })
-        .catch(err => {
-          alert(err);
-        });
+    this.updateDiary();
   }
   //每次修改日期，调用
   switchDiary() {
@@ -155,12 +151,21 @@ export class DiaryPage implements OnInit {
     this.content = this.diaryService.diary.get('content');
     this.photos = this.diaryService.diary.get('photos');
     this.favorite = this.diaryService.diary.get('favorite');
+    this.home = this.diaryService.diary.get('home');
+    let labels = this.diaryService.diary.get('labels');
+    for (let i = 0; i < labels.length; i++) {
+      if (labels[i].get('type') == 'weather')
+        this.weather = labels[i].get('name');
+      else if (labels[i].get('type') == 'emoji')
+        this.emoji = labels[i].get('name');
+    }
   }
   // 保存diary数据
   updateDiary() {
     this.diaryService.diary.set('title', this.title);
     this.diaryService.diary.set('content', this.content);
     this.diaryService.diary.set('favorite', this.favorite);
+    this.diaryService.diary.set('home', this.home);
     this.diaryService.updateDiary();
   }
   clickSaveBtn() {

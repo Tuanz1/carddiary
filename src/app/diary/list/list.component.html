@@ -26,18 +26,18 @@
                   </ion-row>
                 </div>
                 <ion-row style="justify-content: center;" *ngFor="let label of diary.get('labels')">
-                  <ion-col *ngIf="label.get('type')=='emoji'" style="padding-top:1em;color:#70c9f5;">
+                  <ion-col *ngIf="label.get('type')=='emoji'" style="padding-top:1em;color:black;">
                     <span class="iconfont {{label.get('name')}}"></span>
                   </ion-col>
                 </ion-row>
               </ion-col>
-              <ion-col size="9" class="diary-img" style="height: 12em;" *ngIf="diary.get('cover')">
-                <img [src]="diary.get('cover') || '../../assets/imgs/background.png'" alt="">
+              <ion-col size="9" class="diary-img" style="height: 12em;" *ngIf="diary.get('home') != -1">
+                <img [src]="diary.get('photos')[diary.get('home')].get('photo').url()" alt="">
                 <div class="inner-title" [hidden]="diary.get('title')==''">
                   <div class="title">{{diary.get('title')}}</div>
                 </div>
               </ion-col>
-              <ion-col size="9" class="diary-img" style="height: 12em;" *ngIf="!diary.get('cover')"
+              <ion-col size="9" class="diary-img" style="height: 12em;" *ngIf="diary.get('home') == -1"
                 style="border-left:solid 1px #ededed">
                 <ion-row>
                   <ion-col size="2">

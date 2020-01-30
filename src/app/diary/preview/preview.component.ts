@@ -1,6 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ActionSheetController, IonSlides, NavController} from '@ionic/angular';
+import {Month} from 'src/app/service/calendar/month';
 import {DiaryService} from 'src/app/service/diary/diary.service';
 
 @Component({
@@ -19,7 +20,7 @@ export class PreviewComponent implements OnInit {
   favorite: boolean;
   options = {
     autoplay: {
-      delay: 5000,
+      delay: 3500,
     },
   };
   constructor(
@@ -98,5 +99,8 @@ export class PreviewComponent implements OnInit {
         this.weather = labels[i].get('name');
       if (labels[i].get('type') == 'emoji') this.emoji = labels[i].get('name');
     }
+  }
+  getMonthAbb(index: number): string {
+    return Month.abbs[index];
   }
 }

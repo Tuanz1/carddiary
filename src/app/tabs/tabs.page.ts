@@ -9,6 +9,10 @@ import {Router} from '@angular/router';
 export class TabsPage {
   constructor(private routes: Router) {}
   navToDiary() {
-    this.routes.navigate(['./diary'], {queryParams: {edit: false}});
+    this.routes.navigate(
+        ['./diary'], {queryParams: {edit: false, date: 'none'}});
+  }
+  navToTab1() {
+    this.routes.navigate(['/tabs/tab1']);
   }
 }

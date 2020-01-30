@@ -31,7 +31,7 @@ export class ListComponent implements OnInit {
         {queryParams: {year: this.year, month: this.month, day: index}});
   }
   randomColor(): object {
-    let colors = ['#70c9f5', '#e54b8b', 'black'];
+    let colors = ['#70c9f5', '#f975ac', 'black'];
     let i = Math.floor(Math.random() * 3);
     return {color: colors[i]};
   }
