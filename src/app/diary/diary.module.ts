@@ -15,7 +15,12 @@ import {TagManagerComponent} from './tag-manager/tag-manager.component';
 import {TagPickerComponent} from './tag-picker/tag-picker.component';
 
 @NgModule({
-  imports: [CommonModule, FormsModule, IonicModule, DiaryPageRoutingModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    IonicModule,
+    DiaryPageRoutingModule,
+  ],
   declarations: [
     DiaryPage,
     ImgManagerComponent,

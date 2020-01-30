@@ -13,17 +13,16 @@ export class ListComponent implements OnInit {
   month: number;
   diarys: Array<any>;
   constructor(
-      private diaryService: DiaryService, private router: Router,
-      private activedRouter: ActivatedRoute) {}
+      private diaryService: DiaryService,
+      private router: Router,
+  ) {}
   ngOnInit() {
     this.diarys = this.diaryService.diarys;
-    this.activedRouter.queryParams.subscribe(params => {
-      this.year = Number(params.year);
-      this.month = Number(params.month);
-    });
   }
-  getDate(day: number) {
-    return this.abbs[new Date(this.year, this.month, day).getDay()];
+  getDate(diary: any) {
+    return this
+        .abbs[new Date(diary.get('year'), diary.get('month'), diary.get('day'))
+                  .getDay()];
   }
   openDiaryPreview(index: number) {
     this.router.navigate(

@@ -49,7 +49,16 @@ export class PreviewComponent implements OnInit {
   async openEdit() {
     let index = await this.slides.getActiveIndex();
     this.diaryService.diary = this.diarys[index];
-    this.router.navigate(['/diary'], {queryParams: {edit: true}});
+    this.router.navigate(['/diary'], {
+      queryParams: {
+        edit: 'true',
+        date:
+            new Date(
+                this.diarys[index].get('year'), this.diarys[index].get('month'),
+                this.diarys[index].get('day'))
+                .toString()
+      }
+    });
   }
   async openActionSheet() {
     const actionSheet = await this.actionSheetCtrl.create({

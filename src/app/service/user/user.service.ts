@@ -11,6 +11,8 @@ export class UserService {
     let user = new Parse.User();
     user.set('username', username);
     user.set('password', password);
+    user.set('title', '日记名称');
+    user.set('signature', '今天有什么感受');
     return user.signUp();
   }
   updateUserAvatar(photo: File): Promise<any> {

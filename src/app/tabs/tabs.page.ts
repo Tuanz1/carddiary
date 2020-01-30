@@ -12,7 +12,7 @@ export class TabsPage {
     this.routes.navigate(
         ['./diary'], {queryParams: {edit: false, date: 'none'}});
   }
-  navToTab1() {
-    this.routes.navigate(['/tabs/tab1']);
+  navToTab3() {
+    this.routes.navigate(['/tabs/tab3'], {queryParams: {refresh: 'true'}});
   }
 }

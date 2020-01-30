@@ -1,17 +1,21 @@
-<ion-header>
-  <ion-toolbar>
+<ion-content>
+  <ion-toolbar slot="fixed">
     <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
+      <ion-button routerLink="/user/login">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
     </ion-buttons>
     <ion-title>注册</ion-title>
+    <ion-buttons slot="end" style="opacity: 0;">
+      <ion-button routerLink="/user/login">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
-</ion-header>
-
-<ion-content>
   <span class="icon">
-    <img src="../../../assets/icon/favicon.png" alt="">
+    <!-- <img src="../../../assets/icon/favicon.png" alt=""> -->
   </span>
-  <ion-item>
+  <ion-item style="margin-top:8em;">
     <ion-label position="floating">用户</ion-label>
     <ion-input type="text" [(ngModel)]="username"></ion-input>
   </ion-item>
@@ -19,5 +23,5 @@
     <ion-label position="floating">密码</ion-label>
     <ion-input type="password" [(ngModel)]="password"></ion-input>
   </ion-item>
-  <ion-button expand="full" (click)="register()">注册</ion-button>
+  <ion-button expand="full" (click)="register()" color="medium">注册</ion-button>
 </ion-content>

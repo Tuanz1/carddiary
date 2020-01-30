@@ -1,4 +1,5 @@
 import {Injectable} from '@angular/core';
+
 import {CalendarService} from '../calendar/calendar.service';
 
 @Injectable({providedIn: 'root'})
@@ -7,7 +8,41 @@ export class DiaryService {
   diarys: Array<any>;
   Diary = Parse.Object.extend('Diary');
   constructor(private calendarService: CalendarService) {}
-  queryDiarys(year: number, month: number) {
+  queryDiarysByKeywords(keywords: string): Promise<any> {
+    let query1 = new Parse.Query(this.Diary);
+    query1.equalTo('user', Parse.User.current());
+    query1.equalTo('title', keywords);
+    let query2 = new Parse.Query(this.Diary);
+    query2.equalTo('user', Parse.User.current());
+    query2.equalTo('content', keywords);
+    let query = new Parse.Query.or(query1, query2);
+    query.include('photos');
+    query.include('labels');
+    return query.find()
+        .then(diarys => {
+          this.diarys = diarys;
+        })
+        .catch(err => {
+          console.log('query diarys err' + err);
+        });
+  }
+  queryDiarysByLabel(label: any): Promise<any> {
+    let labels = new Array();
+    labels.push(label);
+    let query = new Parse.Query(this.Diary);
+    query.equalTo('user', Parse.User.current());
+    query.containedIn('labels', labels);
+    query.include('photos');
+    query.include('labels');
+    return query.find()
+        .then(diarys => {
+          this.diarys = diarys;
+        })
+        .catch(err => {
+          console.log('query diarys err' + err);
+        });
+  }
+  queryDiarys(year: number, month: number): Promise<any> {
     let query = new Parse.Query(this.Diary);
     query.equalTo('user', Parse.User.current());
     query.equalTo('year', year);

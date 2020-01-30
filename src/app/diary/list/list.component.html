@@ -3,9 +3,14 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title slot="end">
-      {{year}}/{{month+1}}
+    <ion-title style="text-align: center;">
+      日记列表
     </ion-title>
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon name="stats" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -22,7 +27,7 @@
                     <span class="date">{{diary.get('day')}}</span>
                   </ion-row>
                   <ion-row>
-                    <span class="days">{{getDate(diary.get('day'))}}</span>
+                    <span class="days">{{getDate(diary)}}</span>
                   </ion-row>
                 </div>
                 <ion-row style="justify-content: center;" *ngFor="let label of diary.get('labels')">

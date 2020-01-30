@@ -6,6 +6,10 @@
     color: #ededed;
 }
 
+p {
+    padding: 0 1em;
+}
+
 .user-info-card {
     position: relative;
 
@@ -44,6 +48,8 @@
 
 .photos-card {
     ion-row {
+        background-color: #ededed;
+
         ion-col {
             background-color: #ededed;
         }
@@ -53,6 +59,8 @@
 ion-grid {
     margin: 0;
     padding: 0;
+
+
 
     ion-row {
         margin: 0;
@@ -70,19 +78,7 @@ ion-grid {
                 font-size: 1.5em;
             }
 
-            ion-chip {
-                text-align: center;
-                height: 2.2em;
 
-                ion-label {
-                    width: 100%;
-                }
-
-                ion-note {
-                    text-align: center;
-                    margin-left: 0.3em;
-                }
-            }
         }
     }
 }

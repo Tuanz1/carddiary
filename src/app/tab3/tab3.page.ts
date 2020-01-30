@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
+import {Component, Input, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
 import {ModalController} from '@ionic/angular';
 
 import {DiaryService} from '../service/diary/diary.service';
@@ -20,43 +20,26 @@ export class Tab3Page implements OnInit {
   signature: string;
   favoriteNum;
   totalNum;
-  photos: Array<any> = new Array<any>();
+  photos: Array<any>;
   weatherLabels: Array<any> = new Array();
   emojiLabels: Array<any> = new Array();
   customLabels: Array<any> = new Array();
   constructor(
       private diaryService: DiaryService, private photoService: PhotoService,
       private labelService: LabelService, private modalCtrl: ModalController,
-      private router: Router) {}
+      private router: Router, private activatedRoute: ActivatedRoute) {}
   async ngOnInit() {
-    this.getPhotos();
-    this.getFavoriteNum();
-    this.getTotalNum();
-    this.getUserInfo();
-    if (!this.labelService.userLabels) {
-      await this.labelService.queryLabels();
-    }
-    for (let i = 0; i < this.labelService.userLabels.length; i++) {
-      if (this.labelService.userLabels[i].get('type') == 'weather')
-        this.weatherLabels.push(this.labelService.userLabels[i]);
-      if (this.labelService.userLabels[i].get('type') == 'emoji')
-        this.emojiLabels.push(this.labelService.userLabels[i]);
-      if (this.labelService.userLabels[i].get('type') == 'custom')
-        this.customLabels.push(this.labelService.userLabels[i]);
-    }
+    this.activatedRoute.queryParams.subscribe(params => {
+      if (params.refresh == 'true') {
+        this.updateData();
+      }
+    });
   }
   getUserInfo() {
     let user = Parse.User.current();
     this.title = user.get('title');
     this.signature = user.get('signature');
     this.avatar = user.get('avatar').url();
-  }
-  getPhotoUrl(index: number) {
-    if (this.photos.length == 0 || index >= this.photos.length)
-      return '../assets/test/1.jpg';
-    else {
-      return this.photos[index].get('photo').url();
-    }
   }
 
   getTotalNum() {
@@ -88,14 +71,10 @@ export class Tab3Page implements OnInit {
       return '50px'
   }
   async openUserInfo() {
-    let user = Parse.User.current();
     const modal = await this.modalCtrl.create({
       component: UserInfoComponent,
-      componentProps: {
-        name: user.get('title'),
-        signature: user.get('signature'),
-        img: user.get('avatar').url()
-      }
+      componentProps:
+          {name: this.title, signature: this.signature, img: this.avatar}
     });
     await modal.present();
     const {data} = await modal.onDidDismiss();
@@ -105,18 +84,18 @@ export class Tab3Page implements OnInit {
       this.signature = data.signature;
     }
   }
-  openSetting() {
-    this.router.navigate(['/setting']);
-  }
+
   async updateData() {
     this.getPhotos();
     this.getFavoriteNum();
     this.getTotalNum();
     this.getUserInfo();
-    await this.labelService.queryLabels();
-    this.weatherLabels.splice(0, this.weatherLabels.length);
-    this.emojiLabels.splice(0, this.emojiLabels.length);
-    this.customLabels.splice(0, this.customLabels.length);
+    if (!this.labelService.userLabels) {
+      await this.labelService.queryLabels();
+    }
+    this.weatherLabels = new Array();
+    this.emojiLabels = new Array();
+    this.customLabels = new Array();
     for (let i = 0; i < this.labelService.userLabels.length; i++) {
       if (this.labelService.userLabels[i].get('type') == 'weather')
         this.weatherLabels.push(this.labelService.userLabels[i]);
@@ -125,5 +104,15 @@ export class Tab3Page implements OnInit {
       if (this.labelService.userLabels[i].get('type') == 'custom')
         this.customLabels.push(this.labelService.userLabels[i]);
     }
+  }
+  getPhotoBackground(index: number): object {
+    if (this.photos == undefined || this.photos.length == 0) return {};
+    let url = this.photos[index].get('photo').url();
+    return {background: 'url(\"' + url + '\") center/100%  no-repeat'};
+  }
+  async openDiaryListByTag(index: number) {
+    if (this.customLabels[index].get('count') <= 0) return;
+    await this.diaryService.queryDiarysByLabel(this.customLabels[index]);
+    this.router.navigate(['/diary/list']);
   }
 }

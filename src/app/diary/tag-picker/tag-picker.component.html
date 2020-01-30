@@ -29,6 +29,9 @@
         <ion-icon slot="icon-only" name="more"></ion-icon>
       </ion-button>
     </ion-item>
+    <p>
+      <ion-chip *ngFor="let customLabel of customLabels" [hidden]="!customLabel.select">{{customLabel.name}}</ion-chip>
+    </p>
     <!-- <div class="tags">
       <div *ngFor="let customLabel of customLabels">
         <ion-chip *ngIf="customLabel.select" color="primary">

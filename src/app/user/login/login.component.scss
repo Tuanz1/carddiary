@@ -9,3 +9,31 @@
         width: 40%;
     }
 }
+
+ion-toolbar {
+    --background: transparent;
+    color: white;
+    text-align: center;
+}
+
+ion-item {
+    opacity: 0.3;
+}
+
+ion-button {
+    opacity: 0.8;
+    margin-top: 1em;
+}
+
+ion-content {
+    --background: url("../../../assets/imgs/background.png") center/100% 100% no-repeat;
+}
+
+:host {
+    ion-item {
+        --border-color: white; // default underline color
+        --highlight-color-invalid: transparent; // invalid underline color
+        --highlight-color-valid: transparent; // valid underline color
+        --highlight-color-focused: transparent;
+    }
+}

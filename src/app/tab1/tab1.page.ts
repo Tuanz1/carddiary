@@ -77,8 +77,6 @@ export class Tab1Page implements OnInit {
   }
   async changeYearCalendarByYear(year: number) {
     await this.calendarService.queryCalendar(year);
-    console.log('更新日历卡片');
-
     this.calendars = this.calendarService.calendars;
   }
 
@@ -120,7 +118,7 @@ export class Tab1Page implements OnInit {
     }
   }
   async switchToCurDate() {
-    let year = new Date(this.date).getFullYear();
+    let year = this.curDate.getFullYear();
     if (year != this.year) {
       await this.changeYearCalendarByYear(year);
       this.date = this.year + '';
@@ -132,12 +130,9 @@ export class Tab1Page implements OnInit {
     let index = await this.ionSlides.getActiveIndex();
     await this.diaryService.queryDiarys(this.year, index);
     this.loading = false;
-    this.router.navigate(
-        ['./diary/list'], {queryParams: {year: this.year, month: index}});
+    this.router.navigate(['./diary/list']);
   }
-  openLogin() {
-    this.router.navigate(['/user/login']);
-  }
+
   async openDiaryPreview(index: number) {
     let month = await this.ionSlides.getActiveIndex();
     if (this.calendars[month].get('write')[index]) {

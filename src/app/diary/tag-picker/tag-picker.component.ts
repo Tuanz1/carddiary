@@ -26,7 +26,7 @@ export class TagPickerComponent implements OnInit {
 
   constructor(private modalCtrl: ModalController) {}
 
-  async ngOnInit() {}
+  ngOnInit() {}
   selectEmoji(emoji) {
     this.emoji = emoji;
   }

@@ -10,11 +10,13 @@ import {UserService} from 'src/app/service/user/user.service';
 export class UserInfoComponent implements OnInit {
   @Input() name: string;
   @Input() signature: string;
-  @Input() img;
+  @Input() img: string;
   constructor(
       private userService: UserService, private modalCtrl: ModalController) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    alert(this.name + this.img);
+  }
 
   uploadUserAvatar(event) {
     let photo = event.target.files[0];

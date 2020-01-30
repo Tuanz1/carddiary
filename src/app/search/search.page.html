@@ -16,5 +16,9 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
-
+  <p>
+    <ion-chip *ngFor="let h of history" outline="true" color="medium" (click)="searchByHistory(h)">
+      <ion-label>{{h}}</ion-label>
+    </ion-chip>
+  </p>
 </ion-content>
