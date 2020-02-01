@@ -2,6 +2,7 @@ import {CommonModule} from '@angular/common';
 import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {IonicModule} from '@ionic/angular';
+import {MarkdownModule} from 'ngx-markdown';
 
 import {BackgroundPipe} from '../pipe/diary/background.pipe';
 
@@ -20,6 +21,7 @@ import {TagPickerComponent} from './tag-picker/tag-picker.component';
     FormsModule,
     IonicModule,
     DiaryPageRoutingModule,
+    MarkdownModule.forChild(),
   ],
   declarations: [
     DiaryPage,

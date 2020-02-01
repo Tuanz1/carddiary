@@ -32,7 +32,6 @@ export class LoginComponent implements OnInit {
             this.loginForm.get('username').value,
             this.loginForm.get('password').value)
         .then(user => {
-          console.log(user);
           // 用router会导致你的返回回到注册界面
           // this.router.navigate(['/tabs/tab1']);
           this.labelService.queryLabels();
@@ -40,7 +39,7 @@ export class LoginComponent implements OnInit {
               '/tabs/tab1', {queryParams: {refresh: 'true'}});
         })
         .catch((err) => {
-          console.log(err);
+          alert(err);
         });
   }
   openRegister() {

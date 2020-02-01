@@ -10,10 +10,9 @@ import {PhotoService} from 'src/app/service/photo/photo.service';
 export class ColorPickerComponent implements OnInit {
   @Input() color: string;
   colors = [
-    '#65dbbff', '#65bbff', '#6c65ff', '#6c67ff', '#fe65cf',
-    '#ff669f',  '#ff6565', '#ff8965', '#ffb466', '#b9e986',
-    '#87e99e',  '#87e9d0', '#86dce9', '#87e9d0', '#86dce9',
-    '#d2d2d2',  '#b7b7b7', '#999999', '#6c6c6c', '#373737'
+    '#67dbbf', '#65bbff', '#6c65ff', '#6c67ff', '#fe65cf', '#ff669f', '#ff6565',
+    '#ff8965', '#ffb466', '#b9e986', '#87e99e', '#87e9d0', '#86dce9', '#87e9d0',
+    '#86dce9', '#d2d2d2', '#b7b7b7', '#999999', '#6c6c6c', '#373737'
   ];
   data: object = {
     'type': '',

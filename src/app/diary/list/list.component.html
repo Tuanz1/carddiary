@@ -37,7 +37,7 @@
                 </ion-row>
               </ion-col>
               <ion-col size="9" class="diary-img" style="height: 12em;" *ngIf="diary.get('home') != -1">
-                <img [src]="diary.get('photos')[diary.get('home')].get('photo').url()" alt="">
+                <img [src]="getDiaryCover(diary)" alt="">
                 <div class="inner-title" [hidden]="diary.get('title')==''">
                   <div class="title">{{diary.get('title')}}</div>
                 </div>

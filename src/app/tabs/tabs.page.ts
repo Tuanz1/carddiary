@@ -15,4 +15,7 @@ export class TabsPage {
   navToTab3() {
     this.routes.navigate(['/tabs/tab3'], {queryParams: {refresh: 'true'}});
   }
+  navToTab1() {
+    this.routes.navigate(['/tabs/tab1']);
+  }
 }

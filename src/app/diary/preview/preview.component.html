@@ -28,7 +28,7 @@
           </ion-row>
           <ion-row>
             <ion-col size="12">
-              <p>{{diary.get('content')}}</p>
+              <markdown [data]="diary.get('content')"></markdown>
               <p *ngIf="diary.get('content') == ''">你还没有写过什么东西</p>
             </ion-col>
           </ion-row>

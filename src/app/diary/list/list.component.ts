@@ -25,13 +25,17 @@ export class ListComponent implements OnInit {
                   .getDay()];
   }
   openDiaryPreview(index: number) {
-    this.router.navigate(
-        ['/diary/preview'],
-        {queryParams: {year: this.year, month: this.month, day: index}});
+    this.router.navigate(['/diary/preview'], {queryParams: {index: index}});
   }
   randomColor(): object {
     let colors = ['#70c9f5', '#f975ac', 'black'];
     let i = Math.floor(Math.random() * 3);
     return {color: colors[i]};
+  }
+  getDiaryCover(diary: any) {
+    if (diary.get('photos').length == 0)
+      return '';
+    else
+      return diary.get('photos')[diary.get('home')].get('photo').url();
   }
 }

@@ -1,5 +1,5 @@
 import {animate, state, style, transition, trigger,} from '@angular/animations';
-import {Component, DoCheck, Input, OnInit, SimpleChange, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {IonSlides, ModalController, ToastController} from '@ionic/angular';
 
@@ -69,8 +69,6 @@ export class Tab1Page implements OnInit {
     };
     await this.changeYearCalendarByYear(this.year);
   }
-
-
   changeYearCalendar() {
     let year = new Date(this.date).getFullYear();
     this.changeYearCalendarByYear(year);
@@ -128,25 +126,38 @@ export class Tab1Page implements OnInit {
   async openDiaryList() {
     this.loading = true;
     let index = await this.ionSlides.getActiveIndex();
-    await this.diaryService.queryDiarys(this.year, index);
+    if (this.calendars[index].get('count') == 0)
+      this.router.navigate(
+          ['./diary'], {queryParams: {edit: false, date: 'none'}});
+    else {
+      await this.diaryService.queryDiarys(
+          new Date(this.date).getFullYear(), index);
+      this.router.navigate(['./diary/list']);
+    }
     this.loading = false;
-    this.router.navigate(['./diary/list']);
   }
 
   async openDiaryPreview(index: number) {
     let month = await this.ionSlides.getActiveIndex();
     if (this.calendars[month].get('write')[index]) {
       this.loading = true;
-      await this.diaryService.queryDiarys(this.year, month);
+      await this.diaryService.queryDiarys(
+          new Date(this.date).getFullYear(), month);
       this.loading = false;
-      this.router.navigate(
-          ['/diary/preview'],
-          {queryParams: {year: this.year, month: this.month, day: index}});
+      let write = this.calendars[month].get('write');
+      let count = 0;
+      for (let i = 0; i < index; i++) {
+        if (write[i]) count++;
+      }
+      this.router.navigate(['/diary/preview'], {queryParams: {index: count}});
     } else {
       index = this.calendars[month].get('days')[index];
       this.router.navigate(['/diary'], {
-        queryParams:
-            {edit: false, date: new Date(this.year, month, index).toString()}
+        queryParams: {
+          edit: false,
+          date: new Date(new Date(this.date).getFullYear(), month, index)
+                    .toString()
+        }
       });
     }
   }

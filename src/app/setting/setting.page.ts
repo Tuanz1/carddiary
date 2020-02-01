@@ -2,7 +2,11 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {ScreenOrientation} from '@ionic-native/screen-orientation/ngx';
 import {StatusBar} from '@ionic-native/status-bar/ngx';
+import {ModalController} from '@ionic/angular';
+
 import {SettingService} from '../service/setting/setting.service';
+
+import {AboutMeComponent} from './about-me/about-me.component';
 
 @Component({
   selector: 'app-setting',
@@ -16,7 +20,8 @@ export class SettingPage implements OnInit {
   constructor(
       private statusBar: StatusBar,
       private screenOrientation: ScreenOrientation, private router: Router,
-      private settingService: SettingService) {}
+      private settingService: SettingService,
+      private modalCtrl: ModalController) {}
 
   ngOnInit() {
     this.status = this.settingService.status == 'true' ? true : false;
@@ -41,5 +46,9 @@ export class SettingPage implements OnInit {
   logOut() {
     Parse.User.logOut().then(data => {});
     this.router.navigate(['/user/login']);
+  }
+  async openAboutMe() {
+    const modal = await this.modalCtrl.create({component: AboutMeComponent});
+    await modal.present();
   }
 }

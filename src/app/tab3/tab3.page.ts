@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ModalController} from '@ionic/angular';
 
@@ -106,7 +106,7 @@ export class Tab3Page implements OnInit {
     }
   }
   getPhotoBackground(index: number): object {
-    if (this.photos == undefined || this.photos.length == 0) return {};
+    if (this.photos == undefined || this.photos.length < index + 1) return {};
     let url = this.photos[index].get('photo').url();
     return {background: 'url(\"' + url + '\") center/100%  no-repeat'};
   }

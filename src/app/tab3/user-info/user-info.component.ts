@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {ModalController} from '@ionic/angular';
 import {UserService} from 'src/app/service/user/user.service';
 
@@ -7,16 +7,12 @@ import {UserService} from 'src/app/service/user/user.service';
   templateUrl: './user-info.component.html',
   styleUrls: ['./user-info.component.scss'],
 })
-export class UserInfoComponent implements OnInit {
+export class UserInfoComponent {
   @Input() name: string;
   @Input() signature: string;
   @Input() img: string;
   constructor(
       private userService: UserService, private modalCtrl: ModalController) {}
-
-  ngOnInit() {
-    alert(this.name + this.img);
-  }
 
   uploadUserAvatar(event) {
     let photo = event.target.files[0];

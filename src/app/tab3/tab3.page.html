@@ -1,8 +1,8 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-button (click)="updateData()">
-        <ion-icon slot="icon-only" name="refresh"></ion-icon>
+      <ion-button routerLink="/search">
+        <ion-icon slot="icon-only" name="search"></ion-icon>
       </ion-button>
     </ion-buttons>
     <ion-buttons slot="end">
@@ -141,7 +141,7 @@
         {{customLabel.get('name')}} <ion-note style="margin-left: 1em;">{{customLabel.get('count')}}
         </ion-note>
       </ion-chip>
-
+      <ion-label [hidden]="customLabels.length > 0">请添加自定义标签</ion-label>
     </p>
   </ion-card>
 </ion-content>

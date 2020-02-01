@@ -90,6 +90,7 @@ export class CalendarService {
     }
   }
   wirte(date: Date) {
+    console.log('write' + date);
     let year = date.getFullYear();
     let month = date.getMonth();
     let day = date.getDate();

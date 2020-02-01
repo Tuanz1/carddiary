@@ -17,8 +17,8 @@
   <div class="select-year">
     <ion-button fill="clear" color="dark">
       <ion-icon slot="end" name="arrow-dropdown"></ion-icon>
-      <ion-datetime (ionChange)="changeYearCalendar()" displayFormat="YYYY" pickerFormat="YYYY" min="1997" max="2020"
-        [(ngModel)]="date">
+      <ion-datetime (ionChange)="changeYearCalendar()" displayFormat="YYYY" pickerFormat="YYYY" min="1997" max="2030"
+        doneText="完成" cancelText="取消" [(ngModel)]="date">
       </ion-datetime>
     </ion-button>
   </div>

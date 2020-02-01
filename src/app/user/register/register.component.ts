@@ -23,7 +23,8 @@ export class RegisterComponent implements OnInit {
         .then(data => {
           this.calendarService.queryCalendar(new Date().getFullYear());
           this.labelService.genDefaultLabels();
-          this.navCtrl.navigateRoot('/');
+          this.navCtrl.navigateRoot(
+              '/tabs/tab1', {queryParams: {refresh: 'true'}});
         })
         .catch(err => {
           alert(err);

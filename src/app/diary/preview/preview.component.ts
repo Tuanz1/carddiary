@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {AfterContentChecked, AfterContentInit, AfterViewChecked, Component, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ActionSheetController, IonSlides, NavController} from '@ionic/angular';
 import {Month} from 'src/app/service/calendar/month';
@@ -9,14 +9,15 @@ import {DiaryService} from 'src/app/service/diary/diary.service';
   templateUrl: './preview.component.html',
   styleUrls: ['./preview.component.scss'],
 })
-export class PreviewComponent implements OnInit {
+export class PreviewComponent implements OnInit, AfterContentInit {
   @ViewChild('slides', {static: true}) slides: IonSlides;
+  index: number;
   diarys: Array<any>;
   year: string;
   month: string;
   day: string;
-  weather: string;
-  emoji: string;
+  weather: string = '';
+  emoji: string = '';
   favorite: boolean;
   options = {
     autoplay: {
@@ -31,13 +32,9 @@ export class PreviewComponent implements OnInit {
   ngOnInit() {
     this.activatedRoute.queryParams.subscribe(params => {
       this.diarys = this.diaryService.diarys;
-      this.year = params.year;
-      this.month = params.month;
-      this.day = params.day;
-      let index = Number(this.day);
-      this.slides.slideTo(index);
-      this.favorite = Boolean(this.diarys[index].get('favorite'));
-      let labels = this.diarys[index].get('labels');
+      this.index = Number(params.index);
+      this.favorite = this.diarys[this.index].get('favorite');
+      let labels = this.diarys[this.index].get('labels');
       for (let i = 0; i < labels.length; i++) {
         if (labels[i].get('type') == 'weather')
           this.weather = labels[i].get('name');
@@ -45,6 +42,10 @@ export class PreviewComponent implements OnInit {
           this.emoji = labels[i].get('name');
       }
     });
+  }
+  ngAfterContentInit() {
+    this.slides.slideTo(this.index);
+    console.log(this.index + 'index');
   }
   async openEdit() {
     let index = await this.slides.getActiveIndex();

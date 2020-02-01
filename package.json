@@ -31,6 +31,7 @@
     "cordova-plugin-statusbar": "^2.4.3",
     "core-js": "^2.5.4",
     "es6-promise-plugin": "^4.2.2",
+    "ngx-markdown": "^8.2.2",
     "parse": "^2.11.0",
     "rxjs": "~6.5.1",
     "tslib": "^1.9.0",
