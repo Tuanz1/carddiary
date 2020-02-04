@@ -5,7 +5,7 @@
 
 ## 项目界面
 
-![images](./images/1.jpg)
+![images](images/1.jpg)
 
-![images](./images/3.jpg)
+![images](images/3.jpg)
 
