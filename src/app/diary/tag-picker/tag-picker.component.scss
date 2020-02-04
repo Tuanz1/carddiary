@@ -11,8 +11,13 @@ ion-content {
     z-index: 2;
     top: 45%;
     height: 55%;
-    max-height: 32em;
+    max-height: 450px;
     max-width: 30em;
+}
+
+p {
+    margin-top: 0;
+    padding-bottom: 1em;
 }
 
 ion-grid {

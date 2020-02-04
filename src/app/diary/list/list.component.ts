@@ -27,9 +27,9 @@ export class ListComponent implements OnInit {
   openDiaryPreview(index: number) {
     this.router.navigate(['/diary/preview'], {queryParams: {index: index}});
   }
-  randomColor(): object {
+  randomColor(index: number): object {
     let colors = ['#70c9f5', '#f975ac', 'black'];
-    let i = Math.floor(Math.random() * 3);
+    let i = index % 3;
     return {color: colors[i]};
   }
   getDiaryCover(diary: any) {

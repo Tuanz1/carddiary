@@ -13,7 +13,7 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <ion-progress-bar type="indeterminate" [hidden]="!loading"></ion-progress-bar>
+  <ion-progress-bar color="secondary" type="indeterminate" [hidden]="!loading"></ion-progress-bar>
   <div class="select-year">
     <ion-button fill="clear" color="dark">
       <ion-icon slot="end" name="arrow-dropdown"></ion-icon>
@@ -93,7 +93,7 @@
               <div class="percentage">{{month.attributes.count}}/{{month.attributes.total}}</div>
               <ion-button class="btn-color-picker" shape="round" fill="clear" color="light" slot="end"
                 (click)="openColorPicker(j)">
-                <ion-icon slot="icon-only" name="color-fill"></ion-icon>
+                <ion-icon slot="icon-only" name="more" style="transform: rotateZ(90deg);"></ion-icon>
               </ion-button>
             </ion-item>
           </ion-card-content>

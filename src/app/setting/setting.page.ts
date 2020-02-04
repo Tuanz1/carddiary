@@ -38,10 +38,10 @@ export class SettingPage implements OnInit {
   }
   lockDirection(event) {
     localStorage.setItem('rotate', String(this.rotate));
-    if (event.detail.checked)
-      this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
-    else
+    if (this.lockDirection)
       this.screenOrientation.unlock();
+    else
+      this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
   }
   logOut() {
     Parse.User.logOut().then(data => {});

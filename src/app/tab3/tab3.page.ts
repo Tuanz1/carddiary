@@ -14,7 +14,7 @@ import {UserInfoComponent} from './user-info/user-info.component';
   styleUrls: ['tab3.page.scss']
 })
 export class Tab3Page implements OnInit {
-  segment: string = 'emoji';
+  segment: string = 'weather';
   avatar: string;
   title: string;
   signature: string;
@@ -34,6 +34,12 @@ export class Tab3Page implements OnInit {
         this.updateData();
       }
     });
+  }
+  async doRefresh(event) {
+    await this.updateData();
+    setTimeout(() => {
+      event.target.complete();
+    }, 800);
   }
   getUserInfo() {
     let user = Parse.User.current();

@@ -97,7 +97,9 @@ export class Tab1Page implements OnInit {
         this.calendars[index].set('background', data.data);
         this.calendars[index].save();
       } else {
-        this.calendarService.updateCalendarImg(index, data.data);
+        this.loading = true;
+        await this.calendarService.updateCalendarImg(index, data.data);
+        this.loading = false;
       }
     }
   }

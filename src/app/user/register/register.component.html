@@ -1,21 +1,20 @@
-<ion-content>
-  <ion-toolbar slot="fixed">
+<ion-header>
+  <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-button routerLink="/user/login">
-        <ion-icon name="arrow-back"></ion-icon>
-      </ion-button>
+      <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>注册</ion-title>
+    <ion-title>用户登录</ion-title>
     <ion-buttons slot="end" style="opacity: 0;">
-      <ion-button routerLink="/user/login">
-        <ion-icon name="arrow-back"></ion-icon>
-      </ion-button>
+      <ion-back-button></ion-back-button>
     </ion-buttons>
   </ion-toolbar>
+</ion-header>
+<ion-content>
+
   <span class="icon">
-    <!-- <img src="../../../assets/icon/favicon.png" alt=""> -->
+    <img src="../../../assets/icon/favicon.png" alt="">
   </span>
-  <ion-item style="margin-top:8em;">
+  <ion-item>
     <ion-label position="floating">用户</ion-label>
     <ion-input type="text" [(ngModel)]="username"></ion-input>
   </ion-item>

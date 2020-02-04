@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
-import {IonSlides, ModalController, NavController} from '@ionic/angular';
+import {ActivatedRoute, Router} from '@angular/router';
+import {IonSlides, ModalController} from '@ionic/angular';
 
 import {DiaryService} from '../service/diary/diary.service';
 import {LabelService} from '../service/label/label.service';
@@ -34,7 +34,7 @@ export class DiaryPage implements OnInit {
       private activatedRoute: ActivatedRoute,
       private diaryService: DiaryService, private photoService: PhotoService,
       private labelService: LabelService, private modalCtrl: ModalController,
-      private navCtrl: NavController) {}
+      private router: Router) {}
 
   async ngOnInit() {
     this.activatedRoute.queryParams.subscribe(params => {
@@ -161,15 +161,17 @@ export class DiaryPage implements OnInit {
     }
   }
   // 保存diary数据
-  updateDiary() {
+  async updateDiary() {
     this.diaryService.diary.set('title', this.title);
     this.diaryService.diary.set('content', this.content);
     this.diaryService.diary.set('favorite', this.favorite);
     this.diaryService.diary.set('home', this.home);
-    this.diaryService.updateDiary();
+    await this.diaryService.updateDiary();
   }
   clickSaveBtn() {
     this.updateDiary();
-    this.navCtrl.navigateRoot('/tabs/tab1');
+    this.diaryService.diarys = new Array();
+    this.diaryService.diarys.push(this.diaryService.diary);
+    this.router.navigate(['/diary/preview'], {queryParams: {index: 0}});
   }
 }

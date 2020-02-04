@@ -39,7 +39,7 @@ export class CalendarService {
     calendar.set('cover', '');
     return calendar.save();
   }
-  updateCalendarImg(index: number, img: File): Promise<any> {
+  async updateCalendarImg(index: number, img: File): Promise<any> {
     this.calendars[index].set('img', new Parse.File(img.name, img));
     return this.calendars[index]
         .save()

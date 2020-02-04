@@ -10,14 +10,12 @@
     }
 }
 
-ion-toolbar {
-    --background: transparent;
-    color: white;
+ion-title {
     text-align: center;
 }
 
 ion-item {
-    opacity: 0.3;
+    opacity: 0.8;
 }
 
 ion-button {
@@ -26,7 +24,7 @@ ion-button {
 }
 
 ion-content {
-    --background: url("../../../assets/imgs/background.png") center/100% 100% no-repeat;
+    // --background: url("../../../assets/imgs/background.png") center/100% 100% no-repeat;
 }
 
 :host {
@@ -36,4 +34,8 @@ ion-content {
         --highlight-color-valid: transparent; // valid underline color
         --highlight-color-focused: transparent;
     }
+}
+
+form {
+    padding: 0 1em;
 }
