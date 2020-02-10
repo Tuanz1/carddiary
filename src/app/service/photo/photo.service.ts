@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-
+import {Parse} from 'parse';
 @Injectable({providedIn: 'root'})
 export class PhotoService {
   Photo = Parse.Object.extend('Photo');

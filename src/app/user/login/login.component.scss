@@ -2,7 +2,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 4em;
+    margin-top: 2em;
     margin-bottom: 2em;
 
     img {
@@ -14,28 +14,38 @@ ion-title {
     text-align: center;
 }
 
-ion-item {
-    opacity: 0.8;
-}
-
 ion-button {
     opacity: 0.8;
     margin-top: 1em;
 }
 
-ion-content {
-    // --background: url("../../../assets/imgs/background.png") center/100% 100% no-repeat;
-}
 
-:host {
-    ion-item {
-        --border-color: white; // default underline color
-        --highlight-color-invalid: transparent; // invalid underline color
-        --highlight-color-valid: transparent; // valid underline color
-        --highlight-color-focused: transparent;
-    }
-}
+
+// :host {
+//     ion-item {
+//         --border-color: white; // default underline color
+//         --highlight-color-invalid: transparent; // invalid underline color
+//         --highlight-color-valid: transparent; // valid underline color
+//         --highlight-color-focused: transparent;
+//     }
+// }
 
 form {
     padding: 0 1em;
+
+    .custom-server-tip {
+        display: block;
+        text-align: center;
+        margin-top: 1em;
+    }
+
+    .buttons {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+
+        ion-button {
+            width: 50%;
+        }
+    }
 }

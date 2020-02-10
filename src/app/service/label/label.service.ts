@@ -1,4 +1,6 @@
 import {Injectable} from '@angular/core';
+import {Parse} from 'parse';
+
 import {Label} from './label';
 
 @Injectable({providedIn: 'root'})

@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { UserInfoComponent } from './user-info.component';
+import { DiaryInfoComponent } from './diary-info.component';
 
-describe('UserInfoComponent', () => {
-  let component: UserInfoComponent;
-  let fixture: ComponentFixture<UserInfoComponent>;
+describe('DiaryInfoComponent', () => {
+  let component: DiaryInfoComponent;
+  let fixture: ComponentFixture<DiaryInfoComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ UserInfoComponent ],
+      declarations: [ DiaryInfoComponent ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(UserInfoComponent);
+    fixture = TestBed.createComponent(DiaryInfoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

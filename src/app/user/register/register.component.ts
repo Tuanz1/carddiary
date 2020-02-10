@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {NavController} from '@ionic/angular';
 import {CalendarService} from 'src/app/service/calendar/calendar.service';
+import {DiaryinfoService} from 'src/app/service/diaryinfo/diaryinfo.service';
 import {LabelService} from 'src/app/service/label/label.service';
 import {UserService} from 'src/app/service/user/user.service';
 
@@ -10,18 +12,45 @@ import {UserService} from 'src/app/service/user/user.service';
   styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent implements OnInit {
-  username: string;
-  password: string;
+  loginForm: FormGroup;
+  custom: boolean = false;
   constructor(
       private labelService: LabelService, private userService: UserService,
+      private diaryinfoService: DiaryinfoService,
       private calendarService: CalendarService,
       private navCtrl: NavController) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.loginForm = new FormGroup({
+      username:
+          new FormControl('', [Validators.required, Validators.minLength(4)]),
+      password:
+          new FormControl('', [Validators.required, Validators.minLength(4)]),
+      domain: new FormControl('', []),
+      appId: new FormControl(null, []),
+      jsKey: new FormControl(null, [])
+    });
+  }
+  customServer() {
+    this.custom = !this.custom;
+  }
   register() {
-    this.userService.register(this.username, this.password)
+    if (this.custom)
+      this.userService.initialzeParse(
+          this.loginForm.get('domain').value, this.loginForm.get('appId').value,
+          this.loginForm.get('jsKey').value);
+    else
+      this.userService.initialzeParse(
+          'https://shellcode.vip:1337/parse',
+          'GGmbVq9sjSw9uODaf1fHsqMn2AL8tooE0OkLJGRz',
+          'GGmbVq9sjSw9uODaf1fHsqMn2AL8tooE0OkLJGRz');
+    this.userService
+        .register(
+            this.loginForm.get('username').value,
+            this.loginForm.get('password').value)
         .then(data => {
           this.calendarService.queryCalendar(new Date().getFullYear());
+          this.diaryinfoService.createDiaryInfo();
           this.labelService.genDefaultLabels();
           this.navCtrl.navigateRoot(
               '/tabs/tab1', {queryParams: {refresh: 'true'}});

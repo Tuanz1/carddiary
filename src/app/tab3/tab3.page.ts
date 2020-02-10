@@ -3,10 +3,11 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {ModalController} from '@ionic/angular';
 
 import {DiaryService} from '../service/diary/diary.service';
+import {DiaryinfoService} from '../service/diaryinfo/diaryinfo.service';
 import {LabelService} from '../service/label/label.service';
 import {PhotoService} from '../service/photo/photo.service';
+import {DiaryInfoComponent} from './diary-info/diary-info.component';
 
-import {UserInfoComponent} from './user-info/user-info.component';
 
 @Component({
   selector: 'app-tab3',
@@ -15,16 +16,17 @@ import {UserInfoComponent} from './user-info/user-info.component';
 })
 export class Tab3Page implements OnInit {
   segment: string = 'weather';
-  avatar: string;
+  coverUrl: string;
   title: string;
-  signature: string;
-  favoriteNum;
-  totalNum;
+  feel: string;
+  favoriteNum: number;
+  totalNum: number;
   photos: Array<any>;
   weatherLabels: Array<any> = new Array();
   emojiLabels: Array<any> = new Array();
   customLabels: Array<any> = new Array();
   constructor(
+      private diaryInfoService: DiaryinfoService,
       private diaryService: DiaryService, private photoService: PhotoService,
       private labelService: LabelService, private modalCtrl: ModalController,
       private router: Router, private activatedRoute: ActivatedRoute) {}
@@ -41,11 +43,12 @@ export class Tab3Page implements OnInit {
       event.target.complete();
     }, 800);
   }
-  getUserInfo() {
-    let user = Parse.User.current();
-    this.title = user.get('title');
-    this.signature = user.get('signature');
-    this.avatar = user.get('avatar').url();
+  async getDiaryInfo() {
+    await this.diaryInfoService.queryUserDiaryInfo();
+    this.title = this.diaryInfoService.diaryinfo.get('title');
+    this.feel = this.diaryInfoService.diaryinfo.get('feel');
+    this.coverUrl =
+        this.diaryInfoService.diaryinfo.get('cover').get('photo').url();
   }
 
   getTotalNum() {
@@ -64,7 +67,6 @@ export class Tab3Page implements OnInit {
     this.photoService.queryPhotos()
         .then(data => {
           this.photos = data;
-          console.log(data);
         })
         .catch(err => {
           alert(err);
@@ -74,28 +76,23 @@ export class Tab3Page implements OnInit {
     if (count < 10) {
       return 50 * count / 10 + 'px';
     } else
-      return '50px'
+      return '50px';
   }
   async openUserInfo() {
     const modal = await this.modalCtrl.create({
-      component: UserInfoComponent,
-      componentProps:
-          {name: this.title, signature: this.signature, img: this.avatar}
+      component: DiaryInfoComponent,
+      componentProps: {title: this.title, feel: this.feel, img: this.coverUrl}
     });
     await modal.present();
-    const {data} = await modal.onDidDismiss();
-    if (data != undefined) {
-      this.avatar = data.img;
-      this.title = data.name;
-      this.signature = data.signature;
-    }
+    await modal.onDidDismiss();
+    this.getDiaryInfo();
   }
 
   async updateData() {
     this.getPhotos();
     this.getFavoriteNum();
     this.getTotalNum();
-    this.getUserInfo();
+    this.getDiaryInfo();
     if (!this.labelService.userLabels) {
       await this.labelService.queryLabels();
     }

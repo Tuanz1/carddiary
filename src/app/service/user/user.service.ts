@@ -1,10 +1,12 @@
 import {Injectable} from '@angular/core';
+import {Parse} from 'parse';
 
 
 @Injectable({providedIn: 'root'})
 export class UserService {
   constructor() {}
   login(username: string, password: string) {
+    localStorage.setItem('login', 'true');
     return Parse.User.logIn(username, password);
   }
   register(username: string, password: string) {
@@ -15,15 +17,12 @@ export class UserService {
     user.set('signature', '今天有什么感受');
     return user.signUp();
   }
-  updateUserAvatar(photo: File): Promise<any> {
-    let file = new Parse.File(photo.name, photo);
-    Parse.User.current().set('avatar', file);
-    return Parse.User.current().save();
-  }
-  updateUserInfo(name: string, signature: string): Promise<any> {
-    let user = Parse.User.current();
-    user.set('title', name);
-    user.set('signature', signature);
-    return user.save();
+
+  initialzeParse(url: string, appId: string, jsKey: string) {
+    localStorage.setItem('url', url);
+    localStorage.setItem('appId', appId);
+    localStorage.setItem('jsKey', jsKey);
+    Parse.initialize(appId, jsKey);
+    Parse.serverURL = url;
   }
 }

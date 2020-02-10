@@ -3,6 +3,7 @@ import {Router} from '@angular/router';
 import {ScreenOrientation} from '@ionic-native/screen-orientation/ngx';
 import {StatusBar} from '@ionic-native/status-bar/ngx';
 import {ModalController} from '@ionic/angular';
+import {Parse} from 'parse';
 
 import {SettingService} from '../service/setting/setting.service';
 

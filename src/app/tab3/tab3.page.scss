@@ -20,11 +20,16 @@ p {
         left: 50%;
         top: -2em;
         margin-left: -2em;
+
+        ion-img {
+            background-color: #ededed;
+        }
     }
 
     ion-card {
         min-height: 10em;
         margin-top: 3.4em;
+        border-radius: 8px;
 
         ion-card-title {
             margin-top: 2.6em;

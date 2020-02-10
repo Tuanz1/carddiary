@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-
+import {Parse} from 'parse';
 import {CalendarService} from '../calendar/calendar.service';
 
 @Injectable({providedIn: 'root'})

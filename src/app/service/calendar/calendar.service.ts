@@ -1,4 +1,7 @@
 import {Injectable} from '@angular/core';
+import {Parse} from 'parse';
+
+import {PhotoService} from '../photo/photo.service';
 
 import {Month} from './month';
 
@@ -6,13 +9,13 @@ import {Month} from './month';
 export class CalendarService {
   Calendar = Parse.Object.extend('Calendar');
   calendars: Array<any>;
-  constructor() {}
-  queryCalendar(year: number): Promise<any> {
+  constructor(private photoService: PhotoService) {}
+  async queryCalendar(year: number): Promise<any> {
     let query = new Parse.Query(this.Calendar);
     query.equalTo('user', Parse.User.current());
     query.equalTo('year', year);
     query.ascending('num');
-    query.exclude('img');
+    query.exclude('cover');
     return query.find()
         .then(data => {
           if (data.length == 0) {
@@ -36,22 +39,23 @@ export class CalendarService {
     calendar.set('days', month.days);
     calendar.set('count', month.count);
     calendar.set('background', '#65bbff no-repeat center center');
-    calendar.set('cover', '');
     return calendar.save();
   }
   async updateCalendarImg(index: number, img: File): Promise<any> {
-    this.calendars[index].set('img', new Parse.File(img.name, img));
-    return this.calendars[index]
-        .save()
-        .then(res => {
-          let background: string =
-              'url(\"' + res.get('img').url() + '\") no-repeat center/100%100%';
+    if (this.calendars[index].get('cover') != undefined) {
+      this.photoService.deletePhoto(this.calendars[index].get('cover'));
+    }
+    this.photoService.uploadPhoto(img)
+        .then(data => {
+          let background: string = 'url(\"' + data.get('photo').url() +
+              '\") no-repeat center/100%100%';
           this.calendars[index].set('background', background);
+          this.calendars[index].set('cover', data);
           this.calendars[index].save();
         })
-        .catch((err: string) => {
-          console.log('CalendarService.updateCalendarImg ERROR' + err);
-        })
+        .catch(err => {
+          console.log('上传日历封面图片失败');
+        });
   }
   async genDefaultCalendar(year: number) {
     for (let i = 1; i <= 12; i++) {

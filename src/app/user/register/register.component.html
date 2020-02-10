@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>用户登录</ion-title>
+    <ion-title>注册</ion-title>
     <ion-buttons slot="end" style="opacity: 0;">
       <ion-back-button></ion-back-button>
     </ion-buttons>
@@ -14,13 +14,37 @@
   <span class="icon">
     <img src="../../../assets/icon/favicon.png" alt="">
   </span>
-  <ion-item>
-    <ion-label position="floating">用户</ion-label>
-    <ion-input type="text" [(ngModel)]="username"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label position="floating">密码</ion-label>
-    <ion-input type="password" [(ngModel)]="password"></ion-input>
-  </ion-item>
-  <ion-button expand="full" (click)="register()" color="medium">注册</ion-button>
+  <form [formGroup]="loginForm" #formDir="ngForm" (ngSubmit)="register()">
+    <ion-item lines="full">
+      <ion-label position="floating">用户</ion-label>
+      <ion-input id="username" type="text" formControlName="username" required></ion-input>
+    </ion-item>
+    <ion-label color="secondary"
+      *ngIf="loginForm.get('username').hasError('required') && !loginForm.get('username').pristine || loginForm.get('username').hasError('minlength')">
+      用户名至少为4个字符
+    </ion-label>
+    <ion-item>
+      <ion-label position="floating">密码</ion-label>
+      <ion-input type="password" formControlName="password" required></ion-input>
+    </ion-item>
+    <ion-label color="secondary"
+      *ngIf="loginForm.get('password').hasError('minlength') && !loginForm.get('password').pristine">密码长度为6-18
+    </ion-label>
+    <ion-label color="primary" class="custom-server-tip" (click)="customServer()">自定义服务器</ion-label>
+    <div class="custom-server" *ngIf="custom">
+      <ion-item>
+        <ion-label position="floating">URL</ion-label>
+        <ion-input type="url" formControlName="domain" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">AppID</ion-label>
+        <ion-input type="password" formControlName="appId" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">JSKey</ion-label>
+        <ion-input type="password" formControlName="jsKey" required></ion-input>
+      </ion-item>
+    </div>
+    <ion-button expand="full" type="submit" color="medium">注册</ion-button>
+  </form>
 </ion-content>

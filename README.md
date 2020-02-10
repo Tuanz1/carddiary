@@ -8,3 +8,14 @@
 ![images](images/1.jpg)
 ![images](images/3.jpg)
 ![个人界面](images/4.jpg)
+
+## 项目说明
+ 前端:Ionic4/Angular8 + 后端:Parse-Server
+### 项目运行
+ ```sh
+ ionic serve
+ ```
+ ### 项目后台部署
+ [CardDiary-Parse项目]()
+
+ 

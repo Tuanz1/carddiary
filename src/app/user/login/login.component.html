@@ -15,7 +15,7 @@
     <img src="../../assets/icon/favicon.png" alt="">
   </span>
   <form [formGroup]="loginForm" #formDir="ngForm" (ngSubmit)="login()">
-    <ion-item lines="full" style="border-bottom: solid 3px #ededed;">
+    <ion-item lines="full">
       <ion-label position="floating">用户</ion-label>
       <ion-input id="username" type="text" formControlName="username" required></ion-input>
     </ion-item>
@@ -30,8 +30,24 @@
     <ion-label color="secondary"
       *ngIf="loginForm.get('password').hasError('minlength') && !loginForm.get('password').pristine">密码长度为6-18
     </ion-label>
-
-    <ion-button expand="full" type="submit" color="medium">登录</ion-button>
-    <ion-button expand="full" (click)="openRegister()" color="medium">注册</ion-button>
+    <ion-label color="primary" class="custom-server-tip" (click)="customServer()">自定义服务器</ion-label>
+    <div class="custom-server" *ngIf="custom">
+      <ion-item>
+        <ion-label position="floating">URL</ion-label>
+        <ion-input type="url" formControlName="domain" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">AppID</ion-label>
+        <ion-input type="password" formControlName="appId" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">JSKey</ion-label>
+        <ion-input type="password" formControlName="jsKey" required></ion-input>
+      </ion-item>
+    </div>
+    <div class="buttons">
+      <ion-button type="submit" color="medium">登录</ion-button>
+      <ion-button (click)="openRegister()" color="medium">注册</ion-button>
+    </div>
   </form>
 </ion-content>

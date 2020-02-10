@@ -1,7 +1,9 @@
 import {Component} from '@angular/core';
 import {Router} from '@angular/router';
 import {Platform} from '@ionic/angular';
+import {Parse} from 'parse';
 import {SettingService} from './service/setting/setting.service';
+import {UserService} from './service/user/user.service';
 
 @Component({
   selector: 'app-root',
@@ -11,26 +13,22 @@ import {SettingService} from './service/setting/setting.service';
 export class AppComponent {
   constructor(
       private platform: Platform, private router: Router,
-      private settingService: SettingService) {
+      private settingService: SettingService,
+      private userService: UserService) {
     this.initializeApp();
-    this.initialzeParse();
-
-    if (Parse.User.current()) {
-      this.router.navigate(['/tabs/tab1']);
-    } else {
-      this.router.navigate(['/user']);
-    }
   }
 
   initializeApp() {
     this.platform.ready().then(() => {
       this.settingService.initSettings();
+      this.userService.initialzeParse(
+          localStorage.getItem('url'), localStorage.getItem('appId'),
+          localStorage.getItem('jsKey'));
+      if (localStorage.getItem('login') == 'true') {
+        this.router.navigate(['/tabs/tab1']);
+      } else {
+        this.router.navigate(['/user']);
+      }
     });
-  }
-  initialzeParse() {
-    Parse.initialize(
-        'GGmbVq9sjSw9uODaf1fHsqMn2AL8tooE0OkLJGRz',
-        'GGmbVq9sjSw9uODaf1fHsqMn2AL8tooE0OkLJGRz');
-    Parse.serverURL = 'https://shellcode.vip:1337/parse';
   }
 }
