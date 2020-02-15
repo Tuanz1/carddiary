@@ -1,8 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Parse} from 'parse';
-
 import {PhotoService} from '../photo/photo.service';
-
 import {Month} from './month';
 
 @Injectable({providedIn: 'root'})
@@ -68,7 +66,6 @@ export class CalendarService {
   }
 
   async genWriteCalendar(date: Date) {
-    console.log('gen write date' + date);
     let year = date.getFullYear();
     let m = date.getMonth();
     let day = date.getDate();

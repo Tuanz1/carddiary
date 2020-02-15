@@ -26,7 +26,8 @@ export class TagManagerComponent implements OnInit {
     await modal.present();
     const {data} = await modal.onWillDismiss();
     if (data != undefined) {
-      this.customLabels.push(new Label(this.customLabels.length + 1, data, 0));
+      this.customLabels.push(
+          new Label(this.labelService.userLabels.length, data, 0));
       this.labelService.createLabel('custom', data)
           .then(data => {
             this.labelService.userLabels.push(data);

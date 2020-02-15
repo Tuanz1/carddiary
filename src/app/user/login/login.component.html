@@ -27,7 +27,8 @@
       <ion-label position="floating">密码</ion-label>
       <ion-input type="password" formControlName="password" required></ion-input>
     </ion-item>
-    <ion-note *ngIf="loginForm.get('password').hasError('minlength') && !loginForm.get('password').pristine">密码长度为6-18
+    <ion-note *ngIf="loginForm.get('password').hasError('minlength') && !loginForm.get('password').pristine">
+      密码长度为4到16个字符
     </ion-note>
     <ion-label color="primary" class="custom-server-tip" (click)="customServer()">自定义服务器</ion-label>
     <div class="custom-server" *ngIf="custom">
@@ -47,7 +48,7 @@
     <div class="buttons">
 
       <ion-button (click)="openRegister()" color="secondary">注册</ion-button>
-      <ion-button type="submit" color="tertiary">登录</ion-button>
+      <ion-button type="submit" color="tertiary" [disabled]="!loginForm.valid">登录</ion-button>
     </div>
   </form>
 </ion-content>

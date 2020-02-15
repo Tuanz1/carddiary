@@ -1,5 +1,6 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {IonReorderGroup, ModalController} from '@ionic/angular';
+import {PhotoService} from 'src/app/service/photo/photo.service';
 import {PhotoPreviewComponent} from 'src/app/share/photo-preview/photo-preview.component';
 
 @Component({
@@ -11,7 +12,8 @@ export class ImgManagerComponent implements OnInit {
   @Input() photos: Array<any>;
   @Input() home: number;
   @ViewChild(IonReorderGroup, {static: true}) reorderGroup: IonReorderGroup;
-  constructor(private modalCtrl: ModalController) {}
+  constructor(
+      private photoService: PhotoService, private modalCtrl: ModalController) {}
 
   ngOnInit() {}
   setHome(i: number) {
@@ -30,6 +32,7 @@ export class ImgManagerComponent implements OnInit {
   }
   deletePhoto(i: number) {
     if (i == this.home) this.home = 0;
+    this.photoService.deletePhoto(this.photos[i]);
     this.photos.splice(i, 1);
     if (this.home >= this.photos.length) this.home = -1;
   }

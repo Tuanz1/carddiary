@@ -1,7 +1,7 @@
 import {animate, state, style, transition, trigger,} from '@angular/animations';
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {IonDatetime, IonSlides, ModalController, ToastController} from '@ionic/angular';
+import {AlertController, IonDatetime, IonSlides, ModalController, NavController} from '@ionic/angular';
 
 import {CalendarService} from '../service/calendar/calendar.service';
 import {DiaryService} from '../service/diary/diary.service';
@@ -29,7 +29,6 @@ import {ColorPickerComponent} from './color-picker/color-picker.component';
 export class Tab1Page implements OnInit {
   @ViewChild(IonSlides, {static: true}) ionSlides: IonSlides;
   @ViewChild(IonDatetime, {static: true}) ionDatetime: IonDatetime;
-  btnTips: String = 'Calendar';
   viewMode: string = 'card';
   loading: boolean = false;
   curDate: Date;
@@ -45,8 +44,8 @@ export class Tab1Page implements OnInit {
   constructor(
       private calendarService: CalendarService,
       private diaryService: DiaryService, private router: Router,
-      private modalCtrl: ModalController,
-      private activatedRoute: ActivatedRoute) {
+      private alertCtrl: AlertController, private modalCtrl: ModalController,
+      private navCtrl: NavController, private activatedRoute: ActivatedRoute) {
     this.curDate = new Date();
     this.year = this.curDate.getFullYear();
     this.date = this.curDate.toString();
@@ -83,11 +82,38 @@ export class Tab1Page implements OnInit {
           }
           this.calendars = this.calendarService.calendars;
         })
-        .catch(err => {
-          alert('主页加载日历出错' + err);
+        .catch((err) => {
+          this.displayErrorAlert(err);
         });
   }
 
+  async displayErrorAlert(err) {
+    if (err.code == 209) {
+      const alert = await this.alertCtrl.create({
+        header: '错误!',
+        message: '登录信息过期',
+        buttons: [{
+          text: '返回登录',
+          handler: () => {
+            this.navCtrl.navigateRoot('/user/login');
+          }
+        }]
+      });
+      alert.present();
+    } else {
+      const alert = await this.alertCtrl.create({
+        header: '错误!',
+        message: err,
+        buttons: [{
+          text: '确定',
+          handler: () => {
+            this.alertCtrl.dismiss();
+          }
+        }]
+      });
+      alert.present();
+    }
+  }
   /**
    * 打开月份卡片背景设置modal
    * @param index 第几月
@@ -105,11 +131,10 @@ export class Tab1Page implements OnInit {
       this.loading = true;
       if (data['type'] == 'color') {
         this.calendarService.updateCalendarBackgroud(index, data.data);
-        this.loading = false;
       } else {
         await this.calendarService.updateCalendarImg(index, data.data);
-        this.loading = false;
       }
+      this.loading = false;
     }
   }
   /**
@@ -118,10 +143,8 @@ export class Tab1Page implements OnInit {
   switchViewMode() {
     if (this.viewMode == 'card') {
       this.viewMode = 'calendar';
-      this.btnTips = 'Back';
     } else {
       this.viewMode = 'card';
-      this.btnTips = 'Calendar';
     }
   }
   // 跳转到当前日期

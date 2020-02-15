@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {NavController, ToastController} from '@ionic/angular';
+import {ErrorPipe} from 'src/app/pipe/error/error.pipe';
 import {LabelService} from 'src/app/service/label/label.service';
 import {UserService} from 'src/app/service/user/user.service';
 
@@ -57,8 +58,13 @@ export class LoginComponent implements OnInit {
               '/tabs/tab1', {queryParams: {refresh: 'true'}});
         })
         .catch(async (err) => {
-          const toast = await this.toastCtrl.create(
-              {message: err, duration: 3000, position: 'top', color: 'danger'});
+          let message = new ErrorPipe().transform(err.code);
+          const toast = await this.toastCtrl.create({
+            message: message,
+            duration: 3000,
+            position: 'top',
+            color: 'danger'
+          });
           toast.present();
         });
   }

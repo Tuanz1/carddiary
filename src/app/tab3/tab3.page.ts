@@ -33,10 +33,14 @@ export class Tab3Page implements OnInit {
       private labelService: LabelService, private modalCtrl: ModalController,
       private router: Router, private activatedRoute: ActivatedRoute) {}
   ngOnInit() {
-    this.updateData();
+    this.activatedRoute.url.subscribe(url => {
+      this.updateData();
+    });
+    this.updateDataForce();
   }
+
   async doRefresh(event) {
-    await this.updateData();
+    this.updateDataForce();
     event.target.complete();
   }
   async getDiaryInfo() {
@@ -59,14 +63,28 @@ export class Tab3Page implements OnInit {
           alert(err);
         })
   }
-  getPhotos() {
-    this.photoService.queryPhotos()
+  async getPhotos() {
+    await this.photoService.queryPhotos()
         .then(data => {
           this.photos = data;
         })
         .catch(err => {
           alert(err);
         });
+  }
+  async getLabels() {
+    await this.labelService.queryLabels();
+    this.weatherLabels = new Array();
+    this.emojiLabels = new Array();
+    this.customLabels = new Array();
+    for (let i = 0; i < this.labelService.userLabels.length; i++) {
+      if (this.labelService.userLabels[i].get('type') == 'weather')
+        this.weatherLabels.push(this.labelService.userLabels[i]);
+      if (this.labelService.userLabels[i].get('type') == 'emoji')
+        this.emojiLabels.push(this.labelService.userLabels[i]);
+      if (this.labelService.userLabels[i].get('type') == 'custom')
+        this.customLabels.push(this.labelService.userLabels[i]);
+    }
   }
   calHeight(count: number): string {
     if (count == 0) return '5px';
@@ -86,22 +104,26 @@ export class Tab3Page implements OnInit {
   }
 
   async updateData() {
-    this.getPhotos();
+    if (this.diaryService.op > 0) {
+      this.getTotalNum();
+      this.getFavoriteNum();
+      this.diaryService.op = 0;
+    }
+    if (this.photoService.op > 0) {
+      this.getPhotos();
+      this.photoService.op = 0;
+    }
+    if (this.labelService.op > 0) {
+      this.getLabels();
+      this.labelService.op = 0;
+    }
+  }
+  updateDataForce() {
+    this.getDiaryInfo();
     this.getFavoriteNum();
     this.getTotalNum();
-    this.getDiaryInfo();
-    await this.labelService.queryLabels();
-    this.weatherLabels = new Array();
-    this.emojiLabels = new Array();
-    this.customLabels = new Array();
-    for (let i = 0; i < this.labelService.userLabels.length; i++) {
-      if (this.labelService.userLabels[i].get('type') == 'weather')
-        this.weatherLabels.push(this.labelService.userLabels[i]);
-      if (this.labelService.userLabels[i].get('type') == 'emoji')
-        this.emojiLabels.push(this.labelService.userLabels[i]);
-      if (this.labelService.userLabels[i].get('type') == 'custom')
-        this.customLabels.push(this.labelService.userLabels[i]);
-    }
+    this.getLabels();
+    this.getPhotos();
   }
 
   async openDiaryListByTag(index: number) {
@@ -125,6 +147,6 @@ export class Tab3Page implements OnInit {
     }
   }
   displayErrorImg(event) {
-    event.target.src = '../../assets/imgs/error.jpg'
+    event.target.src = '../../assets/imgs/error.jpg';
   }
 }

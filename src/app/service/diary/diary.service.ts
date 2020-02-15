@@ -4,6 +4,7 @@ import {CalendarService} from '../calendar/calendar.service';
 
 @Injectable({providedIn: 'root'})
 export class DiaryService {
+  op: number = 0;
   diary: any;
   diarys: Array<any>;
   Diary = Parse.Object.extend('Diary');
@@ -91,6 +92,7 @@ export class DiaryService {
     this.updateDiary();
   }
   createDiary(date: Date) {
+    this.op++;
     let diary = new this.Diary();
     diary.set('user', Parse.User.current());
     diary.set('title', '');
@@ -108,7 +110,6 @@ export class DiaryService {
   updateDiary() {
     return this.diary.save()
         .then(data => {
-          console.log('更新日记');
           this.diary = data;
         })
         .catch(err => {
@@ -116,6 +117,7 @@ export class DiaryService {
         });
   }
   deleteDiary(diary: any) {
+    this.op++;
     let photos = diary.get('photos');
     for (let i = 0; i < photos.length; i++) {
       photos[i].destroy();

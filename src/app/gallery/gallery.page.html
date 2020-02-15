@@ -27,7 +27,7 @@
           <ion-row>
             <ion-col *ngFor="let diary of list" size="4">
               <ion-card (click)="openPhotoPreview(diary)">
-                <img [src]="diary?.get('photos')[diary?.get('home')].get('photo').url() | oss:'rec200'">
+                <ion-img [src]="diary?.get('photos')[diary?.get('home')].get('photo').url() | oss:'rec200'"></ion-img>
                 <div class="num">
                   {{diary?.get('photos').length}}
                 </div>

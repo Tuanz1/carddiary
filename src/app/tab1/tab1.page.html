@@ -103,11 +103,12 @@
     </ion-slide>
   </ion-slides>
   <div class="select-calendar">
-    <ion-button (click)="switchViewMode()" fill="outline"
-      [ngClass]="{'calendar-button' : viewMode== 'card', 'back-button': viewMode == 'calendar'}">
-      {{btnTips}}
+    <ion-button (click)="switchViewMode()" fill="outline" class="calendar-button" [hidden]=" viewMode == 'calendar'">
+      CALENDAR
     </ion-button>
-
+    <ion-button (click)="switchViewMode()" fill="outline" class="back-button" [hidden]=" viewMode== 'card'">
+      BACK
+    </ion-button>
     <ion-button color="dark" class="switch-button" fill="outline" (click)="changeYearCalendar()"
       *ngIf="calendars?.length == 0">
       Refresh

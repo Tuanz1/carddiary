@@ -34,7 +34,7 @@ export class OssPipe implements PipeTransform {
         break;
       case 'slide':
         process =
-            'image/auto-orient,1/interlace,1/resize,m_lfit,w_300/quality,q_90';
+            'image/auto-orient,1/interlace,1/resize,m_lfit,w_300/quality,q_100';
         break;
       case 'calendar':
         process =

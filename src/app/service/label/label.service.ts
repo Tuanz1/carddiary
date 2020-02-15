@@ -5,6 +5,7 @@ import {Label} from './label';
 
 @Injectable({providedIn: 'root'})
 export class LabelService {
+  op: number = 0;
   Label = Parse.Object.extend('Label');
   userLabels: Array<any>;
 
@@ -15,7 +16,6 @@ export class LabelService {
     query.descending('type');
     return query.find()
         .then(data => {
-          // console.log('user labels length' + data.length);
           this.userLabels = data;
         })
         .catch(err => {
@@ -31,19 +31,21 @@ export class LabelService {
     label.save();
   }
   updateLabel(index: number, name: string) {
+    this.op++;
     this.userLabels[index].set('name', name);
     this.userLabels[index]
-        .save(null)
+        .save()
         .then(data => console.log(data))
         .catch(err => console.log(err));
   }
   deleteLabel(index: number) {
+    this.op++;
     this.userLabels[index].destroy();
     this.userLabels.splice(index, 1);
   }
 
   deleteLabelById(id: string) {
-    console.log(id);
+    this.op++;
     for (let i = 0; i < this.userLabels.length; i++) {
       if (this.userLabels[i].id == id) {
         this.userLabels[i].destroy();
@@ -71,6 +73,7 @@ export class LabelService {
     return customLabels;
   }
   createLabel(type: string, name: string): Promise<any> {
+    this.op++;
     let lable = new this.Label();
     lable.set('type', type);
     lable.set('name', name);

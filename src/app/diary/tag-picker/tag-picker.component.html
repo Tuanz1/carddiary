@@ -2,16 +2,16 @@
 <ion-content>
   <ion-grid>
     <ion-row>
-      <ion-col size="1" *ngFor="let emojiLabel of emojiLabels">
-        <ion-button color="dark" fill="clear" (click)="selectEmoji(emojiLabel)">
-          <span class="iconfont {{emojiLabel}}" [ngClass]="{'selected':emojiLabel === emoji}"></span>
+      <ion-col size="1" *ngFor="let weatherLabel of weatherLabels">
+        <ion-button color="dark" fill="clear" (click)="selectWeather(weatherLabel)">
+          <span class="iconfont {{weatherLabel}}" [ngClass]="{'selected':weatherLabel === weather}"></span>
         </ion-button>
       </ion-col>
     </ion-row>
     <ion-row>
-      <ion-col size="1" *ngFor="let weatherLabel of weatherLabels">
-        <ion-button color="dark" fill="clear" (click)="selectWeather(weatherLabel)">
-          <span class="iconfont {{weatherLabel}}" [ngClass]="{'selected':weatherLabel === weather}"></span>
+      <ion-col size="1" *ngFor="let emojiLabel of emojiLabels">
+        <ion-button color="dark" fill="clear" (click)="selectEmoji(emojiLabel)">
+          <span class="iconfont {{emojiLabel}}" [ngClass]="{'selected':emojiLabel === emoji}"></span>
         </ion-button>
       </ion-col>
     </ion-row>

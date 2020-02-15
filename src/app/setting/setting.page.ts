@@ -26,7 +26,6 @@ export class SettingPage implements OnInit {
 
   ngOnInit() {
     this.status = this.settingService.status == 'true' ? true : false;
-
     this.darkTheme = this.settingService.darkTheme == 'true' ? true : false;
   }
   switchStatusBar(event) {
