@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button slot="icon-only"></ion-back-button>
+    </ion-buttons>
+    <form [formGroup]="searchForm" (ngSubmit)="search()">
+      <ion-input placeholder="请输入搜索关键词" type="search" animated formControlName="keywords"></ion-input>
+      <ion-buttons slot="end">
+        <ion-button (click)="search()" color="dark">
+          <ion-icon name="search"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </form>
+
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <p>
+    <ion-chip *ngFor="let h of history" outline="true" color="medium" (click)="searchByHistory(h)">
+      <ion-label>{{h}}</ion-label>
+    </ion-chip>
+  </p>
+</ion-content>

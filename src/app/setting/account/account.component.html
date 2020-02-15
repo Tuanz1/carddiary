@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button slot="icon-only" (click)="dismiss()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title style="text-align: center;">账号设置</ion-title>
+    <ion-buttons slot="end" style="opacity: 0;">
+      <ion-icon slot="icon-only" name="arrow-back">
+      </ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <span class="icon">
+    <img src="../../assets/icon/favicon.png" alt="">
+  </span>
+  <ion-list>
+    <ion-item>
+      <ion-label position="stacked">用户名</ion-label>
+      <ion-input [(ngModel)]="username" disabled="true"></ion-input>
+    </ion-item>
+    <ion-item [disabled]="verifyEmail">
+      <ion-label position="stacked">邮箱</ion-label>
+      <ion-input [(ngModel)]="email" placeholder="请输出你要绑定的邮箱"></ion-input>
+    </ion-item>
+    <div style="display: flex;width: 100%;text-align: center;">
+      <ion-label *ngIf="verifyEmail" style="width: 100%;color:lightgrey;margin-top:0.2em">邮箱已经验证后无法修改</ion-label>
+    </div>
+  </ion-list>
+
+  <ion-button expand="block" fill="solid" [disabled]="verifyEmail" (click)="verifyEmailAdress()">
+    发送验证邮件
+  </ion-button>
+  <ion-button expand="block" fill="solid" *ngIf="refresh" (click)="refreshUserInfo()">已经验证？点击查看</ion-button>
+  <ion-button expand="block" fill="solid" color="tertiary
+    " (click)="resetPassword()">
+    重置密码
+  </ion-button>
+</ion-content>

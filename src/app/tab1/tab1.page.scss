@@ -1,3 +1,164 @@
-ion-content ion-toolbar {
-  --background: translucent;
+ion-card {
+  border-radius: 1em;
+  min-width: 19em;
+  min-height: 28em;
+  font-family: 'robot-light';
+  background-color: white;
+
+  img {
+    position: absolute;
+    left: 0;
+    top: 0;
+    max-width: 19em;
+    max-height: 28em;
+    width: 100%;
+    height: 100%;
+  }
+
+  ion-card-header {
+    padding: 0;
+
+    ion-card-title {
+      text-align: center;
+      font-size: 4em;
+      font-weight: 800;
+      padding-top: 0.2em;
+    }
+
+    ion-card-subtitle {
+      text-align: center;
+      font-size: 2em;
+      color: black;
+      font-weight: 700;
+    }
+
+    ion-grid {
+      padding: 0;
+
+      ion-row {
+        ion-col {
+
+          .card-subtitle {
+            color: #ffffff;
+            font-weight: 700;
+          }
+
+          .card-title {
+            color: #ffffff;
+          }
+        }
+      }
+    }
+  }
+
+  ion-card-content {
+    ion-grid {
+      --ion-grid-columns: 7;
+      text-align: right;
+
+      ion-row {
+        ion-col {
+          font-size: 1.2em;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+}
+
+.border-bottom {
+  border-bottom: solid 1px black;
+}
+
+ion-slide {
+  max-width: 16em;
+}
+
+.select-year {
+  text-align: center;
+  margin-top: 1em;
+  margin-bottom: 3em;
+
+  ion-button {
+    padding-left: 2em;
+  }
+}
+
+.select-calendar {
+  margin-top: 4em;
+  text-align: center;
+
+  ion-button {
+    --border-radius: 2em;
+    font-size: 12px;
+    height: 2em;
+    width: 10em;
+    --ripple-color: transparent;
+  }
+
+  .calendar-button {
+    --border-color: #ededed;
+    --background: white;
+    --color: black;
+    --background-hover: white
+  }
+
+  .back-button {
+    --color: white;
+    --background: black;
+    --background-hover: black;
+  }
+}
+
+ion-button {
+  --color: #858c9a;
+  --border-color: #ededed;
+  --color-activated: #858c9a;
+  --ripple-color: #858c9a;
+  --border-width: 1px;
+  font-family: 'robot-light';
+}
+
+ion-item {
+  position: fixed;
+  bottom: 1em;
+  width: 90%;
+  --background: transparent;
+}
+
+.percentage {
+  color: white;
+  margin-left: 1em;
+  font-size: 0.8em;
+  font-family: 'robot-light';
+}
+
+
+.fill-height {
+  min-height: 24em;
+}
+
+.btn-color-picker {
+  margin-left: 1em;
+  height: 2em;
+}
+
+.tips {
+  position: absolute;
+  bottom: 1.5em;
+  width: 100%;
+
+  ion-label {
+    text-align: center;
+    color: #a9a9a9;
+    font-weight: 300;
+  }
+}
+
+.header-md:after {
+  height: 0;
+}
+
+ion-datetime {
+  width: 100%;
 }

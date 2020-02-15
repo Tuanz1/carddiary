@@ -1,8 +1,11 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+import {Router} from '@angular/router';
 
-import { Platform } from '@ionic/angular';
-import { SplashScreen } from '@ionic-native/splash-screen/ngx';
-import { StatusBar } from '@ionic-native/status-bar/ngx';
+import {Platform} from '@ionic/angular';
+import {Parse} from 'parse';
+
+import {SettingService} from './service/setting/setting.service';
+import {UserService} from './service/user/user.service';
 
 @Component({
   selector: 'app-root',
@@ -11,17 +14,24 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 })
 export class AppComponent {
   constructor(
-    private platform: Platform,
-    private splashScreen: SplashScreen,
-    private statusBar: StatusBar
-  ) {
+      private platform: Platform, private router: Router,
+      private settingService: SettingService,
+      private userService: UserService) {
     this.initializeApp();
   }
 
   initializeApp() {
     this.platform.ready().then(() => {
-      this.statusBar.styleDefault();
-      this.splashScreen.hide();
+      // 锁定竖直
+      this.settingService.initSettings();
+      this.userService.initialzeParse(
+          localStorage.getItem('url'), localStorage.getItem('appId'),
+          localStorage.getItem('jsKey'));
+      if (localStorage.getItem('login') == 'true' && Parse.User.current()) {
+        this.router.navigate(['/tabs/tab1'], {queryParams: {refresh: 'true'}});
+      } else {
+        this.router.navigate(['/user']);
+      }
     });
   }
 }

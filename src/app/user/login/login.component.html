@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>用户登录</ion-title>
+    <ion-buttons slot="end" style="opacity: 0;">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+
+  <span class="icon">
+    <img src="../../assets/icon/favicon.png" alt="">
+  </span>
+  <form [formGroup]="loginForm" #formDir="ngForm" (ngSubmit)="login()">
+    <ion-item lines="full">
+      <ion-label position="floating">用户</ion-label>
+      <ion-input id="username" type="text" formControlName="username" required></ion-input>
+    </ion-item>
+    <ion-note
+      *ngIf="loginForm.get('username').hasError('required') && !loginForm.get('username').pristine || loginForm.get('username').hasError('minlength')">
+      用户名至少为4个字符
+    </ion-note>
+    <ion-item>
+      <ion-label position="floating">密码</ion-label>
+      <ion-input type="password" formControlName="password" required></ion-input>
+    </ion-item>
+    <ion-note *ngIf="loginForm.get('password').hasError('minlength') && !loginForm.get('password').pristine">密码长度为6-18
+    </ion-note>
+    <ion-label color="primary" class="custom-server-tip" (click)="customServer()">自定义服务器</ion-label>
+    <div class="custom-server" *ngIf="custom">
+      <ion-item>
+        <ion-label position="floating">URL</ion-label>
+        <ion-input type="url" formControlName="domain" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">AppID</ion-label>
+        <ion-input type="text" formControlName="appId" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">JSKey</ion-label>
+        <ion-input type="text" formControlName="jsKey" required></ion-input>
+      </ion-item>
+    </div>
+    <div class="buttons">
+
+      <ion-button (click)="openRegister()" color="secondary">注册</ion-button>
+      <ion-button type="submit" color="tertiary">登录</ion-button>
+    </div>
+  </form>
+</ion-content>

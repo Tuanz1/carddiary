@@ -1,0 +1,12 @@
+<ion-content>
+  <ion-slides pager="true" [options]="options">
+    <ion-slide *ngFor="let photo of photos">
+      <img [src]="photo.get('photo').url()">
+    </ion-slide>
+  </ion-slides>
+  <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+    <ion-fab-button color="dark" (click)="close()">
+      <ion-icon name="close"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

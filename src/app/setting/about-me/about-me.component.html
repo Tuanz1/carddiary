@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button slot="icon-only" (click)="dismiss()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title style="text-align: center;">关于我</ion-title>
+    <ion-buttons slot="end" style="opacity: 0;">
+      <ion-icon slot="icon-only" name="arrow-back">
+      </ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div>
+    <ion-img src="../../assets/icon/favicon.png"></ion-img>
+  </div>
+  <ion-list>
+    <ion-list-header>
+      <ion-text style="text-align: center;width: 100%;">Version: {{version}}</ion-text>
+    </ion-list-header>
+    <ion-list-header>
+      <ion-text>应用简介</ion-text>
+    </ion-list-header>
+    <ion-item lines="none">
+      <ion-text>
+        <p>Card Diary是一款日记软件，界面美观（UI灵感来源于Behance上的一个CardDiary项目）。由于本人需求，所以自己实现了3端版本,并且集成Markdown支持，免费提供给所有想要记日记的人。</p>
+      </ion-text>
+    </ion-item>
+    <ion-list-header>
+      <ion-text>联系我</ion-text>
+    </ion-list-header>
+    <ion-item lines="none">
+      <ion-text>
+        <p>如果你有什么好的想法和意见请用以下方式联系我</p>
+        <p>邮箱：670779246@qq.com</p>
+        <p>QQ群：暂时没有</p>
+      </ion-text>
+    </ion-item>
+    <ion-list-header>
+      <ion-text> 声明</ion-text>
+    </ion-list-header>
+    <ion-item lines="none">
+      <ion-text>
+        <p> 应用UI并未申请授权，请勿将本应用用于商业用途。</p>
+        <p>
+          本应用也暂未实现日记内容加密的功能（所有内容均保存与服务器，后期视情况可能会实现日记内容加密），如果介意请勿使用。</p>
+      </ion-text>
+    </ion-item>
+    <ion-list-header>
+      <ion-text>项目</ion-text>
+    </ion-list-header>
+    <ion-item lines="none">
+      <ion-text> 项目已经开源，可以自行搭建服务。
+        <a href="https://github.com/Tuanz1/carddiary.git">
+          https://github.com/Tuanz1/carddiary.git</a>
+      </ion-text>
+    </ion-item>
+  </ion-list>
+</ion-content>

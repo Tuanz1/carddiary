@@ -1,0 +1,89 @@
+ion-toolbar {
+    text-align: center;
+}
+
+ion-tiltle {
+    text-align: center;
+}
+
+.iconfont {
+    font-size: 2em;
+}
+
+ion-card {
+    max-width: 26em;
+    max-height: 9em;
+    width: 26em;
+    min-height: 12em;
+    margin-left: 1.5em;
+    border-radius: 8px;
+    padding: 0;
+}
+
+ion-grid {
+    padding: 0;
+    margin: 0;
+
+    ion-row {
+        align-items: center;
+        padding: 0;
+        margin: 0;
+    }
+
+    ion-col {
+        padding: 0;
+        margin: 0;
+        text-align: center;
+        max-width: 28em;
+
+        img {
+            width: 100%;
+            min-height: 12em;
+            background-color: #ededed;
+        }
+    }
+}
+
+.diary-img {
+    height: 10em;
+}
+
+
+span {
+    width: 100%;
+    text-align: center;
+    margin: 0;
+}
+
+.days {
+    font-size: 1em;
+}
+
+.date {
+    font-size: 2em;
+}
+
+ion-icon {
+    width: 100%;
+    text-align: center;
+    font-size: 2em;
+}
+
+.inner-title {
+    transform: skewX(-30deg);
+    position: absolute;
+    bottom: 1em;
+    right: -1em;
+    padding-right: 2em;
+    padding-left: 1em;
+    background: white;
+    color: black;
+    height: 1.6em;
+    border-radius: 2px;
+
+    .title {
+        transform: skewX(30deg);
+        color: black;
+        padding: 2px;
+    }
+}

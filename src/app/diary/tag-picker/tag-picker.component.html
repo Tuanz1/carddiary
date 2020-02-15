@@ -1,0 +1,37 @@
+<ion-backdrop (ionBackdropTap)="closeModal()" visible="true"></ion-backdrop>
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="1" *ngFor="let emojiLabel of emojiLabels">
+        <ion-button color="dark" fill="clear" (click)="selectEmoji(emojiLabel)">
+          <span class="iconfont {{emojiLabel}}" [ngClass]="{'selected':emojiLabel === emoji}"></span>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="1" *ngFor="let weatherLabel of weatherLabels">
+        <ion-button color="dark" fill="clear" (click)="selectWeather(weatherLabel)">
+          <span class="iconfont {{weatherLabel}}" [ngClass]="{'selected':weatherLabel === weather}"></span>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="4">
+        <ion-item lines="none">
+          <ion-label slot="start">喜欢</ion-label>
+          <ion-toggle color="primary" slot="end" [(ngModel)]="favorite"></ion-toggle>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-item lines="none" (click)="openTagManagerModal()">
+      <ion-label slot="start">标签</ion-label>
+      <ion-button fill="clear" slot="end" color="dark">
+        <ion-icon slot="icon-only" name="more"></ion-icon>
+      </ion-button>
+    </ion-item>
+    <p>
+      <ion-chip *ngFor="let customLabel of customLabels" [hidden]="!customLabel.select">{{customLabel.name}}</ion-chip>
+    </p>
+
+  </ion-grid>
+</ion-content>

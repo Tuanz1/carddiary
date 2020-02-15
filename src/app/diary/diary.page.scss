@@ -1,0 +1,122 @@
+.btn-datetime {
+    width: 100%;
+    border: solid 1px #ededed;
+    border-radius: 50px;
+    height: 2em;
+}
+
+.header-md:after {
+    height: 0;
+}
+
+ion-datetime {
+    width: 100%;
+}
+
+.btn-heart {
+    --ripple-color: transparent;
+}
+
+ion-slides {
+    height: 18em;
+    background-color: #ededed;
+    --bullet-background-active: white;
+
+    ion-slide {
+        background-color: #ededed;
+
+        ion-img {
+            width: 100%;
+        }
+    }
+}
+
+ion-grid {
+    padding: 0 0.7em;
+    margin: 0;
+
+    ion-row {
+        ion-note {
+            font-size: 12px;
+        }
+
+        .note-auto {
+            font-weight: 150;
+        }
+
+        .note-save {
+            font-weight: 400;
+        }
+
+        padding: 0;
+        margin: 0;
+    }
+}
+
+.preview {
+    position: absolute;
+    z-index: 2;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 7em;
+
+    .icon-add {
+        font-size: 4em;
+    }
+
+    .inner-file-input {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        font-size: 4em;
+        z-index: 2;
+        opacity: 0;
+    }
+
+    ion-button {
+        width: 5em;
+        height: 5em;
+    }
+}
+
+
+
+.icon-imges {
+    font-size: 4em;
+}
+
+
+
+ion-content {
+    ion-button {
+        height: 3em;
+    }
+}
+
+:host {
+    ion-item {
+        --border-color: white; // default underline color
+        --highlight-color-invalid: red; // invalid underline color
+        --highlight-color-valid: transparent; // valid underline color
+        --highlight-color-focused: transparent;
+    }
+}
+
+.tools {
+    text-align: center;
+    width: 100%;
+    border-top: solid 1px #ededed;
+    border-bottom: solid 1px #ededed;
+
+    ion-button {
+        ion-icon {
+            color: #70c9f5;
+        }
+
+        .iconfont {
+            color: #70c9f5;
+            font-size: 1.6em;
+        }
+    }
+}

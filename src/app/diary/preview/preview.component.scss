@@ -1,0 +1,204 @@
+ion-slides {
+    height: 100%;
+
+    ion-slide {
+        ion-content {
+            ion-slides {
+                width: 100%;
+                height: 16em;
+                background-color: #ededed;
+                --bullet-background-active: white;
+
+                ion-slide {
+                    height: 16em;
+                    background-color: #ededed;
+
+                    ion-img {
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.tools {
+    display: inline-flex;
+}
+
+ion-content {
+    font-family: 'robot-light';
+}
+
+span {
+    color: #70c9f5;
+    font-size: 1.5em;
+}
+
+ion-footer {
+    box-shadow: -1px -4px 6px -3px #ededed;
+    --border: none;
+}
+
+.footer-md:before {
+    left: 0;
+    top: -2px;
+    bottom: auto;
+    background-position: left 0 top 0;
+    position: absolute;
+    width: 100%;
+    height: 0;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAHBAMAAADzDtBxAAAAD1BMV…h/TXEAAAAaSURBVAjXYxCEAgY4UIICBmMogMsgFLtAAQCNSwXZKOdPxgAAAABJRU5ErkJggg==);
+    background-repeat: repeat-x;
+    content: "";
+}
+
+::ng-deep code:not([class*="language-"]) {
+    background: #f5f5f5;
+    border-radius: 2px;
+    color: #dd4a68;
+    padding: 2px 4px;
+}
+
+.fixed-action-btn {
+    @media (max-width: 992px) {
+        bottom: 16px;
+        right: 16px;
+    }
+}
+
+::ng-deep {
+    h1 {
+        font-size: 2.12rem;
+    }
+
+    h2 {
+        font-size: 1.48rem
+    }
+
+    h3 {
+        font-size: 1rem;
+    }
+
+    h4 {
+        font-size: 1rem;
+    }
+
+    h5 {
+        font-size: 1rem;
+    }
+
+    h6 {
+        font-size: 1rem;
+    }
+}
+
+section:first-of-type {
+    @media (min-width: 993px) {
+        margin-top: 118px;
+    }
+}
+
+::ng-deep pre {
+    background: #f5f5f5 !important;
+    border-color: transparent !important;
+    margin-bottom: 24px;
+    padding: 13px;
+}
+
+.katex-usage,
+.katex-textarea,
+.pipe-usage,
+.pipe-textarea,
+.variable-binding,
+.variable-textarea {
+    width: 49%;
+
+    @media (max-width: 992px) {
+        width: 100%;
+    }
+}
+
+.katex-textarea {
+    min-height: 220px;
+}
+
+.pipe-textarea,
+.variable-textarea {
+    min-height: 320px;
+}
+
+.katex-textarea,
+.pipe-textarea,
+.variable-textarea {
+    border-radius: 4px;
+    margin-top: 8px;
+    padding: 8px;
+}
+
+.katex-usage,
+.pipe-usage,
+.variable-binding {
+    display: block;
+    float: right;
+}
+
+/* materialize global css reset for demo puprose */
+markdown {
+    display: block;
+    padding: 0 1em;
+
+    ::ng-deep {
+        text-align: left;
+
+        blockquote {
+            margin-left: 0;
+            padding: 0 1em;
+            color: rgba(0, 0, 0, 0.535);
+            border-left: 0.25em solid rgba(0, 0, 0, 0.11);
+        }
+
+
+        table {
+            border-spacing: 0;
+            border-collapse: collapse;
+            margin-bottom: 16px;
+
+            th,
+            td {
+                padding: 6px 13px;
+                border: 1px solid #ddd;
+
+                &[align="left"] {
+                    text-align: left;
+                }
+
+                &[align="center"] {
+                    text-align: center;
+                }
+
+                &[align="right"] {
+                    text-align: right;
+                }
+            }
+
+            tr:nth-child(2n) {
+                background-color: rgba(0, 0, 0, 0.03);
+            }
+        }
+
+        ul {
+            list-style-type: inherit;
+            padding-left: 40px !important;
+        }
+
+        li {
+            list-style-type: inherit;
+        }
+
+        ul ul,
+        ol ul {
+            list-style-type: circle;
+        }
+    }
+}

@@ -1,0 +1,68 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-grid>
+        <ion-row>
+          <ion-note class="note-auto">AUTO</ion-note>
+        </ion-row>
+        <ion-row>
+          <ion-note class="note-save">SAVE</ion-note>
+        </ion-row>
+      </ion-grid>
+    </ion-buttons>
+    <ion-button class="btn-datetime" fill="clear" color="dark">
+      <ion-datetime displayFormat="YYYY/MM/DD" min="1994-01-01" max="2030-12-31" doneText="完成" cancelText="取消"
+        [(ngModel)]="date" (ionChange)="switchDiary()">
+      </ion-datetime>
+    </ion-button>
+    <ion-buttons slot="end">
+      <ion-button fill="clear" slot="icon-only" (click)="clickSaveBtn()">
+        <ion-icon name="checkmark"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-progress-bar type="indeterminate" color="secondary" *ngIf="upload"></ion-progress-bar>
+  <div class="preview">
+    <ion-button color="medium">
+      <input class="inner-file-input" type="file" accept="image/jpeg, image/png" capture="camera" multiple="multiple"
+        (change)="uploadImages($event)">
+      <ion-icon class="icon-add" slot="icon-only" name="add"></ion-icon>
+    </ion-button>
+    <ion-button color="medium" (click)="deleteImage()" *ngIf="photos.length > 0">
+      <ion-icon class="icon-imges" slot="icon-only" name="remove"></ion-icon>
+    </ion-button>
+    <ion-button color="medium" (click)="openImageManager()" *ngIf="photos.length > 0">
+      <ion-icon class="icon-imges" slot="icon-only" name="logo-buffer"></ion-icon>
+    </ion-button>
+  </div>
+  <ion-slides pager="true" [options]="options">
+    <ion-slide *ngFor="let photo of photos; let i =index">
+      <ion-img [src]="photo.get('photo').url() | oss: 'slide'"></ion-img>
+    </ion-slide>
+  </ion-slides>
+  <ion-item style="text-align: center;">
+    <ion-input placeholder="标题" [(ngModel)]="title"></ion-input>
+  </ion-item>
+  <ion-item>
+    <div class="tools">
+      <ion-button fill="clear" color="dark" (click)="openTagPickerModal()">
+        <span class="iconfont {{weather}}"></span>
+      </ion-button>
+      <ion-button fill="clear" color="dark" (click)="openTagPickerModal()">
+        <span class="iconfont {{emoji}}"></span>
+      </ion-button>
+      <ion-button class="btn-heart" fill="clear" color="dark" (click)="clickFavoriteBtn()">
+        <ion-icon *ngIf="favorite == false" slot="icon-only" name="heart-outline"></ion-icon>
+        <ion-icon *ngIf="favorite == true" color="danger" slot="icon-only" name="heart"></ion-icon>
+      </ion-button>
+      <ion-button fill="clear" color="dark" (click)="openTagPickerModal()">
+        <ion-icon slot="icon-only" name="location-outline"></ion-icon>
+      </ion-button>
+    </div>
+  </ion-item>
+  <ion-item>
+    <ion-textarea placeholder="记下今天的你..." autofocus="true" rows="16" [(ngModel)]="content"></ion-textarea>
+  </ion-item>
+</ion-content>

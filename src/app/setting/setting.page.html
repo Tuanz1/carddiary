@@ -1,0 +1,82 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-list>
+    <ion-item class="menu-header">
+      <ion-icon class="menu-icon" name="grid-outline"></ion-icon>
+      <ion-label class="menu-header-label">用户设置</ion-label>
+    </ion-item>
+    <ion-item (click)="openAccount()">
+      <ion-label>账号</ion-label>
+      <ion-icon name="chevron-forward-outline" slot="end" color="medium"></ion-icon>
+    </ion-item>
+    <ion-item>
+      <ion-label>状态栏</ion-label>
+      <ion-toggle (ionChange)="switchStatusBar($event)" [(ngModel)]="status" slot="end" color="secondary"></ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-label>语言</ion-label>
+      <ion-select placeholder="中文-简体" okText="Okay" cancelText="Dismiss" disabled="true">
+        <ion-select-option value="black">中文-简体</ion-select-option>
+        <ion-select-option value="black">English</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item disabled="true">
+      <ion-label>夜间模式</ion-label>
+      <ion-toggle slot="end" color="secondary"></ion-toggle>
+    </ion-item>
+    <ion-item disabled="true">
+      <ion-label>指纹</ion-label>
+      <ion-toggle slot="end" color="secondary"></ion-toggle>
+    </ion-item>
+    <ion-item class="menu-header">
+      <ion-icon class="menu-icon" name="rocket-outline"></ion-icon>
+      <ion-label class="menu-header-label">用户反馈</ion-label>
+    </ion-item>
+    <ion-item disabled="true">
+      <ion-label>新功能</ion-label>
+      <ion-icon name="chevron-forward-outline" slot="end" color="medium"></ion-icon>
+    </ion-item>
+    <ion-item disabled="true">
+      <ion-label>错误反馈</ion-label>
+      <ion-icon name="chevron-forward-outline" slot="end" color="medium"></ion-icon>
+    </ion-item>
+    <ion-item class="menu-header">
+      <ion-icon class="menu-icon" name="logo-electron"></ion-icon>
+      <ion-label class="menu-header-label">应用</ion-label>
+    </ion-item>
+    <ion-item disabled="true">
+      <ion-label>帮助</ion-label>
+      <ion-icon name="chevron-forward-outline" slot="end" color="medium"></ion-icon>
+    </ion-item>
+    <ion-item (click)="checkUpdate()">
+      <ion-label>检查更新</ion-label>
+      <ion-icon name="chevron-forward-outline" slot="end" color="medium"></ion-icon>
+    </ion-item>
+
+    <ion-item class="menu-header">
+      <ion-icon class="menu-icon" name="information-circle-outline"></ion-icon>
+      <ion-label class="menu-header-label">作者</ion-label>
+    </ion-item>
+    <ion-item disabled="true">
+      <ion-label>网站</ion-label>
+      <ion-icon name="chevron-forward-outline" slot="end" color="medium"></ion-icon>
+    </ion-item>
+    <ion-item (click)="openDonate()">
+      <ion-label>捐赠</ion-label>
+      <ion-icon name="chevron-forward-outline" slot="end" color="medium"></ion-icon>
+    </ion-item>
+    <ion-item (click)="openAboutMe()">
+      <ion-label>关于我</ion-label>
+      <ion-icon name="chevron-forward-outline" slot="end" color="medium"></ion-icon>
+    </ion-item>
+  </ion-list>
+  <ion-button (click)="logOut()" expand="full" color="medium" shape="round" style="padding: 0 1em;">
+    退出用户
+  </ion-button>
+</ion-content>

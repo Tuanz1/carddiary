@@ -1,0 +1,15 @@
+ion-item {
+    border-bottom: solid 1px grey;
+}
+
+ion-item-option {
+    min-width: 4em;
+
+    ion-icon {
+        font-size: 2em;
+    }
+}
+
+ion-checkbox {
+    --border-radius: 50%;
+}

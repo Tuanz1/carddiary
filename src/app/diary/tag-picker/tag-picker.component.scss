@@ -1,0 +1,58 @@
+.ion-page {
+    align-items: center;
+}
+
+.iconfont {
+    font-size: 2em;
+}
+
+ion-backdrop {
+    height: 100%;
+    z-index: 1;
+}
+
+ion-content {
+    z-index: 2;
+    top: 45%;
+    height: 55%;
+    max-height: 500px;
+    max-width: 30em;
+}
+
+p {
+    margin-top: 0;
+    padding-bottom: 1em;
+}
+
+ion-grid {
+    padding: 0em 3em 1em 3em;
+    margin: 0;
+    --ion-grid-columns: 4;
+    height: 100%;
+
+    ion-row {
+        padding: 0;
+        border-bottom: solid 1px grey;
+
+        ion-col {
+            padding: 0;
+            margin: 0;
+
+            ion-chip {
+                max-width: 100%;
+                overflow: hidden;
+            }
+
+            ion-button {
+                padding: 0;
+                margin: 0;
+                height: 4em;
+                min-height: 4em;
+            }
+        }
+    }
+}
+
+.selected {
+    color: #70c9f5;
+}

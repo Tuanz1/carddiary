@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="closeModal()" fill="clear">
+        <ion-icon name="arrow-back" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button slot="end" fill="clear" (click)="toggleReorderGroup()">
+        <ion-icon name="keypad-outline" slot="icon-only">
+        </ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-reorder-group (ionItemReorder)="doReorder($event)" disabled="true">
+    <ion-item lines="full" *ngFor="let photo of photos; let i = index">
+      <ion-thumbnail slot="start" (click)="openPhotoPreview()">
+        <img [src]="photo.get('photo').url() | oss:'rec400'">
+      </ion-thumbnail>
+      <ion-button slot="end" fill="clear" color="light" (click)="setHome(i)">
+        <ion-icon name="aperture-outline" slot="icon-only" [ngClass]="{'home-icon':i == home}">
+        </ion-icon>
+      </ion-button>
+      <ion-button slot="end" color="dark" fill="clear" (click)="deletePhoto(i)">
+        <ion-icon name="close-circle-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+      <ion-reorder slot="end"></ion-reorder>
+    </ion-item>
+  </ion-reorder-group>
+</ion-content>

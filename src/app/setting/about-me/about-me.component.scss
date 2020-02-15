@@ -1,0 +1,29 @@
+ion-list-header {
+    background-color: #ededed;
+}
+
+ion-list {
+    padding-top: 0;
+}
+
+ion-text {
+    text-align: justify;
+}
+
+a {
+    color: #7044ff;
+}
+
+div {
+    background: #ededed;
+    justify-content: center;
+    display: flex;
+
+    ion-img {
+        max-width: 8em;
+    }
+}
+
+p {
+    text-indent: 2em;
+}

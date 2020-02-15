@@ -1,0 +1,62 @@
+ion-title {
+    text-align: center;
+}
+
+.empty-tip {
+    margin-top: 5em;
+    width: 100%;
+    text-align: center;
+    font-size: 1.5em;
+    color: #928c8c;
+}
+
+ion-grid {
+    padding: 0 1em;
+
+    ion-row {
+        padding: 0.5em 0 0 0;
+        margin: 0;
+
+        .calendar {
+            padding-left: 0.2em;
+            padding-top: 0.5em;
+            font-weight: 400;
+            font-size: 1em;
+
+            .year {
+                color: black;
+                font-weight: 600;
+            }
+
+            .month {
+                color: grey;
+                font-style: italic;
+                font-weight: 400;
+            }
+        }
+
+        ion-col {
+            padding: 0.4em 0 0 0;
+            margin: 0;
+            max-width: 8em;
+
+            ion-card {
+                padding: 0;
+                margin: 0 0.2em;
+                background-color: white;
+                max-width: 8em;
+                min-width: 8em;
+                max-height: 8em;
+
+                .num {
+                    position: absolute;
+                    right: 0.5em;
+                    bottom: 0.5em;
+                    color: white;
+                    font-weight: 800;
+                    font-size: 1.2em;
+                }
+            }
+        }
+    }
+}

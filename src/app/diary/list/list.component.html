@@ -1,0 +1,75 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title style="text-align: center;">
+      日记列表
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon name="stats" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid style="margin-top:1em">
+    <ion-row>
+      <ion-col *ngFor="let diary of diarys; let i = index">
+        <ion-card (click)="openDiaryPreview(i)">
+          <ion-grid>
+            <ion-row style="height: 12em;">
+              <ion-col size="3">
+                <div [ngStyle]="randomColor(i)">
+                  <ion-row>
+                    <span class="date">{{diary.get('day')}}</span>
+                  </ion-row>
+                  <ion-row>
+                    <span class="days">{{getDate(diary)}}</span>
+                  </ion-row>
+                </div>
+                <ion-row style="justify-content: center;" *ngFor="let label of diary.get('labels')">
+                  <ion-col *ngIf="label.get('type')=='emoji'" style="padding-top:1em;color:black;">
+                    <span class="iconfont {{label.get('name')}}"></span>
+                  </ion-col>
+                </ion-row>
+              </ion-col>
+              <ion-col size="9" class="diary-img" style="height: 12em;" *ngIf="diary.get('home') != -1">
+                <img [src]="getDiaryCover(diary)|oss:'cover1'" alt="">
+                <div class="inner-title" [hidden]="diary.get('title')==''">
+                  <div class="title">{{diary.get('title')}}</div>
+                </div>
+              </ion-col>
+              <ion-col size="9" class="diary-img" style="height: 12em;" *ngIf="diary.get('home') == -1"
+                style="border-left:solid 2px #ededed">
+                <ion-row>
+                  <ion-col size="2" style="transform: rotateZ(180deg);">
+                    <span class="iconfont icon-md-quote"></span>
+                  </ion-col>
+                </ion-row>
+                <ion-row [hidden]="diary.get('title')==''">
+                  <ion-label style="padding-left: 2em;
+                  color: black; overflow: hidden;height: 1.5em;font-size: 1.5em;">
+                    {{diary.get('title')}}</ion-label>
+                </ion-row>
+                <ion-row>
+                  <p style="padding: 0 0 0 3em;
+                  text-align: left;
+                  overflow: hidden;
+                  height: 4em;
+                  width: 85%;
+                  max-height: 4em;">{{diary.get('content')}}</p>
+                </ion-row>
+                <div style="position: absolute; bottom:0; right: 1em;">
+                  <span class="iconfont icon-md-quote"></span>
+                </div>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

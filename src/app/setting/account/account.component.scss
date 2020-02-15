@@ -1,0 +1,25 @@
+.icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2em;
+    margin-bottom: 2em;
+    width: 100%;
+
+    img {
+        width: 100%;
+        max-width: 10em;
+        text-align: center;
+    }
+}
+
+ion-content {
+    ion-button {
+        padding: 0.5em 1em 0 1em;
+        min-height: 3em;
+    }
+}
+
+ion-item {
+    padding: 0 1em;
+}

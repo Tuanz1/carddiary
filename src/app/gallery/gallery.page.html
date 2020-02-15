@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>照片</ion-title>
+    <ion-buttons slot="end" style="opacity: 0;">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div style="display: flex;">
+    <ion-label *ngIf="empty" class="empty-tip">你还没有上传过任何照片</ion-label>
+  </div>
+  <ion-grid>
+    <div *ngFor="let monthList of photoList;let i = index">
+      <div *ngFor="let list of monthList;let j = index">
+        <div *ngIf="list.length > 0">
+          <ion-row>
+            <div class="calendar">
+              <ion-label class="year">{{start - i}}</ion-label>
+              <ion-label class="month"> {{j+1 |monthAbb}}</ion-label>
+            </div>
+          </ion-row>
+          <ion-row>
+            <ion-col *ngFor="let diary of list" size="4">
+              <ion-card (click)="openPhotoPreview(diary)">
+                <img [src]="diary?.get('photos')[diary?.get('home')].get('photo').url() | oss:'rec200'">
+                <div class="num">
+                  {{diary?.get('photos').length}}
+                </div>
+              </ion-card>
+            </ion-col>
+          </ion-row>
+        </div>
+      </div>
+    </div>
+  </ion-grid>
+  <ion-note *ngIf="finish" style="display: block;width: 100%;text-align: center;">已经全部加载完了</ion-note>
+  <ion-infinite-scroll threshold="50px" (ionInfinite)="loadData($event)" [hidden]="finish">
+    <ion-infinite-scroll-content loadingSpinner="bubbles">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

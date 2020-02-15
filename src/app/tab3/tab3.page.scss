@@ -1,3 +1,144 @@
-ion-content ion-toolbar {
-  --background: translucent;
+.create-icon {
+    font-size: 1.8em;
+    position: absolute;
+    right: 0.5em;
+    top: 0.5em;
+}
+
+p {
+    padding: 0 1em;
+}
+
+.user-info-card {
+    position: relative;
+
+    ion-avatar {
+        --border-radius: 10px;
+        min-width: 2em;
+        position: absolute;
+        left: 50%;
+        top: -2em;
+        margin-left: -2em;
+        z-index: 2;
+
+        ion-img {
+            background-color: #ededed;
+        }
+    }
+
+    ion-card {
+        min-height: 10em;
+        margin-top: 3.4em;
+        z-index: 1;
+
+        ion-card-title {
+            margin-top: 2.6em;
+            text-align: center;
+        }
+
+        ion-card-subtitle {
+            margin-top: 1em;
+            text-align: center;
+        }
+    }
+}
+
+.statistics-card {
+    padding: 1em 1em;
+
+    ion-row {
+        justify-content: center;
+    }
+}
+
+.photos-card {
+
+    ion-row {
+        background-color: #ededed;
+        max-height: 24em;
+
+        ion-col {
+            background-color: #ededed;
+
+            ion-img {
+                max-height: 24em;
+            }
+
+            ion-row {
+                max-height: 12em;
+
+                ion-col {
+                    max-height: 12em;
+
+                    ion-img {
+                        max-height: 12em;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.tags-card {
+    height: 12em;
+
+    ion-card-content {
+        overflow-x: scroll;
+        min-height: 5em;
+
+        span {
+            span {
+                ion-grid {
+                    //pc 版本需要调整为100%
+                    width: 200%;
+
+                    ion-row {
+                        display: flex;
+                        flex-direction: row;
+                        align-items: flex-end;
+                    }
+                }
+            }
+        }
+    }
+}
+
+ion-grid {
+    margin: 0;
+    padding: 0;
+
+    ion-row {
+        margin: 0;
+        padding: 0;
+        justify-content: center;
+
+        ion-col {
+            margin: 0;
+            padding: 0;
+            justify-content: center;
+            text-align: center;
+            color: black;
+
+            span {
+                font-size: 1.5em;
+            }
+        }
+    }
+}
+
+.block {
+    height: 50px;
+    width: 4px;
+    background-color: #ededed;
+}
+
+ion-card {
+    border-radius: 8px;
+    margin-top: 1em;
+    margin-left: 1.5em;
+    margin-right: 1.5em;
+}
+
+.header-md:after {
+    height: 0;
 }

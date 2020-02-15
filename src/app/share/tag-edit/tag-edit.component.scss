@@ -1,0 +1,22 @@
+ion-title {
+    text-align: center;
+}
+
+:host {
+    ion-item {
+        --border-color: white; // default underline color
+        --highlight-color-invalid: transparent; // invalid underline color
+        --highlight-color-valid: transparent; // valid underline color
+        --highlight-color-focused: transparent;
+    }
+}
+
+ion-input {
+    --padding-start: 8px;
+    --background: #ededed;
+    border-radius: 12px;
+}
+
+ion-item:not(.item-label) .sc-ion-input-md-h {
+    --padding-start: 8px;
+}

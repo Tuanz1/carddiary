@@ -1,17 +1,116 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>
-      Tab 1
-    </ion-title>
+    <ion-buttons slot="start">
+      <ion-button shape="round" fill="clear" routerLink="/search" slot="icon-only">
+        <ion-icon name="search-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button shape="round" slot="end" fill="clear" (click)="switchToCurDate()">
+        {{curDate.getFullYear()}} / {{curDate.getMonth() + 1}} / {{curDate.getDate()}}
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
+<ion-content>
+  <ion-progress-bar type="indeterminate" color="secondary" *ngIf="loading"></ion-progress-bar>
+  <div class="select-year">
+    <ion-button fill="clear" color="dark" (click)="openDatetime()">
+      {{year}}
+      <ion-icon name="chevron-down-outline" style="padding-top: 0.2em;font-size: 1em;">
+      </ion-icon>
+      <ion-datetime (ionChange)="changeYearCalendar()" displayFormat="YYYY" pickerFormat="YYYY" min="1997" max="2030"
+        doneText="完成" cancelText="取消" [(ngModel)]="date" [hidden]="true">
+      </ion-datetime>
+    </ion-button>
+  </div>
+  <ion-slides [options]="slideOpts">
+    <ion-slide *ngFor="let month of calendars;let j = index" [@viewMode]="viewMode">
+      <ion-card class="calendar-content" [hidden]="viewMode == 'card'">
+        <ion-card-header>
+          <ion-card-title>{{month.get('month')}}</ion-card-title>
+          <ion-card-subtitle>{{month.get('month') | monthAbb}}</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-grid>
+            <ion-row>
+              <ion-col *ngFor=" let i of grid[0]" (click)="openDiaryPreview(i, j)">
+                <span [ngStyle]="month|dayCss:i">
+                  {{month.get('days')[i]}}</span>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col *ngFor=" let i of grid[1]" (click)="openDiaryPreview(i,j)">
+                <span [ngStyle]="month|dayCss:i">
+                  {{month.get('days')[i]}}</span>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col *ngFor=" let i of grid[2]" (click)="openDiaryPreview(i, j)">
+                <span [ngStyle]="month|dayCss:i">
+                  {{month.get('days')[i]}}</span>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col *ngFor=" let i of grid[3]" (click)="openDiaryPreview(i,j)">
+                <span [ngStyle]="month|dayCss:i">
+                  {{month.get('days')[i]}}</span>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col *ngFor=" let i of grid[4]" (click)="openDiaryPreview(i, j)">
+                <span [ngStyle]="month|dayCss:i">
+                  {{month.get('days')[i]}}</span>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card-content>
+        <div class="tips">
+          <ion-label>挑一个日子开始写</ion-label>
+        </div>
+      </ion-card>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
+      <div [hidden]="viewMode == 'calendar'">
+        <ion-card class="card-content" [ngStyle]="{'background':month.get('background') }">
+          <img [src]="month?.get('cover')?.get('photo').url() | oss:'calendar'" *ngIf="month.get('background') == ''">
+          <ion-card-header class="fill-height" (click)="openDiaryList(j)">
+            <ion-grid>
+              <ion-row>
+                <ion-col size="4">
+                  <ion-card-title class="card-title">{{month.get('month')}}</ion-card-title>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col size="4">
+                  <ion-card-subtitle class="card-subtitle">{{month.get('month') | monthAbb}}</ion-card-subtitle>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-item lines="none">
+              <ion-progress-bar [value]="month.get('count') / month.get('total')" buffer="0" color="light">
+              </ion-progress-bar>
+              <div class="percentage">{{month.attributes.count}}/{{month.attributes.total}}</div>
+              <ion-button slot="icon-only" class="btn-color-picker" shape="round" fill="clear" color="light" slot="end"
+                (click)="openColorPicker(j)">
+                <ion-icon name="ellipsis-horizontal" style="font-size: 2.5em;"></ion-icon>
+              </ion-button>
+            </ion-item>
+          </ion-card-content>
+        </ion-card>
+      </div>
+    </ion-slide>
+  </ion-slides>
+  <div class="select-calendar">
+    <ion-button (click)="switchViewMode()" fill="outline"
+      [ngClass]="{'calendar-button' : viewMode== 'card', 'back-button': viewMode == 'calendar'}">
+      {{btnTips}}
+    </ion-button>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+    <ion-button color="dark" class="switch-button" fill="outline" (click)="changeYearCalendar()"
+      *ngIf="calendars?.length == 0">
+      Refresh
+    </ion-button>
+  </div>
 </ion-content>

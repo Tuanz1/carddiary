@@ -24,3 +24,48 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+@import "./assets/iconfont/iconfont.css";
+
+@font-face {
+    font-family: 'robot-light';
+    src: url("assets/font/Roboto-Light.ttf");
+}
+
+app-tag-picker {
+    align-items: center;
+}
+
+.color-picker-modal .modal-wrapper {
+    height: 35%;
+    top: 65%;
+    width: 100%;
+    position: absolute;
+    display: block;
+    max-width: 30em;
+}
+
+.tag-picker-modal .modal-wrapper {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    // top: 40%;
+    width: 100%;
+    --background: transparent;
+    align-items: center;
+    // max-width: 36em;
+    // position: absolute;
+    // display: block;
+}
+
+.tag-edit-modal .modal-wrapper {
+    height: 20%;
+    top: 40%;
+    left: 10%;
+    width: 80%;
+    position: absolute;
+    display: block;
+}
+
+ion-card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.15);
+}
