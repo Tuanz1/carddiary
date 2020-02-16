@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {NavController, ToastController} from '@ionic/angular';
-import {ErrorPipe} from 'src/app/pipe/error/error.pipe';
+import {ErrorService} from 'src/app/service/error/error.service';
 import {LabelService} from 'src/app/service/label/label.service';
 import {UserService} from 'src/app/service/user/user.service';
 
@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
       private labelService: LabelService,
       private userService: UserService,
       private navCtrl: NavController,
-      private toastCtrl: ToastController,
+      private errorService: ErrorService,
   ) {}
 
   ngOnInit() {
@@ -57,15 +57,8 @@ export class LoginComponent implements OnInit {
           this.navCtrl.navigateRoot(
               '/tabs/tab1', {queryParams: {refresh: 'true'}});
         })
-        .catch(async (err) => {
-          let message = new ErrorPipe().transform(err.code);
-          const toast = await this.toastCtrl.create({
-            message: message,
-            duration: 3000,
-            position: 'top',
-            color: 'danger'
-          });
-          toast.present();
+        .catch((err) => {
+          this.errorService.displayErrorAlert(err);
         });
   }
   openRegister() {

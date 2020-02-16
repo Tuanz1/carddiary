@@ -4,6 +4,7 @@ import {ModalController} from '@ionic/angular';
 
 import {DiaryService} from '../service/diary/diary.service';
 import {DiaryinfoService} from '../service/diaryinfo/diaryinfo.service';
+import {ErrorService} from '../service/error/error.service';
 import {LabelService} from '../service/label/label.service';
 import {PhotoService} from '../service/photo/photo.service';
 
@@ -31,7 +32,8 @@ export class Tab3Page implements OnInit {
       private diaryInfoService: DiaryinfoService,
       private diaryService: DiaryService, private photoService: PhotoService,
       private labelService: LabelService, private modalCtrl: ModalController,
-      private router: Router, private activatedRoute: ActivatedRoute) {}
+      private errorService: ErrorService, private router: Router,
+      private activatedRoute: ActivatedRoute) {}
   ngOnInit() {
     this.activatedRoute.url.subscribe(url => {
       this.updateData();
@@ -52,7 +54,11 @@ export class Tab3Page implements OnInit {
   }
 
   getTotalNum() {
-    return this.diaryService.countDiarys().then(data => this.totalNum = data);
+    return this.diaryService.countDiarys()
+        .then(data => this.totalNum = data)
+        .catch(err => {
+          this.errorService.displayErrorAlert(err);
+        })
   }
   getFavoriteNum() {
     this.diaryService.countFavoriteDiary()
@@ -60,7 +66,7 @@ export class Tab3Page implements OnInit {
           this.favoriteNum = data;
         })
         .catch(err => {
-          alert(err);
+          this.errorService.displayErrorAlert(err);
         })
   }
   async getPhotos() {
@@ -69,7 +75,7 @@ export class Tab3Page implements OnInit {
           this.photos = data;
         })
         .catch(err => {
-          alert(err);
+          this.errorService.displayErrorAlert(err);
         });
   }
   async getLabels() {
@@ -147,6 +153,6 @@ export class Tab3Page implements OnInit {
     }
   }
   displayErrorImg(event) {
-    event.target.src = '../../assets/imgs/error.jpg';
+    event.target.src = 'assets/imgs/error.jpg';
   }
 }

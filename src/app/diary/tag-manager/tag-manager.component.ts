@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ModalController} from '@ionic/angular';
+import {ErrorService} from 'src/app/service/error/error.service';
 import {Label} from 'src/app/service/label/label';
 import {LabelService} from 'src/app/service/label/label.service';
 
@@ -14,7 +15,8 @@ export class TagManagerComponent implements OnInit {
   @Input() customLabels: Array<Label>;
 
   constructor(
-      private modalCtrl: ModalController, private labelService: LabelService) {}
+      private modalCtrl: ModalController, private labelService: LabelService,
+      private errorService: ErrorService) {}
 
   ngOnInit() {}
   async openTagAddModal() {
@@ -33,7 +35,7 @@ export class TagManagerComponent implements OnInit {
             this.labelService.userLabels.push(data);
           })
           .catch(err => {
-            console.log(err);
+            this.errorService.displayErrorAlert(err);
           })
     }
   }

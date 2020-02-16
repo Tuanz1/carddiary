@@ -3,6 +3,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {NavController, ToastController} from '@ionic/angular';
 import {CalendarService} from 'src/app/service/calendar/calendar.service';
 import {DiaryinfoService} from 'src/app/service/diaryinfo/diaryinfo.service';
+import {ErrorService} from 'src/app/service/error/error.service';
 import {LabelService} from 'src/app/service/label/label.service';
 import {UserService} from 'src/app/service/user/user.service';
 
@@ -17,7 +18,7 @@ export class RegisterComponent implements OnInit {
   constructor(
       private labelService: LabelService, private userService: UserService,
       private diaryinfoService: DiaryinfoService,
-      private toastCtrl: ToastController, private navCtrl: NavController) {}
+      private navCtrl: NavController, private errorService: ErrorService) {}
 
   ngOnInit() {
     this.loginForm = new FormGroup({
@@ -54,14 +55,8 @@ export class RegisterComponent implements OnInit {
           this.navCtrl.navigateRoot(
               '/tabs/tab1', {queryParams: {refresh: 'true'}});
         })
-        .catch(async err => {
-          const toast = await this.toastCtrl.create({
-            message: err,
-            duration: 2500,
-            position: 'middle',
-            color: 'danger'
-          });
-          toast.present();
+        .catch(err => {
+          this.errorService.displayErrorAlert(err);
         });
   }
 }

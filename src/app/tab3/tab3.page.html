@@ -21,7 +21,7 @@
   </ion-refresher>
   <div class="user-info-card">
     <ion-avatar>
-      <ion-img [src]="coverUrl | oss:'rec200'" (ionError)="displayErrorImg($event)"></ion-img>
+      <ion-img [src]="coverUrl | oss:'rec200'"></ion-img>
     </ion-avatar>
     <ion-card>
       <ion-icon name="create" class="create-icon" color="medium" (click)="openUserInfo()"></ion-icon>
@@ -145,7 +145,7 @@
     </ion-item>
     <p>
       <ion-chip *ngFor="let customLabel of customLabels;let i= index" outline="true" (click)="openDiaryListByTag(i)">
-        <ion-icon name="pricetag" color="dark"></ion-icon>
+        <ion-icon name="pricetag-outline" color="dark"></ion-icon>
         {{customLabel.get('name')}} <ion-note style="margin-left: 1em;">
           {{customLabel.get('count')}}
         </ion-note>

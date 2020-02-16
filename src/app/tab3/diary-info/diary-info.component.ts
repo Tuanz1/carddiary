@@ -1,6 +1,7 @@
 import {Component, Input} from '@angular/core';
 import {ModalController} from '@ionic/angular';
 import {DiaryinfoService} from 'src/app/service/diaryinfo/diaryinfo.service';
+import {ErrorService} from 'src/app/service/error/error.service';
 
 @Component({
   selector: 'app-diary-info',
@@ -16,7 +17,7 @@ export class DiaryInfoComponent {
   upload: boolean = false;
   constructor(
       private diaryInfoService: DiaryinfoService,
-      private modalCtrl: ModalController) {}
+      private modalCtrl: ModalController, private errorService: ErrorService) {}
 
   uploadUserAvatar(event) {
     this.photo = event.target.files[0];
@@ -33,13 +34,13 @@ export class DiaryInfoComponent {
           this.modalCtrl.dismiss();
         })
         .catch(err => {
-          console.log('更新日记本信息失败');
+          this.errorService.displayErrorAlert(err);
         });
   }
   dismiss() {
     this.modalCtrl.dismiss();
   }
   displayErrorImg(event) {
-    event.target.src = '../../assets/imgs/error.jpg'
+    event.target.src = 'assets/imgs/error.jpg'
   }
 }

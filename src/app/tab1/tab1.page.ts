@@ -5,6 +5,7 @@ import {AlertController, IonDatetime, IonSlides, ModalController, NavController}
 
 import {CalendarService} from '../service/calendar/calendar.service';
 import {DiaryService} from '../service/diary/diary.service';
+import {ErrorService} from '../service/error/error.service';
 
 import {ColorPickerComponent} from './color-picker/color-picker.component';
 
@@ -42,6 +43,7 @@ export class Tab1Page implements OnInit {
     [28, 29, 30, 31, 32, 33, 34]
   ];
   constructor(
+      private errorService: ErrorService,
       private calendarService: CalendarService,
       private diaryService: DiaryService, private router: Router,
       private alertCtrl: AlertController, private modalCtrl: ModalController,
@@ -83,37 +85,10 @@ export class Tab1Page implements OnInit {
           this.calendars = this.calendarService.calendars;
         })
         .catch((err) => {
-          this.displayErrorAlert(err);
+          this.errorService.displayErrorAlert(err);
         });
   }
 
-  async displayErrorAlert(err) {
-    if (err.code == 209) {
-      const alert = await this.alertCtrl.create({
-        header: '错误!',
-        message: '登录信息过期',
-        buttons: [{
-          text: '返回登录',
-          handler: () => {
-            this.navCtrl.navigateRoot('/user/login');
-          }
-        }]
-      });
-      alert.present();
-    } else {
-      const alert = await this.alertCtrl.create({
-        header: '错误!',
-        message: err,
-        buttons: [{
-          text: '确定',
-          handler: () => {
-            this.alertCtrl.dismiss();
-          }
-        }]
-      });
-      alert.present();
-    }
-  }
   /**
    * 打开月份卡片背景设置modal
    * @param index 第几月

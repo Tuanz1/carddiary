@@ -3,6 +3,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {IonSlides, ModalController} from '@ionic/angular';
 
 import {DiaryService} from '../service/diary/diary.service';
+import {ErrorService} from '../service/error/error.service';
 import {LabelService} from '../service/label/label.service';
 import {PhotoService} from '../service/photo/photo.service';
 
@@ -39,7 +40,7 @@ export class DiaryPage implements OnInit {
       private activatedRoute: ActivatedRoute,
       private diaryService: DiaryService, private photoService: PhotoService,
       private labelService: LabelService, private modalCtrl: ModalController,
-      private router: Router) {}
+      private errorService: ErrorService, private router: Router) {}
 
   async ngOnInit() {
     this.activatedRoute.queryParams.subscribe(params => {
@@ -78,7 +79,7 @@ export class DiaryPage implements OnInit {
             this.photos.push(photo);
           })
           .catch(err => {
-            alert(err);
+            this.errorService.displayErrorAlert(err);
           });
     }
     this.upload = false;
@@ -120,12 +121,12 @@ export class DiaryPage implements OnInit {
                   this.loadDiaryData();
                 })
                 .catch(err => {
-                  alert(err);
+                  this.errorService.displayErrorAlert(err);
                 });
           }
         })
         .catch(err => {
-          alert(err);
+          this.errorService.displayErrorAlert(err);
         });
   }
   // 打开标签管理
