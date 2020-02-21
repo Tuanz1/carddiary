@@ -52,14 +52,10 @@ p {
 }
 
 .photos-card {
-
     ion-row {
-        background-color: #ededed;
         max-height: 24em;
 
         ion-col {
-            background-color: #ededed;
-
             ion-img {
                 max-height: 24em;
             }
@@ -117,7 +113,6 @@ ion-grid {
             padding: 0;
             justify-content: center;
             text-align: center;
-            color: black;
 
             span {
                 font-size: 1.5em;
@@ -129,7 +124,7 @@ ion-grid {
 .block {
     height: 50px;
     width: 4px;
-    background-color: #ededed;
+    background-color: #828282;
 }
 
 ion-card {

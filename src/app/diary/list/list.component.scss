@@ -78,8 +78,10 @@ ion-icon {
     padding-left: 1em;
     background: white;
     color: black;
-    height: 1.6em;
+    max-height: 1.6em;
     border-radius: 2px;
+    max-width: 100%;
+    overflow: hidden;
 
     .title {
         transform: skewX(30deg);

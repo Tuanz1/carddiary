@@ -89,12 +89,12 @@
           </ion-card-header>
           <ion-card-content>
             <ion-item lines="none">
-              <ion-progress-bar [value]="month.get('count') / month.get('total')" buffer="0" color="light">
+              <ion-progress-bar [value]="month.get('count') / month.get('total')" buffer="0.25" class="progress-buffer">
               </ion-progress-bar>
               <div class="percentage">{{month.attributes.count}}/{{month.attributes.total}}</div>
-              <ion-button slot="icon-only" class="btn-color-picker" shape="round" fill="clear" color="light" slot="end"
+              <ion-button slot="icon-only" class="btn-color-picker" shape="round" fill="clear" slot="end"
                 (click)="openColorPicker(j)">
-                <ion-icon name="ellipsis-horizontal" style="font-size: 2.5em;"></ion-icon>
+                <ion-icon name="ellipsis-horizontal" style="font-size: 2.5em;color:white"></ion-icon>
               </ion-button>
             </ion-item>
           </ion-card-content>

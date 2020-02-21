@@ -25,23 +25,23 @@
     </ion-avatar>
     <ion-card>
       <ion-icon name="create" class="create-icon" color="medium" (click)="openUserInfo()"></ion-icon>
-      <ion-card-title>{{title}}</ion-card-title>
-      <ion-card-subtitle>{{feel}}</ion-card-subtitle>
+      <ion-card-title color="dark">{{title}}</ion-card-title>
+      <ion-card-subtitle color="dark">{{feel}}</ion-card-subtitle>
     </ion-card>
   </div>
   <ion-card>
     <ion-grid class="statistics-card">
       <ion-row>
         <ion-col size="6" style="border-right: solid 1px grey;">
-          <ion-row>{{totalNum}}</ion-row>
+          <ion-row color="dark">{{totalNum}}</ion-row>
           <ion-row>
-            <ion-label>所有日记</ion-label>
+            <ion-label color="dark">所有日记</ion-label>
           </ion-row>
         </ion-col>
         <ion-col size="6">
-          <ion-row>{{favoriteNum}}</ion-row>
+          <ion-row color="dark">{{favoriteNum}}</ion-row>
           <ion-row>
-            <ion-label>喜欢的日记</ion-label>
+            <ion-label color="dark">喜欢的日记</ion-label>
           </ion-row>
         </ion-col>
       </ion-row>
@@ -108,7 +108,7 @@
                   <span class="block" [ngStyle]="{height: calHeight(weather.get('count'))}"></span>
                 </ion-row>
                 <ion-row>
-                  <ion-col>
+                  <ion-col color="dark">
                     <span class="iconfont {{weather.get('name')}}"></span>
                   </ion-col>
                 </ion-row>
@@ -127,7 +127,7 @@
                   <span class="block" [ngStyle]="{height: calHeight(emoji.get('count'))}"></span>
                 </ion-row>
                 <ion-row>
-                  <ion-col>
+                  <ion-col color="dark">
                     <span class="iconfont {{emoji.get('name')}}"></span>
                   </ion-col>
                 </ion-row>
@@ -144,11 +144,14 @@
       <ion-icon name="chevron-forward" slot="end" color="medium"></ion-icon>
     </ion-item>
     <p>
-      <ion-chip *ngFor="let customLabel of customLabels;let i= index" outline="true" (click)="openDiaryListByTag(i)">
+      <ion-chip *ngFor="let customLabel of customLabels;let i= index" color="dark" outline="true"
+        (click)="openDiaryListByTag(i)">
         <ion-icon name="pricetag-outline" color="dark"></ion-icon>
-        {{customLabel.get('name')}} <ion-note style="margin-left: 1em;">
-          {{customLabel.get('count')}}
-        </ion-note>
+        <ion-label>{{customLabel.get('name')}} <ion-note style="margin-left: 1em;">
+            {{customLabel.get('count')}}
+          </ion-note>
+        </ion-label>
+
       </ion-chip>
       <ion-label [hidden]="customLabels.length > 0">请添加自定义标签</ion-label>
     </p>

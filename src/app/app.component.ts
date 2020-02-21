@@ -32,6 +32,7 @@ export class AppComponent {
       } else {
         this.router.navigate(['/user']);
       }
+      // document.body.classList.toggle('dark', true);
     });
   }
 }

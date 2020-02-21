@@ -177,6 +177,7 @@ export class DiaryPage implements OnInit {
     await this.diaryService.updateDiary();
   }
   clickSaveBtn() {
+    this.title = this.content.split('\n')[0];
     this.updateDiary();
     this.diaryService.diarys = new Array();
     this.diaryService.diarys.push(this.diaryService.diary);

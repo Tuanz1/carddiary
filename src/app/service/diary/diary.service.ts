@@ -96,7 +96,7 @@ export class DiaryService {
     let diary = new this.Diary();
     diary.set('user', Parse.User.current());
     diary.set('title', '');
-    diary.set('content', '');
+    diary.set('content', '## ');
     diary.set('favorite', false);
     diary.set('home', -1);
     diary.set('year', date.getFullYear());
@@ -104,6 +104,7 @@ export class DiaryService {
     diary.set('day', date.getDate());
     diary.set('labels', []);
     diary.set('photos', []);
+    diary.setACL(new Parse.ACL(Parse.User.current()));
     this.calendarService.wirte(date);
     return diary.save();
   }

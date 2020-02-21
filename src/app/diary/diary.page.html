@@ -3,10 +3,10 @@
     <ion-buttons slot="start">
       <ion-grid>
         <ion-row>
-          <ion-note class="note-auto">AUTO</ion-note>
+          <ion-note class="note-auto">MARK</ion-note>
         </ion-row>
         <ion-row>
-          <ion-note class="note-save">SAVE</ion-note>
+          <ion-note class="note-save">DOWN</ion-note>
         </ion-row>
       </ion-grid>
     </ion-buttons>
@@ -42,22 +42,22 @@
       <ion-img [src]="photo.get('photo').url() | oss: 'slide'"></ion-img>
     </ion-slide>
   </ion-slides>
-  <ion-item style="text-align: center;">
+  <!-- <ion-item style="text-align: center;" lines="none">
     <ion-input placeholder="标题" [(ngModel)]="title"></ion-input>
-  </ion-item>
-  <ion-item>
+  </ion-item> -->
+  <ion-item lines="none">
     <div class="tools">
-      <ion-button fill="clear" color="dark" (click)="openTagPickerModal()">
+      <ion-button fill="clear" color="dark" (click)="openTagPickerModal()" slot="icon-only">
         <span class="iconfont {{weather}}"></span>
       </ion-button>
-      <ion-button fill="clear" color="dark" (click)="openTagPickerModal()">
+      <ion-button fill="clear" color="dark" (click)="openTagPickerModal()" slot="icon-only">
         <span class="iconfont {{emoji}}"></span>
       </ion-button>
-      <ion-button class="btn-heart" fill="clear" color="dark" (click)="clickFavoriteBtn()">
+      <ion-button class="btn-heart" fill="clear" color="dark" (click)="clickFavoriteBtn()" slot="icon-only">
         <ion-icon *ngIf="favorite == false" slot="icon-only" name="heart-outline"></ion-icon>
         <ion-icon *ngIf="favorite == true" color="danger" slot="icon-only" name="heart"></ion-icon>
       </ion-button>
-      <ion-button fill="clear" color="dark" (click)="openTagPickerModal()">
+      <ion-button fill="clear" color="dark" (click)="openTagPickerModal()" slot="icon-only">
         <ion-icon slot="icon-only" name="location-outline"></ion-icon>
       </ion-button>
     </div>

@@ -18,7 +18,7 @@ import {DonateComponent} from './donate/donate.component';
 })
 export class SettingPage implements OnInit {
   status: boolean;
-  darkTheme: boolean;
+  mode: string = 'day';
   constructor(
       private toastCtrl: ToastController, private router: Router,
       private settingService: SettingService,
@@ -26,12 +26,14 @@ export class SettingPage implements OnInit {
 
   ngOnInit() {
     this.status = this.settingService.status == 'true' ? true : false;
-    this.darkTheme = this.settingService.darkTheme == 'true' ? true : false;
+    this.mode = this.settingService.mode;
   }
   switchStatusBar(event) {
     this.settingService.displayStatusBar(this.status);
   }
-
+  switchTheme(event) {
+    this.settingService.setMode(event.target.value);
+  }
   logOut() {
     localStorage.setItem('login', 'false');
     Parse.User.logOut().then(data => {});

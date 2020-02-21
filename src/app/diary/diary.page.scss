@@ -38,14 +38,19 @@ ion-grid {
     ion-row {
         ion-note {
             font-size: 12px;
+            font-family: 'robot-light';
         }
 
         .note-auto {
-            font-weight: 150;
+            width: 100%;
+            font-weight: 300;
+            text-align: center;
         }
 
         .note-save {
-            font-weight: 400;
+            font-weight: 800;
+            width: 100%;
+            text-align: center;
         }
 
         padding: 0;
@@ -87,7 +92,6 @@ ion-grid {
 }
 
 
-
 ion-content {
     ion-button {
         height: 3em;
@@ -110,13 +114,14 @@ ion-content {
     border-bottom: solid 1px #ededed;
 
     ion-button {
-        ion-icon {
-            color: #70c9f5;
+        font-size: 1em;
+
+        span {
+            font-size: 2em;
         }
 
-        .iconfont {
-            color: #70c9f5;
-            font-size: 1.6em;
+        ion-icon {
+            font-size: 2em;
         }
     }
 }

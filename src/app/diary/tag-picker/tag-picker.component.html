@@ -30,7 +30,9 @@
       </ion-button>
     </ion-item>
     <p>
-      <ion-chip *ngFor="let customLabel of customLabels" [hidden]="!customLabel.select">{{customLabel.name}}</ion-chip>
+      <ion-chip *ngFor="let customLabel of customLabels" [hidden]="!customLabel.select">
+        <ion-label>{{customLabel.name}}</ion-label>
+      </ion-chip>
     </p>
 
   </ion-grid>

@@ -20,15 +20,19 @@
       <ion-toggle (ionChange)="switchStatusBar($event)" [(ngModel)]="status" slot="end" color="secondary"></ion-toggle>
     </ion-item>
     <ion-item>
+      <ion-label>主题</ion-label>
+      <ion-select [(ngModel)]="mode" (ionChange)="switchTheme($event)" okText="确定" cancelText="取消">
+        <ion-select-option value="day">日间模式</ion-select-option>
+        <ion-select-option value="night">夜间模式</ion-select-option>
+        <ion-select-option value="auto">自动切换</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
       <ion-label>语言</ion-label>
       <ion-select placeholder="中文-简体" okText="Okay" cancelText="Dismiss" disabled="true">
         <ion-select-option value="black">中文-简体</ion-select-option>
         <ion-select-option value="black">English</ion-select-option>
       </ion-select>
-    </ion-item>
-    <ion-item disabled="true">
-      <ion-label>夜间模式</ion-label>
-      <ion-toggle slot="end" color="secondary"></ion-toggle>
     </ion-item>
     <ion-item disabled="true">
       <ion-label>指纹</ion-label>
@@ -76,7 +80,7 @@
       <ion-icon name="chevron-forward-outline" slot="end" color="medium"></ion-icon>
     </ion-item>
   </ion-list>
-  <ion-button (click)="logOut()" expand="full" color="medium" shape="round" style="padding: 0 1em;">
+  <ion-button (click)="logOut()" expand="full" color="danger" shape="round" style="padding: 0 1em;">
     退出用户
   </ion-button>
 </ion-content>

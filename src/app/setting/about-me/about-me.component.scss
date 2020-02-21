@@ -1,9 +1,9 @@
-ion-list-header {
-    background-color: #ededed;
-}
-
 ion-list {
     padding-top: 0;
+
+    ion-list-header {
+        font-size: 1.2em;
+    }
 }
 
 ion-text {
@@ -12,10 +12,13 @@ ion-text {
 
 a {
     color: #7044ff;
+    display: block;
+    width: 100%;
+    text-align: center;
 }
 
 div {
-    background: #ededed;
+    background: var(--ion-color-medium, #92949c) !important;
     justify-content: center;
     display: flex;
 
@@ -26,4 +29,5 @@ div {
 
 p {
     text-indent: 2em;
+    margin: 0;
 }

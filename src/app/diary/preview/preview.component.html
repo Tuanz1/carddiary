@@ -7,9 +7,7 @@
             <ion-img [src]="photo.get('photo').url() | oss : 'slide'"></ion-img>
           </ion-slide>
         </ion-slides>
-
         <ion-grid>
-
           <ion-row>
             <ion-col size="12" style="text-align: center;">
               <ion-note class="calendar">{{getMonthAbb(diary.get('month'))}}.{{diary.get('day')}} /
@@ -32,9 +30,9 @@
           </ion-row>
           <ion-row style="padding:0 1em;">
             <div *ngFor="let label of diary.get('labels')">
-              <ion-chip *ngIf="label.get('type') == 'custom'" outline="true" color="primary">
-                <ion-icon name="pricetag-outline" style="padding-right: 1em;"></ion-icon>
-                {{label.get('name')}}
+              <ion-chip *ngIf="label.get('type') == 'custom'" outline="true" color="dark">
+                <ion-icon name="pricetag-outline"></ion-icon>
+                <ion-label> {{label.get('name')}}</ion-label>
               </ion-chip>
             </div>
           </ion-row>

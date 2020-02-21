@@ -22,6 +22,7 @@ ion-card {
       text-align: center;
       font-size: 4em;
       font-weight: 800;
+      color: black;
       padding-top: 0.2em;
     }
 
@@ -105,8 +106,8 @@ ion-slide {
 
   .back-button {
     --color: white;
-    --background: #4a4a4a;
-    --background-hover: #4a4a4a;
+    --background: #1c1c1c;
+    --background-hover: #1c1c1c;
   }
 }
 
@@ -161,4 +162,11 @@ ion-item {
 
 ion-datetime {
   width: 100%;
+}
+
+.progress-buffer {
+  --background: white;
+  --buffer-background: #ededed8c;
+  ;
+  --progress-background: white;
 }

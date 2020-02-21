@@ -8,7 +8,7 @@
     </ion-title>
     <ion-buttons slot="end">
       <ion-button>
-        <ion-icon name="stats" slot="icon-only"></ion-icon>
+        <ion-icon name="filter" slot="icon-only"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
@@ -31,7 +31,7 @@
                   </ion-row>
                 </div>
                 <ion-row style="justify-content: center;" *ngFor="let label of diary.get('labels')">
-                  <ion-col *ngIf="label.get('type')=='emoji'" style="padding-top:1em;color:black;">
+                  <ion-col *ngIf="label.get('type')=='emoji'" style="padding-top:1em;" color="dark">
                     <span class="iconfont {{label.get('name')}}"></span>
                   </ion-col>
                 </ion-row>
