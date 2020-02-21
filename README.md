@@ -5,10 +5,10 @@ Card Diary是一款日记软件，界面美观（UI灵感来源于Behance上的�
 Ionic5/Angular + Parse 
 
 ## 项目预览
-![1](./images/1.png)
-![2](./images/2.png)
-![3](./images/3.png)
-![4](./images/4.png)
+![1](images/1.png)
+![2](images/2.png)
+![3](images/3.png)
+![4](images/4.png)
 
 ## 自定义服务器
 [参考](https://github.com/Tuanz1/CardDiary-Parse.git)
